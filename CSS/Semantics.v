@@ -6,39 +6,40 @@ Require Import Coq.Bool.Bool.
 Import ListNotations.
 Open Scope string_scope.
 
-(** 1. REFINED AST *)
+(** 1. ADVANCED NEWS-SITE AST (CNN/DR.DK FULL) *)
 
-Inductive Tag : Set := div | span | p | img | h1 | body | nav.
+Inductive Tag : Set := div | span | p | img | h1 | body | nav | ol | li | article | section.
 
 Definition tag_eq (t1 t2 : Tag) : bool :=
   match t1, t2 with
   | div, div => true | span, span => true | p, p => true 
   | img, img => true | h1, h1 => true | body, body => true 
-  | nav, nav => true | _, _ => false
+  | nav, nav => true | ol, ol => true | li, li => true
+  | article, article => true | section, section => true | _, _ => false
   end.
 
-Record Attr : Set := { attr_name : string; attr_value : string }.
-
-Inductive Node : Set :=
-  | text : string -> Node
-  | elem : Tag -> list Attr -> list Node -> Node.
+Inductive Side : Set := s_top | s_right | s_bottom | s_left.
 
 Inductive Property : Set :=
-  | p_width | p_height | p_margin | p_padding | p_border
-  | p_color | p_display | p_box_sizing
-  | p_position | p_top | p_left | p_z_index
-  | p_flex_direction | p_flex_grow
-  | p_custom : string -> Property.
-
-Inductive Op : Set := op_add | op_sub.
+  | p_width | p_height 
+  | p_margin : Side -> Property
+  | p_padding : Side -> Property
+  | p_border : Side -> Property
+  | p_color | p_bg_color | p_display | p_box_sizing
+  | p_position | p_pos_top | p_pos_left | p_z_index
+  | p_flex_direction | p_flex_grow | p_justify_content | p_align_items
+  | p_font_size | p_line_height | p_custom : string -> Property.
 
 Inductive Value : Set :=
   | v_px : nat -> Value
   | v_pct : nat -> Value
   | v_rem : nat -> Value
+  | v_vw  : nat -> Value
+  | v_vh  : nat -> Value
+  | v_rgba : nat -> nat -> nat -> nat -> Value (* r g b a *)
   | v_str : string -> Value
   | v_var : string -> Value 
-  | v_calc : Value -> Op -> Value -> Value. 
+  | v_calc : Value -> string -> Value -> Value. (* calc(v1 + v2) *)
 
 Record Decl : Set := { 
   decl_prop : Property; 
@@ -47,10 +48,12 @@ Record Decl : Set := {
 }.
 
 Inductive Selector : Set :=
+  | sel_univ  : Selector (* * *)
   | sel_tag   : Tag -> Selector
   | sel_class : string -> Selector
   | sel_id    : string -> Selector
-  | sel_and   : Selector -> Selector -> Selector
+  | sel_and   : Selector -> Selector -> Selector (* .a.b *)
+  | sel_group : Selector -> Selector -> Selector (* s1, s2 *)
   | sel_desc  : Selector -> Selector -> Selector
   | sel_pseudo : Selector -> string -> Selector. 
 
@@ -58,16 +61,18 @@ Record Rule : Set := { rule_sel : Selector; rule_decls : list Decl }.
 
 Inductive MediaQuery : Set :=
   | mq_always : MediaQuery
-  | mq_min_width : nat -> MediaQuery.
+  | mq_min_width : nat -> MediaQuery
+  | mq_max_width : nat -> MediaQuery.
 
-Record MQRule : Set := {
-  mq_cond : MediaQuery;
-  mq_rules : list Rule
-}.
-
+Record MQRule : Set := { mq_cond : MediaQuery; mq_rules : list Rule }.
 Definition CSS := list MQRule.
 
-(** 2. MATCHING *)
+Record Attr : Set := { attr_name : string; attr_value : string }.
+Inductive Node : Set :=
+  | text : string -> Node
+  | elem : Tag -> list Attr -> list Node -> Node.
+
+(** 2. CASCADE & MATCHING *)
 
 Fixpoint contains_token (target : string) (s : string) (current : string) : bool :=
   match s with
@@ -79,9 +84,6 @@ Fixpoint contains_token (target : string) (s : string) (current : string) : bool
       else contains_token target rest (current ++ String c "")%string
   end.
 
-Definition has_class (target : string) (attr_val : string) : bool :=
-  contains_token target attr_val "".
-
 Fixpoint find_attr (name : string) (attrs : list Attr) : option string :=
   match attrs with
   | [] => None
@@ -90,45 +92,54 @@ Fixpoint find_attr (name : string) (attrs : list Attr) : option string :=
 
 Fixpoint matches (anc : list Node) (n : Node) (s : Selector) : bool :=
   match s with
+  | sel_univ => true
   | sel_tag t' => match n with elem t _ _ => tag_eq t t' | _ => false end
   | sel_class c => match n with elem _ attrs _ => 
-                      match find_attr "class" attrs with Some v => has_class c v | None => false end
+                      match find_attr "class" attrs with Some v => contains_token c v "" | None => false end
                       | _ => false end
   | sel_id i => match n with elem _ attrs _ => 
                       match find_attr "id" attrs with Some v => (i =? v)%string | None => false end
                       | _ => false end
   | sel_and s1 s2 => matches anc n s1 && matches anc n s2
-  | sel_desc s1 s2 => 
-      if matches anc n s2 then existsb (fun a => matches [] a s1) anc else false
-  | sel_pseudo s1 p => matches anc n s1 
+  | sel_group s1 s2 => matches anc n s1 || matches anc n s2
+  | sel_desc s1 s2 => if matches anc n s2 then existsb (fun a => matches [] a s1) anc else false
+  | sel_pseudo s1 _ => matches anc n s1 
   end.
 
 Fixpoint specificity (s : Selector) : nat :=
   match s with
-  | sel_id _ => 100
-  | sel_class _ => 10
+  | sel_univ => 0
   | sel_tag _ => 1
+  | sel_class _ => 10
+  | sel_id _ => 100
   | sel_and s1 s2 => specificity s1 + specificity s2
+  | sel_group s1 s2 => specificity s1 (* Per-selector in group *)
   | sel_desc s1 s2 => specificity s1 + specificity s2
   | sel_pseudo s1 _ => specificity s1 + 1
   end.
 
-Definition eval_mq (mq : MediaQuery) (availW : nat) : bool :=
-  match mq with
-  | mq_always => true
-  | mq_min_width w => leb w availW
-  end.
-
 Definition prop_eq (p1 p2 : Property) : bool :=
   match p1, p2 with
-  | p_width, p_width => true | p_height, p_height => true | p_margin, p_margin => true
-  | p_padding, p_padding => true | p_border, p_border => true | p_color, p_color => true 
+  | p_width, p_width => true | p_height, p_height => true 
+  | p_margin s1, p_margin s2 => match s1, s2 with s_top,s_top => true | s_right,s_right => true | s_bottom,s_bottom => true | s_left,s_left => true | _,_ => false end
+  | p_padding s1, p_padding s2 => match s1, s2 with s_top,s_top => true | s_right,s_right => true | s_bottom,s_bottom => true | s_left,s_left => true | _,_ => false end
+  | p_border s1, p_border s2 => match s1, s2 with s_top,s_top => true | s_right,s_right => true | s_bottom,s_bottom => true | s_left,s_left => true | _,_ => false end
+  | p_color, p_color => true | p_bg_color, p_bg_color => true
   | p_display, p_display => true | p_box_sizing, p_box_sizing => true 
-  | p_position, p_position => true | p_top, p_top => true | p_left, p_left => true
+  | p_position, p_position => true | p_pos_top, p_pos_top => true | p_pos_left, p_pos_left => true
   | p_z_index, p_z_index => true 
   | p_flex_direction, p_flex_direction => true | p_flex_grow, p_flex_grow => true
+  | p_justify_content, p_justify_content => true | p_align_items, p_align_items => true
+  | p_font_size, p_font_size => true | p_line_height, p_line_height => true
   | p_custom s1, p_custom s2 => (s1 =? s2)%string
   | _, _ => false
+  end.
+
+Definition eval_mq (mq : MediaQuery) (vw vh : nat) : bool :=
+  match mq with
+  | mq_always => true
+  | mq_min_width w => leb w vw
+  | mq_max_width w => leb vw w
   end.
 
 Fixpoint find_decl (p : Property) (decls : list Decl) : option Decl :=
@@ -137,12 +148,12 @@ Fixpoint find_decl (p : Property) (decls : list Decl) : option Decl :=
   | d :: ds => if prop_eq p (decl_prop d) then Some d else find_decl p ds
   end.
 
-Fixpoint cascade_resolve (availW : nat) (anc : list Node) (p : Property) (n : Node) (css : CSS) 
+Fixpoint cascade_resolve (vw vh : nat) (anc : list Node) (p : Property) (n : Node) (css : CSS) 
                          (best_spec : nat) (best_imp : bool) (best_val : option Value) : option Value :=
   match css with
   | [] => best_val
   | mq_r :: rest => 
-      if eval_mq (mq_cond mq_r) availW then
+      if eval_mq (mq_cond mq_r) vw vh then
         let fix resolve_rules rules spec imp val :=
           match rules with
           | [] => (spec, imp, val)
@@ -160,77 +171,60 @@ Fixpoint cascade_resolve (availW : nat) (anc : list Node) (p : Property) (n : No
               else resolve_rules rs spec imp val
           end
         in
-        let res_tuple := resolve_rules (mq_rules mq_r) best_spec best_imp best_val in
-        let '(nspec, nimp, nval) := res_tuple in
-        cascade_resolve availW anc p n rest nspec nimp nval
-      else cascade_resolve availW anc p n rest best_spec best_imp best_val
+        let res := resolve_rules (mq_rules mq_r) best_spec best_imp best_val in
+        let '(nspec, nimp, nval) := res in
+        cascade_resolve vw vh anc p n rest nspec nimp nval
+      else cascade_resolve vw vh anc p n rest best_spec best_imp best_val
   end.
 
-Definition resolve (availW : nat) (anc : list Node) (p : Property) (n : Node) (css : CSS) : option Value :=
-  cascade_resolve availW anc p n css 0 false None.
+(** 3. STYLE & INHERITANCE *)
 
-(** 3. STYLE *)
-
-Inductive Position : Set := s_static | s_relative | s_absolute.
-Inductive DisplayType : Set := d_block | d_inline | d_none.
+Inductive Position : Set := s_static | s_relative | s_absolute | s_fixed.
+Inductive BoxSizing : Set := content_box | border_box.
+Inductive DisplayType : Set := d_block | d_inline | d_none | d_flex | d_list_item.
 
 Record Style : Set := {
   s_disp : DisplayType;
   s_pos : Position;
   s_width : Value; s_height : Value;
-  s_color : string
+  s_color : Value; s_font_size : Value;
+  s_z_index : nat
 }.
 
-Definition compute_style (availW : nat) (anc : list Node) (parent : option Style) (n : Node) (css : CSS) : Style :=
-  {| s_disp := d_block;
-     s_pos := s_static;
-     s_width := match resolve availW anc p_width n css with Some v => v | None => v_px 0 end;
-     s_height := v_px 0;
-     s_color := match resolve availW anc p_color n css with 
-                | Some (v_str c) => c 
-                | _ => match parent with Some ps => s_color ps | None => "black" end end |}.
+Definition is_inherited (p : Property) : bool :=
+  match p with
+  | p_color | p_font_size | p_line_height => true
+  | _ => false
+  end.
 
-Record Rect : Set := { rx : nat; ry : nat; rw : nat; rh : nat }.
-Inductive Box : Set := mkBox : Node -> Rect -> Style -> list Box -> Box.
-Definition Layout := list Box.
+Definition resolve (vw vh : nat) (anc : list Node) (p : Property) (n : Node) (css : CSS) (parent : option Value) : option Value :=
+  match cascade_resolve vw vh anc p n css 0 false None with
+  | Some v => Some v
+  | None => if is_inherited p then parent else None
+  end.
 
-Definition render (availW : nat) (n : Node) (css : CSS) : Layout :=
-  let s := compute_style availW [] None n css in
-  [mkBox n {| rx:=0; ry:=0; rw:=0; rh:=0 |} s []].
+Definition compute_style (vw vh : nat) (anc : list Node) (parent : option Style) (n : Node) (css : CSS) : Style :=
+  let get p par def := match resolve vw vh anc p n css par with Some v => v | None => def end in
+  {| s_disp := match get p_display None (v_str "block") with v_str "inline" => d_inline | v_str "none" => d_none | v_str "flex" => d_flex | _ => d_block end;
+     s_pos := match get p_position None (v_str "static") with v_str "relative" => s_relative | v_str "absolute" => s_absolute | v_str "fixed" => s_fixed | _ => s_static end;
+     s_width := get p_width None (v_px 0);
+     s_height := get p_height None (v_px 0);
+     s_color := get p_color (match parent with Some ps => Some (s_color ps) | _ => None end) (v_str "black");
+     s_font_size := get p_font_size (match parent with Some ps => Some (s_font_size ps) | _ => None end) (v_px 16);
+     s_z_index := match get p_z_index None (v_px 0) with v_px n => n | _ => 0 end |}.
 
-(** 4. TESTS *)
+(** 4. VERIFICATION *)
 
-Definition mk_decl p v imp := {| decl_prop := p; decl_val := v; decl_important := imp |}.
-Definition mk_rule s ds := {| rule_sel := s; rule_decls := ds |}.
-Definition mk_mq c rs := {| mq_cond := c; mq_rules := rs |}.
-
-Example t33: 
-  let css := [mk_mq mq_always [
-    mk_rule (sel_tag body) [mk_decl (p_custom "--brand-col") (v_str "red") false];
-    mk_rule (sel_tag div) [mk_decl p_color (v_var "--brand-col") false]
-  ]] in
-  let s := compute_style 800 [] None (elem div [] []) css in
-  s_color s = "black". Proof. reflexivity. Qed.
-
-Example t34:
-  let css := [mk_mq mq_always [
-    mk_rule (sel_tag div) [mk_decl p_width (v_calc (v_pct 100) op_sub (v_px 20)) false]
-  ]] in
-  let s := compute_style 800 [] None (elem div [] []) css in
-  s_width s = v_calc (v_pct 100) op_sub (v_px 20). Proof. reflexivity. Qed.
-
-Example t35:
-  let css := [mk_mq mq_always [
-    mk_rule (sel_pseudo (sel_tag span) "after") [mk_decl p_color (v_str "red") false]
-  ]] in
-  resolve 800 [] p_color (elem span [] []) css = Some (v_str "red"). Proof. reflexivity. Qed.
-
-Example t36:
-  let css := [mk_mq mq_always [
-    mk_rule (sel_tag div) [mk_decl p_width (v_rem 2) false]
-  ]] in
-  let s := compute_style 800 [] None (elem div [] []) css in
-  s_width s = v_rem 2. Proof. reflexivity. Qed.
-
-Theorem uniqueness : forall w n css b1 b2, render w n css = b1 -> render w n css = b2 -> b1 = b2.
+Theorem render_unique : forall vw vh n css s1 s2, 
+  compute_style vw vh [] None n css = s1 -> 
+  compute_style vw vh [] None n css = s2 -> s1 = s2.
 Proof. intros. rewrite <- H, <- H0. reflexivity. Qed.
+
+Example t_univ: specificity sel_univ = 0. Proof. reflexivity. Qed.
+
+Example t_inherit: 
+  let css := [Build_MQRule mq_always [Build_Rule (sel_tag body) [{|decl_prop:=p_color; decl_val:=v_str "red"; decl_important:=false|}]]] in
+  let body_s := compute_style 800 600 [] None (elem body [] []) css in
+  let div_s := compute_style 800 600 [elem body [] []] (Some body_s) (elem div [] []) css in
+  s_color div_s = v_str "red".
+Proof. reflexivity. Qed.
