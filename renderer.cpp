@@ -53,17 +53,23 @@ struct Node {
 // CSS / Computed Style
 enum class DisplayType { BLOCK, INLINE, NONE };
 
+struct SideValues { Px top, right, bottom, left; };
+
 struct Style {
     DisplayType disp;
     Px computedW;
     Px computedH;
+    SideValues margin;
+    SideValues padding;
+    std::string bgColor;
+    std::string fgColor;
 };
 
 // Box Tree
 struct Box {
     std::shared_ptr<Node> node;
     Rect rect;
-    DisplayType dtype;
+    Style style;
     std::vector<std::shared_ptr<Box>> kids;
 };
 
@@ -80,14 +86,14 @@ struct DrawCmd {
  * ------------------------------------------------------------------------
  */
 Style compute_style(const Node& n) {
-    Style s{DisplayType::BLOCK, {0}, {0}};
+    Style s{DisplayType::BLOCK, {0}, {0}, {{0}, {0}, {0}, {0}}, {{0}, {0}, {0}, {0}}, "transparent", "black"};
     
     // Default display types based on Agda mapTag
     if (n.tag == Tag::SPAN || n.tag == Tag::TEXT_NODE || n.tag == Tag::IMG) {
         s.disp = DisplayType::INLINE;
     }
 
-    // Extract width/height from attributes (Logic added to Rendering.agda)
+    // Extract properties from attributes (Logic added to Rendering.agda)
     for (const auto& attr : n.attrs) {
         if (attr.name == "width") {
             try { s.computedW.n = std::stoi(attr.value); } catch (...) {}
@@ -97,6 +103,20 @@ Style compute_style(const Node& n) {
             if (attr.value == "none") s.disp = DisplayType::NONE;
             else if (attr.value == "inline") s.disp = DisplayType::INLINE;
             else s.disp = DisplayType::BLOCK;
+        } else if (attr.name == "margin") {
+            try { 
+                int v = std::stoi(attr.value);
+                s.margin = {{v}, {v}, {v}, {v}};
+            } catch (...) {}
+        } else if (attr.name == "padding") {
+            try { 
+                int v = std::stoi(attr.value);
+                s.padding = {{v}, {v}, {v}, {v}};
+            } catch (...) {}
+        } else if (attr.name == "background") {
+            s.bgColor = attr.value;
+        } else if (attr.name == "color") {
+            s.fgColor = attr.value;
         }
     }
     return s;
@@ -119,7 +139,8 @@ std::pair<std::vector<std::shared_ptr<Box>>, Px> layout_children(Px x, Px y, Px 
         auto b = layout_node(x, currentY, w, node);
         boxes.push_back(b);
         /** FSM STATE: AccumulateHeight (Update Y) */
-        currentY.n += b->rect.h.n;
+        Style s = compute_style(*node);
+        currentY.n += b->rect.h.n + s.margin.top.n + s.margin.bottom.n;
     }
     return {boxes, currentY};
 }
@@ -128,29 +149,36 @@ std::shared_ptr<Box> layout_node(Px x, Px y, Px availW, std::shared_ptr<Node> n)
     /** FSM STATE: ComputeStyle */
     Style s = compute_style(*n);
     
+    Px bx = { x.n + s.margin.left.n };
+    Px by = { y.n + s.margin.top.n };
+
+    Px cx = { bx.n + s.padding.left.n };
+    Px cy = { by.n + s.padding.top.n };
+
     /** FSM STATE: ResolveWidth */
-    Px actualW = (s.computedW.n > 0) ? s.computedW : availW;
+    Px contentAvailW = (s.computedW.n > 0) ? s.computedW : 
+        Px{ std::max(0, availW.n - s.margin.left.n - s.margin.right.n - s.padding.left.n - s.padding.right.n) };
 
     /** FSM STATE: LayoutChildren (Recursion) */
-    auto [childBoxes, maxY] = layout_children(x, y, actualW, n->children);
+    auto [childBoxes, maxY] = layout_children(cx, cy, contentAvailW, n->children);
 
     /** FSM STATE: ResolveHeight */
-    Px actualH = {0};
+    Px contentH = {0};
     if (s.computedH.n > 0) {
-        actualH = s.computedH;
+        contentH = s.computedH;
     } else {
-        actualH.n = maxY.n - y.n;
+        if (n->tag == Tag::TEXT_NODE) contentH.n = 20;
+        else contentH.n = std::max(0, maxY.n - cy.n);
     }
 
-    // Min height for text/empty nodes as in Agda
-    if (n->tag == Tag::TEXT_NODE) actualH.n = 20;
-    if (actualH.n == 0) actualH.n = 20;
+    Px actualBbW = { contentAvailW.n + s.padding.left.n + s.padding.right.n };
+    Px actualBbH = { contentH.n + s.padding.top.n + s.padding.bottom.n };
 
     /** FSM STATE: BoxConstruction */
     auto b = std::make_shared<Box>();
     b->node = n;
-    b->rect = {x, y, actualW, actualH};
-    b->dtype = s.disp;
+    b->rect = {bx, by, actualBbW, actualBbH};
+    b->style = s;
     b->kids = childBoxes;
     return b;
 }
@@ -163,10 +191,11 @@ std::shared_ptr<Box> layout_node(Px x, Px y, Px availW, std::shared_ptr<Node> n)
  */
 void paint_box(std::shared_ptr<Box> b, std::vector<DrawCmd>& acc) {
     /** FSM STATE: GenerateCmds */
-    if (b->dtype == DisplayType::NONE) return;
+    if (b->style.disp == DisplayType::NONE) return;
 
-    // Draw outline
-    acc.push_back({DrawCmd::BOX, b->rect, "white"});
+    // Draw background/border
+    std::string color = b->style.bgColor == "transparent" ? "white" : b->style.bgColor;
+    acc.push_back({DrawCmd::BOX, b->rect, color});
 
     if (b->node->tag == Tag::TEXT_NODE) {
         acc.push_back({DrawCmd::TEXT, b->rect, b->node->text_content});
