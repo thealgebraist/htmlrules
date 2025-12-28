@@ -22,6 +22,7 @@ postulate
 data State : Set where
   Start            : State
   -- Layout Phase
+  InheritStyle     : State
   ComputeStyle     : State
   ResolveWidth     : State
   LayoutChildren   : State
@@ -36,6 +37,7 @@ data State : Set where
 
 showState : State → String
 showState Start            = "Start"
+showState InheritStyle     = "InheritStyle"
 showState ComputeStyle     = "ComputeStyle"
 showState ResolveWidth     = "ResolveWidth"
 showState LayoutChildren   = "LayoutChildren"
@@ -58,14 +60,15 @@ record Transition : Set where
 fsmTransitions : List Transition
 fsmTransitions = 
   -- Initialization
-  tr Start ComputeStyle "Receive Viewport, DOM, CSS" ∷
+  tr Start InheritStyle "Receive Viewport, DOM, CSS" ∷
   
   -- Layout Phase (Per Node)
+  tr InheritStyle ComputeStyle "Access Parent Style" ∷
   tr ComputeStyle ResolveWidth "Match Selectors & Cascade" ∷
   tr ResolveWidth LayoutChildren "Calculate Actual Width" ∷
   
   -- Recursion Logic
-  tr LayoutChildren ComputeStyle "Recurse: Child Node (Push)" ∷
+  tr LayoutChildren InheritStyle "Recurse: Child Node (Push)" ∷
   tr BoxConstruction AccumulateHeight "Return: Child Done (Pop)" ∷
   tr AccumulateHeight LayoutChildren "Next Sibling (Update Y)" ∷
   
@@ -101,6 +104,7 @@ generateDot =
   "  End [shape=doublecircle, style=filled, fillcolor=black, fontcolor=white];\n" ++
   "  LayoutChildren [style=filled, fillcolor=lightyellow];\n" ++
   "  ComputeStyle [style=filled, fillcolor=lightblue];\n" ++
+  "  InheritStyle [style=filled, fillcolor=lavender];\n" ++
   "  GenerateCmds [style=filled, fillcolor=lightgreen];\n\n" ++
   toDot fsmTransitions ++
   "}"

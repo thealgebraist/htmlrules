@@ -63,6 +63,7 @@ struct Style {
     SideValues padding;
     std::string bgColor;
     std::string fgColor;
+    int fontSize;
 };
 
 // Box Tree
@@ -85,15 +86,21 @@ struct DrawCmd {
  * FSM STATE: ComputeStyle
  * ------------------------------------------------------------------------
  */
-Style compute_style(const Node& n) {
-    Style s{DisplayType::BLOCK, {0}, {0}, {{0}, {0}, {0}, {0}}, {{0}, {0}, {0}, {0}}, "transparent", "black"};
+Style compute_style(std::optional<Style> parent, const Node& n) {
+    Style s{DisplayType::BLOCK, {0}, {0}, {{0}, {0}, {0}, {0}}, {{0}, {0}, {0}, {0}}, "transparent", "black", 16};
     
-    // Default display types based on Agda mapTag
+    // Inheritance
+    if (parent) {
+        s.fgColor = parent->fgColor;
+        s.fontSize = parent->fontSize;
+    }
+
+    // Default display types
     if (n.tag == Tag::SPAN || n.tag == Tag::TEXT_NODE || n.tag == Tag::IMG) {
         s.disp = DisplayType::INLINE;
     }
 
-    // Extract properties from attributes (Logic added to Rendering.agda)
+    // Extract properties from attributes (simulating CSS matching for classes)
     for (const auto& attr : n.attrs) {
         if (attr.name == "width") {
             try { s.computedW.n = std::stoi(attr.value); } catch (...) {}
@@ -117,6 +124,8 @@ Style compute_style(const Node& n) {
             s.bgColor = attr.value;
         } else if (attr.name == "color") {
             s.fgColor = attr.value;
+        } else if (attr.name == "font-size") {
+            try { s.fontSize = std::stoi(attr.value); } catch (...) {}
         }
     }
     return s;
@@ -125,29 +134,28 @@ Style compute_style(const Node& n) {
 /**
  * ------------------------------------------------------------------------
  * FSM STATE: Layout Phase (Recursive)
- * Implements layoutNode' and layoutChildren from Agda
  * ------------------------------------------------------------------------
  */
-std::shared_ptr<Box> layout_node(Px x, Px y, Px availW, std::shared_ptr<Node> n);
+std::shared_ptr<Box> layout_node(std::optional<Style> parent, Px x, Px y, Px availW, std::shared_ptr<Node> n);
 
-std::pair<std::vector<std::shared_ptr<Box>>, Px> layout_children(Px x, Px y, Px w, const std::vector<std::shared_ptr<Node>>& nodes) {
+std::pair<std::vector<std::shared_ptr<Box>>, Px> layout_children(std::optional<Style> parent, Px x, Px y, Px w, const std::vector<std::shared_ptr<Node>>& nodes) {
     /** FSM STATE: LayoutChildren */
     std::vector<std::shared_ptr<Box>> boxes;
     Px currentY = y;
 
     for (const auto& node : nodes) {
-        auto b = layout_node(x, currentY, w, node);
+        auto b = layout_node(parent, x, currentY, w, node);
         boxes.push_back(b);
         /** FSM STATE: AccumulateHeight (Update Y) */
-        Style s = compute_style(*node);
+        Style s = b->style;
         currentY.n += b->rect.h.n + s.margin.top.n + s.margin.bottom.n;
     }
     return {boxes, currentY};
 }
 
-std::shared_ptr<Box> layout_node(Px x, Px y, Px availW, std::shared_ptr<Node> n) {
-    /** FSM STATE: ComputeStyle */
-    Style s = compute_style(*n);
+std::shared_ptr<Box> layout_node(std::optional<Style> parent, Px x, Px y, Px availW, std::shared_ptr<Node> n) {
+    /** FSM STATE: ComputeStyle (with inheritance) */
+    Style s = compute_style(parent, *n);
     
     Px bx = { x.n + s.margin.left.n };
     Px by = { y.n + s.margin.top.n };
@@ -160,7 +168,7 @@ std::shared_ptr<Box> layout_node(Px x, Px y, Px availW, std::shared_ptr<Node> n)
         Px{ std::max(0, availW.n - s.margin.left.n - s.margin.right.n - s.padding.left.n - s.padding.right.n) };
 
     /** FSM STATE: LayoutChildren (Recursion) */
-    auto [childBoxes, maxY] = layout_children(cx, cy, contentAvailW, n->children);
+    auto [childBoxes, maxY] = layout_children(s, cx, cy, contentAvailW, n->children);
 
     /** FSM STATE: ResolveHeight */
     Px contentH = {0};
@@ -193,9 +201,8 @@ void paint_box(std::shared_ptr<Box> b, std::vector<DrawCmd>& acc) {
     /** FSM STATE: GenerateCmds */
     if (b->style.disp == DisplayType::NONE) return;
 
-    // Draw background/border
-    std::string color = b->style.bgColor == "transparent" ? "white" : b->style.bgColor;
-    acc.push_back({DrawCmd::BOX, b->rect, color});
+    // Draw background/border (Using fgColor for border to show inheritance)
+    acc.push_back({DrawCmd::BOX, b->rect, b->style.fgColor});
 
     if (b->node->tag == Tag::TEXT_NODE) {
         acc.push_back({DrawCmd::TEXT, b->rect, b->node->text_content});
@@ -336,7 +343,7 @@ int main(int argc, char** argv) {
     std::string html = buffer.str();
 
     auto dom = parse_simple_html(html);
-    auto box_tree = layout_node({0}, {0}, {800}, dom);
+    auto box_tree = layout_node(std::nullopt, {0}, {0}, {800}, dom);
     
     std::vector<DrawCmd> cmds;
     paint_box(box_tree, cmds);

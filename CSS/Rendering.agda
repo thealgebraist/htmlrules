@@ -6,10 +6,12 @@ open import Data.List hiding (span)
 open import Data.Char using (Char)
 open import Data.Product
 open import Data.String renaming (_++_ to _^_)
+import Data.String as DataString
 open import Data.Maybe
 open import Data.Bool
 open import Function
 open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+import Agda.Builtin.String as String
 
 ------------------------------------------------------------------------
 -- BASIC GEOMETRY
@@ -49,13 +51,19 @@ data Node : Set where
   text : String → Node
   elem : Tag → List Attr → List Node → Node
 
+-- Helper to get class from attributes
+getClass : List Attr → Maybe String
+getClass [] = nothing
+getClass (attr "class" v ∷ as) = just v
+getClass (_ ∷ as) = getClass as
+
 ------------------------------------------------------------------------
 -- CSS AST (simplified)
 ------------------------------------------------------------------------
 
-record Selector : Set where
-  constructor sel
-  field tagName : Tag
+data Selector : Set where
+  selTag   : Tag → Selector
+  selClass : String → Selector
 
 open Selector
 
@@ -200,14 +208,21 @@ tagEq _ _ = false
 
 matches : Node → Selector → Bool
 matches (text _) _ = false
-matches (elem t _ _) (sel t') = tagEq t t'
+matches (elem t attrs _) (selTag t') = tagEq t t'
+matches (elem _ attrs _) (selClass c) with getClass attrs
+... | just c' = if c DataString.== c' then true else false
+... | nothing = false
 
 collectDecls : Node → CSS → List Decl
 collectDecls n [] = []
-collectDecls n (r ∷ rs) = 
-  if matches n (Rule.selector r) 
-  then Rule.decls r ++ collectDecls n rs 
+collectDecls n (rule sel ds ∷ rs) = 
+  if matches n sel 
+  then ds ++ collectDecls n rs 
   else collectDecls n rs
+
+------------------------------------------------------------------------
+-- COMPUTED STYLE
+------------------------------------------------------------------------
 
 parseDisplay : String → DisplayType
 parseDisplay "block" = block
@@ -235,20 +250,19 @@ attrsToDecls (attr n v ∷ as) with parseProp n
 ... | just prop = decl prop v ∷ attrsToDecls as
 ... | nothing   = attrsToDecls as
 
--- computeStyle implementation
-computeStyle : Node → CSS → Style
-computeStyle n css =
+-- computeStyle implementation with Inheritance
+computeStyle : Maybe Style → Node → CSS → Style
+computeStyle mParent n css =
   let cssDecls = collectDecls n css
       attrDecls = case n of λ where
         (elem _ attrs _) → attrsToDecls attrs
         (text _)         → []
       
-      -- Attributes override CSS in this simple model (or serve as inline styles)
       ds = cssDecls ++ attrDecls
       
       d = case findDecl display ds of λ where
             (just v) → parseDisplay v
-            nothing  → case n of λ where -- Defaults based on tag
+            nothing  → case n of λ where
               (text _) → inline
               (elem div _ _) → block
               (elem p _ _) → block
@@ -258,7 +272,7 @@ computeStyle n css =
       
       w = case findDecl width ds of λ where
             (just v) → px (parseNat v)
-            nothing  → px 0 -- 0 means auto/unspecified here for now
+            nothing  → px 0
             
       h = case findDecl height ds of λ where
             (just v) → px (parseNat v)
@@ -278,15 +292,21 @@ computeStyle n css =
              (just v) → v
              nothing  → "transparent"
              
+      -- INHERITED: color
       fg = case findDecl color ds of λ where
              (just v) → v
-             nothing  → "black"
+             nothing  → case mParent of λ where
+               (just ps) → Style.fgColor ps
+               nothing   → "black"
 
       srcVal = findDecl src ds
       
+      -- INHERITED: font-size
       fs = case findDecl fontSize ds of λ where
              (just v) → px (parseNat v)
-             nothing  → px 16
+             nothing  → case mParent of λ where
+               (just ps) → Style.fontSizePx ps
+               nothing   → px 16
 
   in style d w h m p bg fg srcVal fs
 
@@ -306,9 +326,9 @@ isPositive _ = true
 
 -- Mutual recursion for layout
 mutual
-  layoutNode' : Px → Px → Px → Node → CSS → Box
-  layoutNode' x y availW n css = 
-    let s = computeStyle n css
+  layoutNode' : Maybe Style → Px → Px → Px → Node → CSS → Box
+  layoutNode' mParent x y availW n css = 
+    let s = computeStyle mParent n css
         m = Style.marginVal s
         p = Style.paddingVal s
         styW = Style.computedW s
@@ -324,7 +344,6 @@ mutual
         cy = addPx by (SideValues.top p)
         
         -- Available width for content
-        -- If width is specified, use it. Otherwise use availW minus margins/paddings.
         contentAvailW : Px
         contentAvailW = if isPositive (Px.n styW) 
                         then styW 
@@ -334,7 +353,7 @@ mutual
         -- Layout children
         kidsRes = case n of λ where
           (text _) → ([] , cy)
-          (elem _ _ children) → layoutChildren cx cy contentAvailW children css
+          (elem _ _ children) → layoutChildren (just s) cx cy contentAvailW children css
         
         childBoxes = proj₁ kidsRes
         maxY       = proj₂ kidsRes
@@ -353,11 +372,11 @@ mutual
           
     in box n (mkRect bx by actualBbW actualBbH) s childBoxes
 
-  layoutChildren : Px → Px → Px → List Node → CSS → List Box × Px
-  layoutChildren x y w [] css = ([] , y)
-  layoutChildren x y w (n ∷ ns) css =
-    let b = layoutNode' x y w n css
-        s = computeStyle n css
+  layoutChildren : Maybe Style → Px → Px → Px → List Node → CSS → List Box × Px
+  layoutChildren mParent x y w [] css = ([] , y)
+  layoutChildren mParent x y w (n ∷ ns) css =
+    let b = layoutNode' mParent x y w n css
+        s = Box.computedStyle b
         m = Style.marginVal s
         -- Height of this node's margin box
         h = Rect.h (Box.rect b)
@@ -365,15 +384,15 @@ mutual
         
         newY = addPx y marginBoxH
         
-        resRest = layoutChildren x newY w ns css
+        resRest = layoutChildren mParent x newY w ns css
     in (b ∷ (proj₁ resRest) , (proj₂ resRest))
 
 -- Top level layout
 layoutNode : Viewport → Node → CSS → Box
-layoutNode v n css = layoutNode' (px 0) (px 0) (Viewport.width v) n css
+layoutNode v n css = layoutNode' nothing (px 0) (px 0) (Viewport.width v) n css
 
 layoutTree : Viewport → List Node → CSS → List Box
-layoutTree v ns css = proj₁ (layoutChildren (px 0) (px 0) (Viewport.width v) ns css)
+layoutTree v ns css = proj₁ (layoutChildren nothing (px 0) (px 0) (Viewport.width v) ns css)
 
 ------------------------------------------------------------------------
 -- PAINTING / DRAW ORDER
@@ -437,7 +456,7 @@ e' tag decls kids = elem tag [] kids -- Decls are in CSS, not inline style for t
 
 -- Sample CSS creation
 rule' : Tag → List Decl → Rule
-rule' t ds = rule (sel t) ds
+rule' t ds = rule (selTag t) ds
 
 d_w : ℕ → Decl
 d_w n = decl width (Data.Nat.Show.show n)
