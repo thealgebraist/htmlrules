@@ -209,10 +209,34 @@ parseDisplay "inline" = inline
 parseDisplay "none"   = none
 parseDisplay _        = block -- default
 
+-- Convert attribute string to Property
+parseProp : String → Maybe Property
+parseProp "width" = just width
+parseProp "height" = just height
+parseProp "display" = just display
+parseProp "color" = just color
+parseProp "background" = just background
+parseProp "src" = just src
+parseProp "font-size" = just fontSize
+parseProp _ = nothing
+
+-- Extract Declarations from Node Attributes
+attrsToDecls : List Attr → List Decl
+attrsToDecls [] = []
+attrsToDecls (attr n v ∷ as) with parseProp n
+... | just prop = decl prop v ∷ attrsToDecls as
+... | nothing   = attrsToDecls as
+
 -- computeStyle implementation
 computeStyle : Node → CSS → Style
 computeStyle n css =
-  let ds = collectDecls n css 
+  let cssDecls = collectDecls n css
+      attrDecls = case n of λ where
+        (elem _ attrs _) → attrsToDecls attrs
+        (text _)         → []
+      
+      -- Attributes override CSS in this simple model (or serve as inline styles)
+      ds = cssDecls ++ attrDecls
       
       d = case findDecl display ds of λ where
             (just v) → parseDisplay v
@@ -339,24 +363,22 @@ layoutTree v ns css = proj₁ (layoutChildren (px 0) (px 0) (Viewport.width v) n
 ------------------------------------------------------------------------
 
 mutual
-  paintBox : Box → List DrawCmd
-  paintBox (box n r d kids) with d
-  ... | none = []
+  paintBox : Box → DisplayList → DisplayList
+  paintBox (box n r d kids) acc with d
+  ... | none = acc
   ... | _    = 
-    let -- Draw background if not transparent (simplified check)
-        
-        -- For now, let's just emit DrawBox with a placeholder color or "border".
-        contentCmds = case n of λ where
+    let contentCmds = case n of λ where
           (text s) → (DrawText r s ∷ [])
-          (elem img attrs _) → (DrawImage r "placeholder.png" ∷ []) -- Should parse src from attrs/style
+          (elem img attrs _) → (DrawImage r "placeholder.png" ∷ []) 
           _ → []
         
-        kidCmds = paint kids
-    in (DrawBox r "border" ∷ contentCmds ++ kidCmds)
+        -- Start with current box and its content
+        acc' = (DrawBox r "white" ∷ contentCmds ++ acc)
+    in paint kids acc'
 
-  paint : Layout → DisplayList
-  paint [] = []
-  paint (b ∷ bs) = paintBox b ++ paint bs
+  paint : Layout → DisplayList → DisplayList
+  paint [] acc = acc
+  paint (b ∷ bs) acc = paintBox b (paint bs acc)
 
 ------------------------------------------------------------------------
 -- END-TO-END RENDERING
@@ -365,7 +387,7 @@ mutual
 render : Viewport → Node → CSS → Layout × DisplayList
 render v n css =
   let root = layoutNode v n css in
-  ( root ∷ [] , paint (root ∷ []) )
+  ( root ∷ [] , paint (root ∷ []) [] )
 
 ------------------------------------------------------------------------
 -- UNIQUENESS PROOF
