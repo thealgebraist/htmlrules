@@ -80,20 +80,41 @@ CSS : Set
 CSS = List Rule
 
 ------------------------------------------------------------------------
--- BOX TREE
+-- COMPUTED STYLE
 ------------------------------------------------------------------------
+
+record SideValues : Set where
+  constructor sides
+  field top right bottom left : Px
 
 data DisplayType : Set where
   block inline none : DisplayType
+
+record Style : Set where
+  constructor style
+  field
+    disp         : DisplayType
+    computedW    : Px
+    computedH    : Px
+    marginVal    : SideValues
+    paddingVal   : SideValues
+    bgColor      : String
+    fgColor      : String
+    imageSource  : Maybe String
+    fontSizePx   : Px
+
+------------------------------------------------------------------------
+-- BOX TREE
+------------------------------------------------------------------------
 
 record Box : Set where
   inductive
   constructor box
   field
-    node  : Node
-    rect  : Rect
-    dtype : DisplayType
-    kids  : List Box
+    node          : Node
+    rect          : Rect
+    computedStyle : Style
+    kids          : List Box
 
 Layout : Set
 Layout = List Box
@@ -188,21 +209,6 @@ collectDecls n (r ∷ rs) =
   then Rule.decls r ++ collectDecls n rs 
   else collectDecls n rs
 
-------------------------------------------------------------------------
--- COMPUTED STYLE
-------------------------------------------------------------------------
-
-record Style : Set where
-  constructor style
-  field
-    disp         : DisplayType
-    computedW    : Px
-    computedH    : Px
-    bgColor      : String
-    fgColor      : String
-    imageSource  : Maybe String
-    fontSizePx   : Px
-
 parseDisplay : String → DisplayType
 parseDisplay "block" = block
 parseDisplay "inline" = inline
@@ -218,6 +224,8 @@ parseProp "color" = just color
 parseProp "background" = just background
 parseProp "src" = just src
 parseProp "font-size" = just fontSize
+parseProp "margin" = just margin
+parseProp "padding" = just padding
 parseProp _ = nothing
 
 -- Extract Declarations from Node Attributes
@@ -256,6 +264,16 @@ computeStyle n css =
             (just v) → px (parseNat v)
             nothing  → px 0
 
+      mVal = case findDecl margin ds of λ where
+               (just v) → px (parseNat v)
+               nothing  → px 0
+      m = sides mVal mVal mVal mVal
+
+      pVal = case findDecl padding ds of λ where
+               (just v) → px (parseNat v)
+               nothing  → px 0
+      p = sides pVal pVal pVal pVal
+
       bg = case findDecl background ds of λ where
              (just v) → v
              nothing  → "transparent"
@@ -270,30 +288,17 @@ computeStyle n css =
              (just v) → px (parseNat v)
              nothing  → px 16
 
-  in style d w h bg fg srcVal fs
+  in style d w h m p bg fg srcVal fs
 
 ------------------------------------------------------------------------
 -- LAYOUT SEMANTICS
 ------------------------------------------------------------------------
 
--- We need a layout state or just simple recursion.
--- We'll pass the cursor (x, y) and available width.
+addPx : Px → Px → Px
+addPx (px a) (px b) = px (a + b)
 
-layoutKids : Px → Px → Px → List Node → CSS → List Box × Px
-layoutKids x y availW [] css = ([] , y)
-layoutKids x y availW (n ∷ ns) css = 
-  let -- Layout current node
-      -- First, compute style to know if it's block or inline (simplified: treat all as block for vertical stacking for now, or text as inline)
-      -- But we need to call layoutNode recursively.
-      -- To avoid mutual recursion issues if simple, we can define a worker.
-      -- But layoutNode calls layoutKids.
-      -- We'll use a `layout` function that handles both.
-      dummy = [] , y
-  in dummy -- Placeholder, see mutual definition below
-
--- Helper for subtraction
-minus : ℕ → ℕ → ℕ
-minus a b = a ∸ b
+subPx : Px → Px → Px
+subPx (px a) (px b) = px (a ∸ b)
 
 isPositive : ℕ → Bool
 isPositive 0 = false
@@ -304,49 +309,61 @@ mutual
   layoutNode' : Px → Px → Px → Node → CSS → Box
   layoutNode' x y availW n css = 
     let s = computeStyle n css
+        m = Style.marginVal s
+        p = Style.paddingVal s
         styW = Style.computedW s
         styH = Style.computedH s
         disp = Style.disp s
         
-        -- Determine actual width
-        actualW : Px
-        actualW = if isPositive (Px.n styW) then styW else availW
+        -- Start of Border Box
+        bx = addPx x (SideValues.left m)
+        by = addPx y (SideValues.top m)
+        
+        -- Start of Content Box
+        cx = addPx bx (SideValues.left p)
+        cy = addPx by (SideValues.top p)
+        
+        -- Available width for content
+        -- If width is specified, use it. Otherwise use availW minus margins/paddings.
+        contentAvailW : Px
+        contentAvailW = if isPositive (Px.n styW) 
+                        then styW 
+                        else (subPx (subPx (subPx availW (SideValues.left m)) (SideValues.right m)) 
+                                    (addPx (SideValues.left p) (SideValues.right p)))
         
         -- Layout children
-        -- If text node, no children.
-        kidsRes : List Box × Px
         kidsRes = case n of λ where
-          (text _) → ([] , y) -- Text doesn't have box children in this simplified model, it IS the content.
-                              -- But wait, `Box` contains `Node`. If `Node` is text, it's a leaf.
-          (elem _ _ children) → layoutChildren x y actualW children css -- x is absolute? No, x is passed in.
-                                                                           -- Children x starts at parent x (plus padding/margin if we had them)
+          (text _) → ([] , cy)
+          (elem _ _ children) → layoutChildren cx cy contentAvailW children css
         
         childBoxes = proj₁ kidsRes
         maxY       = proj₂ kidsRes
         
-        -- Determine height
-        actualH : Px
-        actualH = if isPositive (Px.n styH) 
-                  then styH 
-                  else (px (minus (Px.n maxY) (Px.n y))) -- Height based on content
+        -- Content Height
+        contentH : Px
+        contentH = if isPositive (Px.n styH) 
+                   then styH 
+                   else (case n of λ where
+                           (text _) → px 20
+                           _ → if isPositive (Px.n (subPx maxY cy)) then (subPx maxY cy) else (px 0))
         
-        -- Adjust height for text nodes (approximate)
-        finalH = case n of λ where
-          (text str) → px 20 -- Fixed line height for text
-          _          → if isPositive (Px.n actualH) then actualH else (px 20) -- Minimal height
+        -- Border Box Dimensions
+        actualBbW = addPx (addPx contentAvailW (SideValues.left p)) (SideValues.right p)
+        actualBbH = addPx (addPx contentH (SideValues.top p)) (SideValues.bottom p)
           
-    in box n (mkRect x y actualW finalH) disp childBoxes
+    in box n (mkRect bx by actualBbW actualBbH) s childBoxes
 
   layoutChildren : Px → Px → Px → List Node → CSS → List Box × Px
   layoutChildren x y w [] css = ([] , y)
   layoutChildren x y w (n ∷ ns) css =
     let b = layoutNode' x y w n css
-        -- Update cursor for next sibling
-        -- If block, move down. If inline, move right? 
-        -- Simplified: Everything stacks vertically for now.
-        -- Or check display type of b.
+        s = computeStyle n css
+        m = Style.marginVal s
+        -- Height of this node's margin box
         h = Rect.h (Box.rect b)
-        newY = px ((Px.n y) + (Px.n h))
+        marginBoxH = addPx (addPx h (SideValues.top m)) (SideValues.bottom m)
+        
+        newY = addPx y marginBoxH
         
         resRest = layoutChildren x newY w ns css
     in (b ∷ (proj₁ resRest) , (proj₂ resRest))
@@ -364,7 +381,7 @@ layoutTree v ns css = proj₁ (layoutChildren (px 0) (px 0) (Viewport.width v) n
 
 mutual
   paintBox : Box → DisplayList → DisplayList
-  paintBox (box n r d kids) acc with d
+  paintBox (box n r s kids) acc with Style.disp s
   ... | none = acc
   ... | _    = 
     let contentCmds = case n of λ where
@@ -373,7 +390,7 @@ mutual
           _ → []
         
         -- Start with current box and its content
-        acc' = (DrawBox r "white" ∷ contentCmds ++ acc)
+        acc' = (DrawBox r (Style.bgColor s) ∷ contentCmds ++ acc)
     in paint kids acc'
 
   paint : Layout → DisplayList → DisplayList
