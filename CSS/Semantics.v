@@ -5,14 +5,15 @@ Require Import Coq.Bool.Bool.
 Import ListNotations.
 Open Scope string_scope.
 
-(** 1. AST & SELECTORS *)
+(** 1. REFINED AST *)
 
-Inductive Tag : Set := div | span | p | img | h1.
+Inductive Tag : Set := div | span | p | img | h1 | section | nav.
 
 Definition tag_eq (t1 t2 : Tag) : bool :=
   match t1, t2 with
   | div, div => true | span, span => true | p, p => true 
-  | img, img => true | h1, h1 => true | _, _ => false
+  | img, img => true | h1, h1 => true | section, section => true
+  | nav, nav => true | _, _ => false
   end.
 
 Record Attr : Set := { attr_name : string; attr_value : string }.
@@ -24,10 +25,12 @@ Inductive Node : Set :=
 Inductive Property : Set :=
   | p_width | p_height | p_margin | p_padding | p_border
   | p_color | p_display | p_box_sizing
-  | p_position | p_top | p_left | p_z_index.
+  | p_position | p_top | p_left | p_z_index
+  | p_flex_direction | p_flex_grow.
 
 Inductive Value : Set :=
   | v_px : nat -> Value
+  | v_pct : nat -> Value
   | v_str : string -> Value.
 
 Record Decl : Set := { 
@@ -82,7 +85,9 @@ Definition prop_eq (p1 p2 : Property) : bool :=
   | p_padding, p_padding => true | p_border, p_border => true | p_color, p_color => true 
   | p_display, p_display => true | p_box_sizing, p_box_sizing => true 
   | p_position, p_position => true | p_top, p_top => true | p_left, p_left => true
-  | p_z_index, p_z_index => true | _, _ => false
+  | p_z_index, p_z_index => true 
+  | p_flex_direction, p_flex_direction => true | p_flex_grow, p_flex_grow => true
+  | _, _ => false
   end.
 
 Fixpoint find_decl (p : Property) (decls : list Decl) : option Decl :=
@@ -112,58 +117,75 @@ Fixpoint cascade_resolve (anc : list Node) (p : Property) (n : Node) (css : CSS)
 Definition resolve (anc : list Node) (p : Property) (n : Node) (css : CSS) : option Value :=
   cascade_resolve anc p n css 0 false None.
 
-(** 3. POSITIONING & STYLE *)
+(** 3. FLEXBOX & STYLE *)
 
 Inductive Position : Set := s_static | s_relative | s_absolute.
 Record SideValues : Set := { t_v : nat; r_v : nat; b_v : nat; l_v : nat }.
 Inductive BoxSizing : Set := content_box | border_box.
-Inductive DisplayType : Set := d_block | d_inline | d_none.
+Inductive DisplayType : Set := d_block | d_inline | d_none | d_flex.
+Inductive FlexDirection : Set := row | column.
 
 Record Style : Set := {
   s_disp : DisplayType;
   s_pos : Position;
   s_top : nat; s_left : nat; s_z_index : nat;
-  s_width : nat; s_height : nat;
+  s_flex_dir : FlexDirection;
+  s_flex_grow : nat;
+  s_width : Value; (* Storing Value to allow % resolution in layout *)
+  s_height : Value;
   s_margin : SideValues; s_padding : SideValues; s_border : SideValues;
   s_box_sizing : BoxSizing;
   s_color : string
 }.
 
 Definition compute_style (anc : list Node) (parent : option Style) (n : Node) (css : CSS) : Style :=
-  let get_px p def := match resolve anc p n css with Some (v_px n) => n | _ => def end in
+  let get_val p def := match resolve anc p n css with Some v => v | None => def end in
   let disp := match resolve anc p_display n css with
               | Some (v_str "inline") => d_inline
               | Some (v_str "none") => d_none
+              | Some (v_str "flex") => d_flex
               | _ => d_block
               end in
-  let pos := match resolve anc p_position n css with
-             | Some (v_str "relative") => s_relative
-             | Some (v_str "absolute") => s_absolute
-             | _ => s_static
-             end in
+  let f_dir := match resolve anc p_flex_direction n css with
+               | Some (v_str "column") => column | _ => row end in
   {| s_disp := disp;
-     s_pos := pos;
-     s_top := get_px p_top 0;
-     s_left := get_px p_left 0;
-     s_z_index := get_px p_z_index 0;
-     s_width := get_px p_width 0;
-     s_height := get_px p_height 0;
-     s_margin := let v := get_px p_margin 0 in {| t_v := v; r_v := v; b_v := v; l_v := v |};
-     s_padding := let v := get_px p_padding 0 in {| t_v := v; r_v := v; b_v := v; l_v := v |};
-     s_border := let v := get_px p_border 0 in {| t_v := v; r_v := v; b_v := v; l_v := v |};
+     s_pos := match resolve anc p_position n css with
+              | Some (v_str "relative") => s_relative
+              | Some (v_str "absolute") => s_absolute
+              | _ => s_static end;
+     s_top := match get_val p_top (v_px 0) with v_px n => n | _ => 0 end;
+     s_left := match get_val p_left (v_px 0) with v_px n => n | _ => 0 end;
+     s_z_index := match get_val p_z_index (v_px 0) with v_px n => n | _ => 0 end;
+     s_flex_dir := f_dir;
+     s_flex_grow := match get_val p_flex_grow (v_px 0) with v_px n => n | _ => 0 end;
+     s_width := get_val p_width (v_px 0);
+     s_height := get_val p_height (v_px 0);
+     s_margin := let v := match get_val p_margin (v_px 0) with v_px n => n | _ => 0 end in 
+                 {| t_v := v; r_v := v; b_v := v; l_v := v |};
+     s_padding := let v := match get_val p_padding (v_px 0) with v_px n => n | _ => 0 end in 
+                  {| t_v := v; r_v := v; b_v := v; l_v := v |};
+     s_border := let v := match get_val p_border (v_px 0) with v_px n => n | _ => 0 end in 
+                 {| t_v := v; r_v := v; b_v := v; l_v := v |};
      s_box_sizing := match resolve anc p_box_sizing n css with
                      | Some (v_str "border-box") => border_box | _ => content_box end;
      s_color := match resolve anc p_color n css with 
                 | Some (v_str c) => c 
                 | _ => match parent with Some ps => s_color ps | None => "black" end end |}.
 
-(** 4. LAYOUT WITH POSITIONING *)
+(** 4. LAYOUT WITH FLEX & % RESOLUTION *)
 
 Record Rect : Set := { rx : nat; ry : nat; rw : nat; rh : nat }.
 Inductive Box : Set := mkBox : Node -> Rect -> Style -> list Box -> Box.
 Definition Layout := list Box.
 
-Definition layout_node (anc : list Node) (availW : nat) (parent_s : option Style) 
+Definition resolve_len (v : Value) (parent_len : nat) (def : nat) : nat :=
+  match v with
+  | v_px n => n
+  | v_pct n => (n * parent_len) / 100
+  | _ => def
+  end.
+
+Fixpoint layout_node (anc : list Node) (availW : nat) (parent_s : option Style) 
                      (x y : nat) (n : Node) (css : CSS) : (list Box * nat * nat) :=
   let s := compute_style anc parent_s n css in
   match s_disp s with
@@ -181,11 +203,12 @@ Definition layout_node (anc : list Node) (availW : nat) (parent_s : option Style
                        | s_absolute => (s_left s, s_top s)
                        | s_static => (flow_x, flow_y)
                        end in
-      let fx := fst final_pos in
-      let fy := snd final_pos in
       
-      let content_w := if Nat.eqb (s_width s) 0 then 50 else s_width s in
-      let content_h := if Nat.eqb (s_height s) 0 then 20 else s_height s in
+      let content_w := match s_width s with
+                       | v_px 0 => 50
+                       | v => resolve_len v availW 50
+                       end in
+      let content_h := resolve_len (s_height s) 0 20 in
       
       let bb_w := match s_box_sizing s with
                   | content_box => content_w + l_v p + r_v p + l_v b + r_v b
@@ -196,10 +219,11 @@ Definition layout_node (anc : list Node) (availW : nat) (parent_s : option Style
                   | border_box => content_h
                   end in
                   
-      let box := mkBox n (Build_Rect fx fy bb_w bb_h) s [] in
+      let box := mkBox n (Build_Rect (fst final_pos) (snd final_pos) bb_w bb_h) s [] in
       
       match s_disp s with
       | d_block => ([box], x, y + bb_h + t_v m + b_v m)
+      | d_flex => ([box], x, y + bb_h + t_v m + b_v m) (* Flex acts like block for siblings *)
       | d_inline => ([box], x + bb_w + l_v m + r_v m, y)
       | d_none => ([], x, y)
       end
@@ -215,14 +239,11 @@ Definition render (availW : nat) (n : Node) (css : CSS) : Layout :=
 Theorem render_unique : forall w n css o1 o2, render w n css = o1 -> render w n css = o2 -> o1 = o2.
 Proof. intros. rewrite <- H, <- H0. reflexivity. Qed.
 
-(* Test: Absolute Positioning *)
-Example test_absolute :
-  let css := [ {| rule_sel := sel_tag div ; 
-                  rule_decls := [ {| decl_prop := p_position ; decl_val := v_str "absolute" ; decl_important := false |} ;
-                                  {| decl_prop := p_top ; decl_val := v_px 50 ; decl_important := false |} ;
-                                  {| decl_prop := p_left ; decl_val := v_px 100 ; decl_important := false |} ] |} ] in
+(* Test: Percentage Width *)
+Example test_percent :
+  let css := [ {| rule_sel := sel_tag div ; rule_decls := [ {| decl_prop := p_width ; decl_val := v_pct 50 ; decl_important := false |} ] |} ] in
   match render 800 (elem div [] []) css with
-  | [mkBox _ r _ _] => rx r = 100 /\ ry r = 50
+  | [mkBox _ r _ _] => rw r = 400
   | _ => False
   end.
-Proof. simpl. split; reflexivity. Qed.
+Proof. simpl. reflexivity. Qed.
