@@ -1,17 +1,17 @@
 <svg width='800' height='2400' xmlns='http://www.w3.org/2000/svg'>
-<rect x='0' y='0' width='800' height='703' fill='none' stroke='black' />
-<rect x='0' y='0' width='554' height='703' fill='none' stroke='black' />
-<rect x='0' y='0' width='554' height='703' fill='none' stroke='black' />
-<rect x='0' y='0' width='554' height='703' fill='none' stroke='black' />
-<rect x='0' y='0' width='554' height='703' fill='none' stroke='black' />
+<rect x='0' y='0' width='800' height='833' fill='none' stroke='black' />
+<rect x='0' y='0' width='554' height='833' fill='none' stroke='black' />
+<rect x='0' y='0' width='554' height='833' fill='none' stroke='black' />
+<rect x='0' y='0' width='554' height='833' fill='none' stroke='black' />
+<rect x='0' y='0' width='554' height='833' fill='none' stroke='black' />
 <rect x='0' y='0' width='69' height='399' fill='none' stroke='black' />
 <rect x='0' y='0' width='69' height='399' fill='#cfc' stroke='black' />
 <text x='2' y='15' font-family='Arial' font-size='10' fill='black'>IMG</text>
 <rect x='69' y='0' width='50' height='50' fill='none' stroke='black' />
 <rect x='69' y='0' width='50' height='50' fill='#cfc' stroke='black' />
 <text x='71' y='15' font-family='Arial' font-size='10' fill='black'>IMG</text>
-<rect x='119' y='0' width='435' height='703' fill='none' stroke='black' />
-<rect x='119' y='0' width='435' height='703' fill='none' stroke='black' />
+<rect x='119' y='0' width='435' height='833' fill='none' stroke='black' />
+<rect x='119' y='0' width='435' height='833' fill='none' stroke='black' />
 <rect x='119' y='0' width='410' height='45' fill='#cfc' stroke='black' />
 <text x='121' y='15' font-family='Arial' font-size='10' fill='black'>IMG</text>
 <rect x='119' y='45' width='435' height='20' fill='none' stroke='black' />
@@ -20,10 +20,10 @@
 <text x='121' y='100' font-family='Arial' font-size='10' fill='black'>IMG</text>
 <rect x='119' y='393' width='435' height='20' fill='none' stroke='black' />
 <rect x='119' y='413' width='435' height='20' fill='none' stroke='black' />
-<rect x='119' y='433' width='435' height='190' fill='none' stroke='black' />
-<rect x='119' y='433' width='820' height='190' fill='none' stroke='black' />
-<rect x='119' y='433' width='820' height='190' fill='none' stroke='black' />
-<rect x='119' y='433' width='820' height='190' fill='none' stroke='black' />
+<rect x='119' y='433' width='435' height='320' fill='none' stroke='black' />
+<rect x='119' y='433' width='410' height='320' fill='none' stroke='black' />
+<rect x='119' y='433' width='410' height='320' fill='none' stroke='black' />
+<rect x='119' y='433' width='410' height='320' fill='none' stroke='black' />
 <rect x='119' y='433' width='410' height='130' fill='none' stroke='black' />
 <rect x='119' y='433' width='150' height='130' fill='none' stroke='black' />
 <rect x='119' y='433' width='150' height='130' fill='none' stroke='black' />
@@ -44,36 +44,36 @@
 <rect x='119' y='493' width='150' height='20' fill='none' stroke='black' />
 <rect x='119' y='513' width='50' height='50' fill='#cfc' stroke='black' />
 <text x='121' y='528' font-family='Arial' font-size='10' fill='black'>IMG</text>
-<rect x='529' y='433' width='410' height='150' fill='none' stroke='black' />
-<rect x='529' y='433' width='100' height='150' fill='none' stroke='black' />
-<rect x='529' y='433' width='100' height='150' fill='none' stroke='black' />
-<rect x='529' y='433' width='50' height='50' fill='#cfc' stroke='black' />
-<text x='531' y='448' font-family='Arial' font-size='10' fill='black'>IMG</text>
-<rect x='579' y='433' width='50' height='80' fill='none' stroke='black' />
-<rect x='579' y='433' width='50' height='20' fill='none' stroke='black' />
-<rect x='579' y='433' width='50' height='20' fill='#eee' />
-<text x='581' y='448' font-family='Arial' font-size='12' fill='black'>Want to start a startup?</text>
-<rect x='579' y='453' width='50' height='20' fill='#eee' />
-<text x='581' y='468' font-family='Arial' font-size='12' fill='black'>Get funded by</text>
-<rect x='579' y='473' width='50' height='20' fill='none' stroke='black' />
-<rect x='579' y='473' width='50' height='20' fill='#eee' />
-<text x='581' y='488' font-family='Arial' font-size='12' fill='black'>Y Combinator</text>
-<rect x='579' y='493' width='50' height='20' fill='#eee' />
-<text x='581' y='508' font-family='Arial' font-size='12' fill='black'>.</text>
-<rect x='529' y='513' width='100' height='20' fill='none' stroke='black' />
-<rect x='529' y='533' width='50' height='50' fill='#cfc' stroke='black' />
-<text x='531' y='548' font-family='Arial' font-size='10' fill='black'>IMG</text>
-<rect x='119' y='583' width='820' height='20' fill='none' stroke='black' />
-<rect x='119' y='603' width='820' height='20' fill='none' stroke='black' />
-<rect x='119' y='623' width='435' height='20' fill='none' stroke='black' />
-<rect x='119' y='643' width='435' height='60' fill='none' stroke='black' />
-<rect x='119' y='643' width='50' height='40' fill='none' stroke='black' />
-<rect x='119' y='643' width='50' height='40' fill='none' stroke='black' />
-<rect x='119' y='643' width='50' height='40' fill='none' stroke='black' />
-<rect x='119' y='643' width='50' height='20' fill='none' stroke='black' />
-<rect x='119' y='663' width='50' height='20' fill='none' stroke='black' />
-<rect x='119' y='663' width='50' height='20' fill='none' stroke='black' />
-<rect x='119' y='663' width='50' height='20' fill='#eee' />
-<text x='121' y='678' font-family='Arial' font-size='12' fill='black'>&#169; mmxxv pg</text>
-<rect x='119' y='683' width='435' height='20' fill='none' stroke='black' />
+<rect x='119' y='563' width='410' height='150' fill='none' stroke='black' />
+<rect x='119' y='563' width='100' height='150' fill='none' stroke='black' />
+<rect x='119' y='563' width='100' height='150' fill='none' stroke='black' />
+<rect x='119' y='563' width='50' height='50' fill='#cfc' stroke='black' />
+<text x='121' y='578' font-family='Arial' font-size='10' fill='black'>IMG</text>
+<rect x='169' y='563' width='50' height='80' fill='none' stroke='black' />
+<rect x='169' y='563' width='50' height='20' fill='none' stroke='black' />
+<rect x='169' y='563' width='50' height='20' fill='#eee' />
+<text x='171' y='578' font-family='Arial' font-size='12' fill='black'>Want to start a startup?</text>
+<rect x='169' y='583' width='50' height='20' fill='#eee' />
+<text x='171' y='598' font-family='Arial' font-size='12' fill='black'>Get funded by</text>
+<rect x='169' y='603' width='50' height='20' fill='none' stroke='black' />
+<rect x='169' y='603' width='50' height='20' fill='#eee' />
+<text x='171' y='618' font-family='Arial' font-size='12' fill='black'>Y Combinator</text>
+<rect x='169' y='623' width='50' height='20' fill='#eee' />
+<text x='171' y='638' font-family='Arial' font-size='12' fill='black'>.</text>
+<rect x='119' y='643' width='100' height='20' fill='none' stroke='black' />
+<rect x='119' y='663' width='50' height='50' fill='#cfc' stroke='black' />
+<text x='121' y='678' font-family='Arial' font-size='10' fill='black'>IMG</text>
+<rect x='119' y='713' width='410' height='20' fill='none' stroke='black' />
+<rect x='119' y='733' width='410' height='20' fill='none' stroke='black' />
+<rect x='119' y='753' width='435' height='20' fill='none' stroke='black' />
+<rect x='119' y='773' width='435' height='60' fill='none' stroke='black' />
+<rect x='119' y='773' width='50' height='40' fill='none' stroke='black' />
+<rect x='119' y='773' width='50' height='40' fill='none' stroke='black' />
+<rect x='119' y='773' width='50' height='40' fill='none' stroke='black' />
+<rect x='119' y='773' width='50' height='20' fill='none' stroke='black' />
+<rect x='119' y='793' width='50' height='20' fill='none' stroke='black' />
+<rect x='119' y='793' width='50' height='20' fill='none' stroke='black' />
+<rect x='119' y='793' width='50' height='20' fill='#eee' />
+<text x='121' y='808' font-family='Arial' font-size='12' fill='black'>&#169; mmxxv pg</text>
+<rect x='119' y='813' width='435' height='20' fill='none' stroke='black' />
 </svg>

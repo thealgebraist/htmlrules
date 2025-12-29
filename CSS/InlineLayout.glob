@@ -1,0 +1,190 @@
+DIGEST 2d945f87457754b51de310788efc9e6e
+FCSS.InlineLayout
+R24:27 Coq.Lists.List <> <> lib
+R29:34 Coq.ZArith.ZArith <> <> lib
+R36:38 Coq.micromega.Lia <> <> lib
+R56:65 CSS.Floats <> <> lib
+R75:87 Coq.Lists.List ListNotations <> mod
+R97:102 CSS.Floats Floats <> mod
+mod 113:124 <> InlineLayout
+rec 135:143 InlineLayout InlineBox
+proj 159:160 InlineLayout iw
+proj 169:170 InlineLayout ih
+proj 179:185 InlineLayout is_text
+R164:164 Coq.Numbers.BinNums <> Z ind
+R174:174 Coq.Numbers.BinNums <> Z ind
+R189:192 Coq.Init.Datatypes <> bool ind
+rec 205:216 InlineLayout PlacedInline
+proj 235:240 InlineLayout pi_box
+proj 257:260 InlineLayout pi_x
+proj 269:272 InlineLayout pi_y
+R244:252 CSS.InlineLayout InlineLayout InlineBox rec
+R264:264 Coq.Numbers.BinNums <> Z ind
+R276:276 Coq.Numbers.BinNums <> Z ind
+rec 289:296 InlineLayout IFCState
+proj 316:317 InlineLayout fs
+proj 335:342 InlineLayout y_cursor
+proj 351:358 InlineLayout x_cursor
+proj 367:372 InlineLayout line_h
+proj 381:387 InlineLayout history
+R321:330 CSS.Floats Floats FloatState rec
+R346:346 Coq.Numbers.BinNums <> Z ind
+R362:362 Coq.Numbers.BinNums <> Z ind
+R376:376 Coq.Numbers.BinNums <> Z ind
+R391:394 Coq.Init.Datatypes <> list ind
+R396:407 CSS.InlineLayout InlineLayout PlacedInline rec
+def 424:427 InlineLayout init
+R434:443 CSS.Floats Floats FloatState rec
+binder 430:430 <> s:15
+R451:451 Coq.Numbers.BinNums <> Z ind
+binder 447:447 <> y:16
+R475:493 CSS.Floats Floats get_available_range def
+R495:495 CSS.InlineLayout <> s:15 var
+R497:497 CSS.InlineLayout <> y:16 var
+R465:465 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R467:468 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R470:470 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R543:552 CSS.InlineLayout InlineLayout mkIFCState constr
+R554:554 CSS.InlineLayout <> s:15 var
+R556:556 CSS.InlineLayout <> y:16 var
+R562:563 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 578:581 InlineLayout step
+R588:595 CSS.InlineLayout InlineLayout IFCState rec
+binder 584:584 <> s:17
+R603:611 CSS.InlineLayout InlineLayout InlineBox rec
+binder 599:599 <> b:18
+R616:623 CSS.InlineLayout InlineLayout IFCState rec
+R645:663 CSS.Floats Floats get_available_range def
+R666:667 CSS.InlineLayout InlineLayout fs proj
+R669:669 CSS.InlineLayout <> s:17 var
+R673:680 CSS.InlineLayout InlineLayout y_cursor proj
+R682:682 CSS.InlineLayout <> s:17 var
+R686:687 CSS.InlineLayout InlineLayout ih proj
+R689:689 CSS.InlineLayout <> b:18 var
+R635:635 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R637:638 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R640:640 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R718:722 Coq.ZArith.BinInt <> ::Z_scope:x_'<=?'_x not
+R711:713 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R701:708 CSS.InlineLayout InlineLayout x_cursor proj
+R710:710 CSS.InlineLayout <> s:17 var
+R714:715 CSS.InlineLayout InlineLayout iw proj
+R717:717 CSS.InlineLayout <> b:18 var
+R976:978 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R966:973 CSS.InlineLayout InlineLayout y_cursor proj
+R975:975 CSS.InlineLayout <> s:17 var
+R979:983 Coq.ZArith.BinInt Z max def
+R986:991 CSS.InlineLayout InlineLayout line_h proj
+R993:993 CSS.InlineLayout <> s:17 var
+binder 956:960 <> new_y:19
+R1026:1044 CSS.Floats Floats get_available_range def
+R1047:1048 CSS.InlineLayout InlineLayout fs proj
+R1050:1050 CSS.InlineLayout <> s:17 var
+R1053:1057 CSS.InlineLayout <> new_y:19 var
+R1060:1061 CSS.InlineLayout InlineLayout ih proj
+R1063:1063 CSS.InlineLayout <> b:18 var
+R1014:1014 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1017:1018 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1021:1021 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1073:1082 CSS.InlineLayout InlineLayout mkIFCState constr
+R1085:1086 CSS.InlineLayout InlineLayout fs proj
+R1088:1088 CSS.InlineLayout <> s:17 var
+R1091:1095 CSS.InlineLayout <> new_y:19 var
+R1100:1102 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1103:1104 CSS.InlineLayout InlineLayout iw proj
+R1106:1106 CSS.InlineLayout <> b:18 var
+R1110:1111 CSS.InlineLayout InlineLayout ih proj
+R1113:1113 CSS.InlineLayout <> b:18 var
+R1152:1155 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1132:1140 CSS.InlineLayout InlineLayout mkPInline constr
+R1142:1142 CSS.InlineLayout <> b:18 var
+R1147:1151 CSS.InlineLayout <> new_y:19 var
+R1156:1162 CSS.InlineLayout InlineLayout history proj
+R1164:1164 CSS.InlineLayout <> s:17 var
+R768:777 CSS.InlineLayout InlineLayout mkIFCState constr
+R780:781 CSS.InlineLayout InlineLayout fs proj
+R783:783 CSS.InlineLayout <> s:17 var
+R787:794 CSS.InlineLayout InlineLayout y_cursor proj
+R796:796 CSS.InlineLayout <> s:17 var
+R810:812 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R800:807 CSS.InlineLayout InlineLayout x_cursor proj
+R809:809 CSS.InlineLayout <> s:17 var
+R813:814 CSS.InlineLayout InlineLayout iw proj
+R816:816 CSS.InlineLayout <> b:18 var
+R820:824 Coq.ZArith.BinInt Z max def
+R827:832 CSS.InlineLayout InlineLayout line_h proj
+R834:834 CSS.InlineLayout <> s:17 var
+R838:839 CSS.InlineLayout InlineLayout ih proj
+R841:841 CSS.InlineLayout <> b:18 var
+R898:901 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R861:869 CSS.InlineLayout InlineLayout mkPInline constr
+R871:871 CSS.InlineLayout <> b:18 var
+R874:881 CSS.InlineLayout InlineLayout x_cursor proj
+R883:883 CSS.InlineLayout <> s:17 var
+R887:894 CSS.InlineLayout InlineLayout y_cursor proj
+R896:896 CSS.InlineLayout <> s:17 var
+R902:908 CSS.InlineLayout InlineLayout history proj
+R910:910 CSS.InlineLayout <> s:17 var
+def 1178:1184 InlineLayout run_ifc
+R1191:1198 CSS.InlineLayout InlineLayout IFCState rec
+binder 1187:1187 <> s:20
+R1207:1210 Coq.Init.Datatypes <> list ind
+R1212:1220 CSS.InlineLayout InlineLayout InlineBox rec
+binder 1202:1203 <> is:21
+R1225:1232 CSS.InlineLayout InlineLayout IFCState rec
+R1245:1246 CSS.InlineLayout <> is:21 var
+R1257:1258 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R1263:1263 CSS.InlineLayout <> s:20 var
+R1270:1273 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1280:1286 CSS.InlineLayout <> run_ifc:22 def
+R1289:1292 CSS.InlineLayout InlineLayout step def
+R1294:1294 CSS.InlineLayout <> s:20 var
+prf 1318:1330 InlineLayout line_wrapping
+binder 1341:1342 <> fs:24
+binder 1344:1344 <> y:25
+binder 1346:1347 <> b1:26
+binder 1349:1350 <> b2:27
+R1370:1388 CSS.Floats Floats get_available_range def
+R1390:1391 CSS.InlineLayout <> fs:24 var
+R1393:1393 CSS.InlineLayout <> y:25 var
+R1360:1360 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1362:1363 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1365:1365 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1428:1433 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1417:1419 Coq.ZArith.BinInt <> ::Z_scope:x_'>'_x not
+R1409:1411 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1404:1405 CSS.InlineLayout InlineLayout iw proj
+R1407:1408 CSS.InlineLayout <> b1:26 var
+R1412:1413 CSS.InlineLayout InlineLayout iw proj
+R1415:1416 CSS.InlineLayout <> b2:27 var
+R1421:1423 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R1443:1449 CSS.InlineLayout InlineLayout run_ifc def
+R1452:1455 CSS.InlineLayout InlineLayout init def
+R1457:1458 CSS.InlineLayout <> fs:24 var
+R1460:1460 CSS.InlineLayout <> y:25 var
+R1463:1463 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1466:1467 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1470:1470 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R1464:1465 CSS.InlineLayout <> b1:26 var
+R1468:1469 CSS.InlineLayout <> b2:27 var
+binder 1438:1438 <> s:28
+R1477:1483 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+R1489:1490 Coq.Init.Logic <> ::type_scope:'exists'_x_'..'_x_','_x not
+binder 1484:1485 <> p1:29
+binder 1487:1488 <> p2:30
+R1508:1511 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1491:1492 Coq.Lists.List <> In def
+R1498:1504 CSS.InlineLayout InlineLayout history proj
+R1506:1506 CSS.InlineLayout <> s:28 var
+R1494:1495 CSS.InlineLayout <> p1:29 var
+R1529:1532 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R1512:1513 Coq.Lists.List <> In def
+R1519:1525 CSS.InlineLayout InlineLayout history proj
+R1527:1527 CSS.InlineLayout <> s:28 var
+R1515:1516 CSS.InlineLayout <> p2:30 var
+R1540:1543 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R1533:1536 CSS.InlineLayout InlineLayout pi_y proj
+R1538:1539 CSS.InlineLayout <> p1:29 var
+R1544:1547 CSS.InlineLayout InlineLayout pi_y proj
+R1549:1550 CSS.InlineLayout <> p2:30 var
+R1575:1586 CSS.InlineLayout InlineLayout <> mod

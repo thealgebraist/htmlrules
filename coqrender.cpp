@@ -25,6 +25,8 @@
 
 enum class Tag { DIV, SPAN, P, IMG, H1, BODY, TABLE, TR, TD, OTHER, HEADER, FOOTER, MAIN, SECTION, ARTICLE, NAV, ASIDE };
 enum class DisplayType { BLOCK, INLINE, TABLE, TABLE_ROW, TABLE_CELL, NONE };
+enum class FloatType { NONE, LEFT, RIGHT };
+enum class ClearType { NONE, LEFT, RIGHT, BOTH };
 
 struct Rect { int x, y, w, h; };
 struct Attr { std::string name, value; };
@@ -36,7 +38,7 @@ struct Node {
     static std::shared_ptr<Node> make_elem(Tag t, std::vector<Attr> as = {}) { auto n = std::make_shared<Node>(); n->is_text = false; n->tag = t; n->attrs = as; return n; }
 };
 
-struct Style { DisplayType disp; int w_spec, h_spec, top, left; std::string color, src; };
+struct Style { DisplayType disp; FloatType float_type; ClearType clear_type; int w_spec, h_spec, top, left, mt, mb; std::string color, src; };
 
 struct Box {
     std::shared_ptr<Node> node; Style style;
@@ -90,7 +92,7 @@ Tag map_tag(std::string name); // fwd decl
 Style compute_style(std::shared_ptr<Node> n) {
     DisplayType disp = DisplayType::BLOCK;
     if (n->is_text || n->tag == Tag::SPAN || n->tag == Tag::IMG) disp = DisplayType::INLINE;
-    if (n->tag == Tag::TABLE) disp = DisplayType::TABLE;
+    if (n->tag == Tag::TABLE) disp = DisplayType::BLOCK; // Block-level table container
     if (n->tag == Tag::TR) disp = DisplayType::TABLE_ROW;
     if (n->tag == Tag::TD) disp = DisplayType::TABLE_CELL;
     if (n->tag == Tag::DIV || n->tag == Tag::P || n->tag == Tag::H1 || n->tag == Tag::BODY) disp = DisplayType::BLOCK;
@@ -100,16 +102,76 @@ Style compute_style(std::shared_ptr<Node> n) {
     
     if (n->tag == Tag::OTHER) disp = DisplayType::NONE; 
     
-    Style s{disp, 0, 0, 0, 0, "black", ""};
+    Style s{disp, FloatType::NONE, ClearType::NONE, 0, 0, 0, 0, 0, 0, "black", ""};
     for (const auto& a : n->attrs) {
         if (a.name == "width") s.w_spec = std::atoi(a.value.c_str());
         if (a.name == "height") s.h_spec = std::atoi(a.value.c_str());
         if (a.name == "top") s.top = std::atoi(a.value.c_str());
         if (a.name == "left") s.left = std::atoi(a.value.c_str());
+        if (a.name == "mt") s.mt = std::atoi(a.value.c_str());
+        if (a.name == "mb") s.mb = std::atoi(a.value.c_str());
         if (a.name == "src") s.src = a.value;
+        if (a.name == "float") {
+            if (a.value == "left") s.float_type = FloatType::LEFT;
+            else if (a.value == "right") s.float_type = FloatType::RIGHT;
+        }
+        if (a.name == "clear") {
+            if (a.value == "left") s.clear_type = ClearType::LEFT;
+            else if (a.value == "right") s.clear_type = ClearType::RIGHT;
+            else if (a.value == "both") s.clear_type = ClearType::BOTH;
+        }
     }
     return s;
 }
+
+int collapse_margins(int m1, int m2) {
+    // CSS 2.1 §8.3.1: Max of positives + Min of negatives
+    int max_pos = 0;
+    int min_neg = 0;
+    
+    if (m1 > 0) max_pos = std::max(max_pos, m1);
+    else min_neg = std::min(min_neg, m1);
+    
+    if (m2 > 0) max_pos = std::max(max_pos, m2);
+    else min_neg = std::min(min_neg, m2);
+    
+    return max_pos + min_neg;
+}
+
+struct FloatRect { Rect r; FloatType type; };
+class FloatManager {
+    std::vector<FloatRect> floats;
+    int max_w;
+public:
+    FloatManager(int w) : max_w(w) {}
+    void add_float(Rect r, FloatType type) { floats.push_back({r, type}); }
+    std::pair<int, int> get_available_range(int y, int h) {
+        int left = 0, right = max_w;
+        for (auto& f : floats) {
+            if (y < f.r.y + f.r.h && y + h > f.r.y) {
+                if (f.type == FloatType::LEFT) left = std::max(left, f.r.x + f.r.w);
+                else if (f.type == FloatType::RIGHT) right = std::min(right, f.r.x);
+            }
+        }
+        return {left, right};
+    }
+    int get_clearance_y(ClearType type, int y) {
+        int max_y = y;
+        for (auto& f : floats) {
+            if (type == ClearType::BOTH || 
+               (type == ClearType::LEFT && f.type == FloatType::LEFT) ||
+               (type == ClearType::RIGHT && f.type == FloatType::RIGHT)) {
+                max_y = std::max(max_y, f.r.y + f.r.h);
+            }
+        }
+        return max_y;
+    }
+    int get_all_floats_bottom() {
+        int b = 0;
+        for (auto& f : floats) b = std::max(b, f.r.y + f.r.h);
+        return b;
+    }
+};
 
 std::shared_ptr<Box> build_box_tree(std::shared_ptr<Node> n) {
     auto b = std::make_shared<Box>(); b->node = n; b->style = compute_style(n);
@@ -130,17 +192,20 @@ void measure_recursive(std::shared_ptr<Box> b, ResourceManager& rm) {
         int current_line_w = 0, current_line_h = 0;
         int sum_kw = 0, max_kh = 0; // For table rows
 
+        int pending = 0;
         for (auto kid : b->kids) {
             if (b->style.disp == DisplayType::TABLE_ROW) {
                 sum_kw += kid->intrinsic_w;
                 max_kh = std::max(max_kh, kid->intrinsic_h);
-            } else if (kid->style.disp == DisplayType::BLOCK) {
+            } else if (kid->style.disp == DisplayType::BLOCK || kid->style.disp == DisplayType::TABLE) {
                 total_h += current_line_h;
                 total_w = std::max(total_w, current_line_w);
                 current_line_w = 0; current_line_h = 0;
                 
-                total_h += kid->intrinsic_h;
+                int collapsed = collapse_margins(pending, kid->style.mt);
+                total_h += collapsed + kid->intrinsic_h;
                 total_w = std::max(total_w, kid->intrinsic_w);
+                pending = kid->style.mb;
             } else {
                 // Inline flow - fit content
                 current_line_w += kid->intrinsic_w;
@@ -160,43 +225,77 @@ void measure_recursive(std::shared_ptr<Box> b, ResourceManager& rm) {
     if (b->intrinsic_h == 0 && b->style.disp != DisplayType::NONE) b->intrinsic_h = 20;
 }
 
-void position_recursive(int availW, int x, int y, std::shared_ptr<Box> b) {
+void position_recursive(int availW, int x, int y, std::shared_ptr<Box> b, FloatManager& fm) {
     if (b->style.disp == DisplayType::NONE) return;
+
+    if (b->style.clear_type != ClearType::NONE) {
+        y = fm.get_clearance_y(b->style.clear_type, y);
+    }
 
     int final_w = b->intrinsic_w;
     if (b->style.disp == DisplayType::BLOCK && b->style.w_spec == 0) final_w = availW;
-    b->rect = {x + b->style.left, y + b->style.top, final_w, b->intrinsic_h};
     
-    int cx = x + b->style.left, cy = y + b->style.top;
+    if (b->style.float_type != FloatType::NONE) {
+        // Find first Y where it fits
+        int fy = y;
+        while (true) {
+            auto [l, r] = fm.get_available_range(fy, b->intrinsic_h);
+            if (final_w <= r - l) {
+                int fx = (b->style.float_type == FloatType::LEFT) ? l : (r - final_w);
+                b->rect = {fx, fy, final_w, b->intrinsic_h};
+                fm.add_float(b->rect, b->style.float_type);
+                break;
+            }
+            fy++;
+            if (fy > y + 2000) break; // Safety break
+        }
+    } else {
+        b->rect = {x + b->style.left, y + b->style.top, final_w, b->intrinsic_h};
+    }
+    
+    int cx = b->rect.x, cy = b->rect.y;
     int current_line_h = 0;
+    int pending = 0;
     
     for (auto kid : b->kids) {
         if (b->style.disp == DisplayType::TABLE_ROW) {
-            position_recursive(b->intrinsic_w, cx, cy, kid);
+            position_recursive(b->intrinsic_w, cx, cy, kid, fm);
             cx += kid->rect.w;
             continue;
         }
 
-        if (kid->style.disp == DisplayType::BLOCK) {
+        if (kid->style.disp == DisplayType::BLOCK || kid->style.disp == DisplayType::TABLE) {
             if (current_line_h > 0) {
                 cy += current_line_h;
-                cx = x + b->style.left;
+                cx = b->rect.x;
                 current_line_h = 0;
             }
-            position_recursive(b->intrinsic_w, cx, cy, kid);
-            cy += kid->rect.h;
+            int collapsed = collapse_margins(pending, kid->style.mt);
+            position_recursive(b->intrinsic_w, b->rect.x, cy + collapsed, kid, fm);
+            if (kid->style.float_type == FloatType::NONE) {
+                cy += collapsed + kid->rect.h;
+            }
+            pending = kid->style.mb;
         } else {
-            // Inline flow with simple wrapping
-            if (cx + kid->intrinsic_w > x + b->style.left + b->intrinsic_w && cx > x + b->style.left) {
-                cy += current_line_h;
-                cx = x + b->style.left;
+            // Inline flow with float-aware wrapping
+            auto [l, r] = fm.get_available_range(cy, kid->intrinsic_h);
+            if (cx < l) cx = l; // Indent if floats are present
+
+            if (cx + kid->intrinsic_w > r && cx > l) {
+                cy += std::max(current_line_h, 20); // Default line height 20
+                auto [nl, nr] = fm.get_available_range(cy, kid->intrinsic_h);
+                cx = nl;
                 current_line_h = 0;
             }
-            position_recursive(b->intrinsic_w, cx, cy, kid);
-            cx += kid->rect.w;
-            current_line_h = std::max(current_line_h, kid->rect.h);
+            position_recursive(b->intrinsic_w, cx, cy, kid, fm);
+            if (kid->style.float_type == FloatType::NONE) {
+                cx += kid->rect.w;
+                current_line_h = std::max(current_line_h, kid->rect.h);
+            }
         }
     }
+    // If block is non-floating, ensure it wraps floats? 
+    // Actually, following Coq FSM which is deterministic.
 }
 
 void paint(std::shared_ptr<Box> b, Canvas& c, ResourceManager& rm) {
@@ -311,7 +410,8 @@ void run_matrix_reversal_test() {
     auto root_box = build_box_tree(table);
     ResourceManager rm;
     measure_recursive(root_box, rm);
-    position_recursive(1000, 0, 0, root_box);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, root_box, fm);
     
     // Row 1 kids
     int x1 = root_box->kids[0]->kids[0]->rect.x;
@@ -344,7 +444,8 @@ void run_order_reversal_test() {
     auto root_box = build_box_tree(parent);
     ResourceManager rm;
     measure_recursive(root_box, rm);
-    position_recursive(1000, 0, 0, root_box);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, root_box, fm);
 
     int yA = root_box->kids[0]->rect.y;
     int yB = root_box->kids[1]->rect.y;
@@ -369,7 +470,8 @@ void run_normal_flow_preservation_test() {
     auto root_box = build_box_tree(parent);
     ResourceManager rm;
     measure_recursive(root_box, rm);
-    position_recursive(1000, 0, 0, root_box);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, root_box, fm);
     
     int y1 = root_box->kids[0]->rect.y;
     int y2 = root_box->kids[1]->rect.y;
@@ -387,6 +489,110 @@ void run_normal_flow_preservation_test() {
     }
 }
 
+void run_margin_collapsing_test() {
+    std::cout << "Running Margin Collapsing Test..." << std::endl;
+    auto root = Node::make_elem(Tag::BODY);
+    auto b1 = Node::make_elem(Tag::DIV, {{"mt", "20"}, {"mb", "20"}, {"height", "100"}});
+    auto b2 = Node::make_elem(Tag::DIV, {{"mt", "20"}, {"mb", "20"}, {"height", "100"}});
+    root->children = {b1, b2};
+
+    ResourceManager rm;
+    auto box_tree = build_box_tree(root);
+    measure_recursive(box_tree, rm);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, box_tree, fm);
+
+    // root is at 0, 0.
+    // b1 is at y = 0 + root margin 0 + b1 mt 20 = 20.
+    // b1 bottom is 20 + 100 = 120.
+    // b2 is at y = 120 + max(b1 mb 20, b2 mt 20) = 140.
+    
+    auto box_b1 = box_tree->kids[0];
+    auto box_b2 = box_tree->kids[1];
+    
+    std::cout << "B1 top: " << box_b1->rect.y << " (expected 20)" << std::endl;
+    std::cout << "B2 top: " << box_b2->rect.y << " (expected 140)" << std::endl;
+    
+    if (box_b1->rect.y != 20 || box_b2->rect.y != 140) {
+        std::cerr << "Margin Collapsing Test FAILED!" << std::endl;
+        exit(1);
+    }
+    std::cout << "Margin Collapsing Test PASSED." << std::endl;
+}
+
+void run_negative_margin_test() {
+    std::cout << "Running Negative Margin Test (MaxPos + MinNeg)..." << std::endl;
+    auto root = Node::make_elem(Tag::BODY);
+    // Case: Positives [10, 20], Negatives [-5, -15]
+    // MaxPos = 20, MinNeg = -15 -> Result = 5
+    auto b1 = Node::make_elem(Tag::DIV, {{"mb", "20"}, {"height", "100"}});
+    auto b2 = Node::make_elem(Tag::DIV, {{"mt", "-15"}, {"height", "100"}});
+    // Another child to test chain
+    auto b3 = Node::make_elem(Tag::DIV, {{"mt", "10"}, {"mb", "-5"}, {"height", "100"}});
+    root->children = {b1, b2, b3};
+
+    ResourceManager rm;
+    auto box_tree = build_box_tree(root);
+    measure_recursive(box_tree, rm);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, box_tree, fm);
+
+    // B1: y=0, h=100.
+    // B1-B2: collapse(mb:20, mt:-15) = 20 + (-15) = 5.
+    // B2: y = 100 + 5 = 105. h=100.
+    // B2-B3: collapse(mb:0, mt:10) = 10.
+    // B3: y = 105 + 100 + 10 = 215.
+    
+    std::cout << "B2 top: " << box_tree->kids[1]->rect.y << " (expected 105)" << std::endl;
+    std::cout << "B3 top: " << box_tree->kids[2]->rect.y << " (expected 215)" << std::endl;
+    
+    if (box_tree->kids[1]->rect.y != 105 || box_tree->kids[2]->rect.y != 215) {
+        std::cerr << "Negative Margin Test FAILED!" << std::endl;
+        exit(1);
+    }
+    std::cout << "Negative Margin Test PASSED." << std::endl;
+}
+
+void run_float_test() {
+    std::cout << "Running Float Test..." << std::endl;
+    auto root = Node::make_elem(Tag::BODY);
+    // [FloatL (100x100)] [BlockL (Full W)]
+    // BlockL should be indented.
+    auto f1 = Node::make_elem(Tag::DIV, {{"float", "left"}, {"width", "100"}, {"height", "100"}});
+    auto b1 = Node::make_elem(Tag::SPAN, {{"width", "200"}, {"height", "50"}}); // Inline child
+    root->children = {f1, b1};
+
+    ResourceManager rm;
+    auto box_tree = build_box_tree(root);
+    measure_recursive(box_tree, rm);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, box_tree, fm);
+
+    // f1: x=0, y=0, w=100.
+    // b1: inline, should indent to x=100.
+    
+    std::cout << "B1 x: " << box_tree->kids[1]->rect.x << " (expected 100)" << std::endl;
+    if (box_tree->kids[1]->rect.x != 100) {
+        std::cerr << "Float Indent Test FAILED!" << std::endl;
+        exit(1);
+    }
+    
+    // Test clearance
+    auto c1 = Node::make_elem(Tag::DIV, {{"clear", "left"}, {"height", "20"}});
+    root->children.push_back(c1);
+    box_tree = build_box_tree(root);
+    measure_recursive(box_tree, rm);
+    FloatManager fm2(800);
+    position_recursive(800, 0, 0, box_tree, fm2);
+    
+    std::cout << "C1 y: " << box_tree->kids[2]->rect.y << " (expected 100)" << std::endl;
+    if (box_tree->kids[2]->rect.y < 100) {
+        std::cerr << "Clearance Test FAILED!" << std::endl;
+        exit(1);
+    }
+    std::cout << "Float Tests PASSED." << std::endl;
+}
+
 void run_unit_tests() {
     std::cout << "Running Unit Tests..." << std::endl;
     auto img = Node::make_elem(Tag::IMG, {{"width", "50"}, {"height", "50"}, {"src", "test.png"}});
@@ -396,7 +602,8 @@ void run_unit_tests() {
     auto root_box = build_box_tree(div);
     ResourceManager rm;
     measure_recursive(root_box, rm);
-    position_recursive(1000, 0, 0, root_box);
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, root_box, fm);
     
     if (root_box->rect.w != 100 || root_box->kids[0]->rect.w != 50) {
         std::cerr << "FAIL: Basic unit tests" << std::endl;
@@ -406,6 +613,9 @@ void run_unit_tests() {
 
     run_order_reversal_test();
     run_normal_flow_preservation_test();
+    run_margin_collapsing_test();
+    run_negative_margin_test();
+    run_float_test();
 }
 
 std::string svg_escape(std::string s) {
@@ -529,7 +739,8 @@ void run_fuzz_tests() {
         
         auto box = build_box_tree(body);
         measure_recursive(box, rm);
-        position_recursive(1000, 0, 0, box);
+        FloatManager fm(800);
+        position_recursive(1000, 0, 0, box, fm);
         
         // Check Text Order
         int last_y = -1;
@@ -651,7 +862,9 @@ int main(int argc, char** argv) {
     std::ifstream f(input); std::stringstream buf; buf << f.rdbuf(); std::string html = buf.str();
     auto dom = parse_html(html); collect_resources(dom, rm);
     auto box_tree = build_box_tree(dom);
-    measure_recursive(box_tree, rm); position_recursive(800, 0, 0, box_tree);
+    measure_recursive(box_tree, rm); 
+    FloatManager fm(800);
+    position_recursive(800, 0, 0, box_tree, fm);
     Canvas canvas(800, 2400); paint(box_tree, canvas, rm); canvas.save("render.png");
     std::ofstream os("render.svg");
     os << "<svg width='800' height='2400' xmlns='http://www.w3.org/2000/svg'>\n";

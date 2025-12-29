@@ -42,7 +42,7 @@ Inductive Node : Set :=
   | elem : Tag -> list Attr -> list Node -> Node.
 
 Inductive Property : Set :=
-  | p_width | p_height | p_margin | p_padding | p_border
+  | p_width | p_height | p_margin_top | p_margin_bottom | p_padding | p_border
   | p_color | p_display | p_box_sizing
   | p_position | p_top | p_left | p_z_index.
 
@@ -184,6 +184,7 @@ Record Style : Set := {
   s_pos : Position;
   s_top_v : nat; s_left_v : nat;
   s_width : Value; s_height : Value;
+  s_margin_top : nat; s_margin_bottom : nat;
   s_color : string
 }.
 
@@ -199,6 +200,7 @@ Definition compute_style (availW : nat) (anc : list Node) (n : Node) (css : CSS)
               | Some (v_str "relative") => s_relative | Some (v_str "absolute") => s_absolute | _ => s_static end;
      s_top_v := get_px p_top 0; s_left_v := get_px p_left 0;
      s_width := get_val p_width (v_px 0); s_height := get_val p_height (v_px 0);
+     s_margin_top := get_px p_margin_top 0; s_margin_bottom := get_px p_margin_bottom 0;
      s_color := match resolve availW anc p_color n css with | Some (v_str c) => c | _ => "black" end |}.
 
 Record Rect : Set := { rx : nat; ry : nat; rw : nat; rh : nat }.
@@ -212,21 +214,23 @@ Fixpoint measure (availW : nat) (anc : list Node) (n : Node) (css : CSS) : (nat 
   match n with
   | text _ => (0, 20)
   | elem t attrs kids =>
-      let fix measure_kids l w :=
+      let fix measure_kids l w pending :=
         match l with
         | [] => (0, 0)
         | k :: ks => 
             let '(kw, kh) := measure w (n :: anc) k css in
-            let '(restw, resth) := measure_kids ks w in
+            let sk := compute_style w (n :: anc) k css in
+            let collapsed := max pending (s_margin_top sk) in
+            let '(restw, resth) := measure_kids ks w (s_margin_bottom sk) in
             match s_disp s with
             | d_table_row => (kw + restw, Init.Nat.max kh resth)
-            | _           => (Init.Nat.max kw restw, kh + resth)
+            | _           => (Init.Nat.max kw restw, collapsed + kh + resth)
             end
         end
       in
       let cw_val := resolve_len (s_width s) availW 0 in
       let content_w := if Nat.eqb cw_val 0 then availW else cw_val in
-      let '(kw, kh) := measure_kids kids content_w in
+      let '(kw, kh) := measure_kids kids content_w 0 in
       (if Nat.eqb cw_val 0 then match s_disp s with d_block => availW | _ => kw end else cw_val,
        let ch_val := resolve_len (s_height s) 0 0 in
        if Nat.eqb ch_val 0 then (if Nat.eqb kh 0 then 20 else kh) else ch_val)
@@ -238,19 +242,22 @@ Fixpoint position (availW : nat) (x y : nat) (anc : list Node) (n : Node) (css :
   match n with
   | text _ => mkLBox {| rx := x + s_left_v s; ry := y + s_top_v s; rw := mw; rh := mh |} []
   | elem _ _ kids =>
-      let fix pos_kids l (container_w : nat) cx cy :=
+      let fix pos_kids l (container_w : nat) cx cy pending :=
         match l with
         | [] => []
         | k :: ks =>
+            let sk := compute_style container_w (n :: anc) k css in
+            let collapsed := max pending (s_margin_top sk) in
+            let lb := position container_w cx (cy + collapsed) (n :: anc) k css in
             let '(kmw, kmh) := measure container_w (n :: anc) k css in
-            let lb := position container_w cx cy (n :: anc) k css in
             match s_disp s with
-            | d_table_row => lb :: pos_kids ks container_w (cx + kmw) cy
-            | _           => lb :: pos_kids ks container_w cx (cy + kmh)
+            | d_table_row => lb :: pos_kids ks container_w (cx + kmw) cy 0
+            | _           => lb :: pos_kids ks container_w cx (cy + collapsed + kmh) (s_margin_bottom sk)
             end
         end
       in
-      mkLBox {| rx := x + s_left_v s; ry := y + s_top_v s; rw := mw; rh := mh |} (pos_kids kids mw (x + s_left_v s) (y + s_top_v s))
+      mkLBox {| rx := x + s_left_v s; ry := y + s_top_v s; rw := mw; rh := mh |} 
+             (pos_kids kids mw (x + s_left_v s) (y + s_top_v s) 0)
   end.
 
 Definition render (availW : nat) (n : Node) (css : CSS) : LayoutBox :=

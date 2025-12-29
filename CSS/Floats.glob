@@ -1,0 +1,358 @@
+DIGEST 1aed590351beef604c497f6315cc2c95
+FCSS.Floats
+R15:28 Coq.Lists.List <> <> lib
+R46:62 Coq.ZArith.ZArith <> <> lib
+R80:82 Coq.micromega.Lia <> <> lib
+R100:112 Coq.Bool.Bool <> <> lib
+R122:134 Coq.Lists.List ListNotations <> mod
+mod 165:170 <> Floats
+rec 181:184 Floats Rect
+proj 198:199 Floats rx
+proj 205:206 Floats ry
+proj 212:213 Floats rw
+proj 219:220 Floats rh
+R202:202 Coq.Numbers.BinNums <> Z ind
+R209:209 Coq.Numbers.BinNums <> Z ind
+R216:216 Coq.Numbers.BinNums <> Z ind
+R223:223 Coq.Numbers.BinNums <> Z ind
+rec 236:245 Floats FloatState
+proj 267:271 Floats y_pos
+proj 280:284 Floats max_w
+proj 293:303 Floats left_floats
+proj 320:331 Floats right_floats
+R275:275 Coq.Numbers.BinNums <> Z ind
+R288:288 Coq.Numbers.BinNums <> Z ind
+R307:310 Coq.Init.Datatypes <> list ind
+R312:315 CSS.Floats Floats Rect rec
+R335:338 Coq.Init.Datatypes <> list ind
+R340:343 CSS.Floats Floats Rect rec
+def 360:363 Floats init
+R370:370 Coq.Numbers.BinNums <> Z ind
+binder 366:366 <> w:11
+R376:387 CSS.Floats Floats mkFloatState constr
+R391:391 CSS.Floats <> w:11 var
+R393:394 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R396:397 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 474:492 Floats get_available_range
+R499:508 CSS.Floats Floats FloatState rec
+binder 495:495 <> s:12
+R516:516 Coq.Numbers.BinNums <> Z ind
+binder 512:512 <> y:13
+R524:524 Coq.Numbers.BinNums <> Z ind
+binder 520:520 <> h:14
+R531:533 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R530:530 Coq.Numbers.BinNums <> Z ind
+R534:534 Coq.Numbers.BinNums <> Z ind
+R560:569 Coq.Lists.List <> fold_right def
+R695:705 CSS.Floats Floats left_floats proj
+R707:707 CSS.Floats <> s:12 var
+binder 576:576 <> r:15
+binder 578:580 <> acc:16
+R594:597 Coq.Init.Datatypes <> andb def
+R624:628 Coq.ZArith.BinInt Z ltb def
+R631:632 CSS.Floats Floats ry proj
+R634:634 CSS.Floats <> r:15 var
+R639:641 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R638:638 CSS.Floats <> y:13 var
+R642:642 CSS.Floats <> h:14 var
+R600:604 Coq.ZArith.BinInt Z ltb def
+R606:606 CSS.Floats <> y:13 var
+R613:615 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R609:610 CSS.Floats Floats ry proj
+R612:612 CSS.Floats <> r:15 var
+R616:617 CSS.Floats Floats rh proj
+R619:619 CSS.Floats <> r:15 var
+R685:687 CSS.Floats <> acc:16 var
+R656:660 Coq.ZArith.BinInt Z max def
+R662:664 CSS.Floats <> acc:16 var
+R671:673 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R667:668 CSS.Floats Floats rx proj
+R670:670 CSS.Floats <> r:15 var
+R674:675 CSS.Floats Floats rw proj
+R677:677 CSS.Floats <> r:15 var
+binder 546:555 <> left_bound:17
+R734:743 Coq.Lists.List <> fold_right def
+R868:879 CSS.Floats Floats right_floats proj
+R881:881 CSS.Floats <> s:12 var
+R858:862 CSS.Floats Floats max_w proj
+R864:864 CSS.Floats <> s:12 var
+binder 750:750 <> r:18
+binder 752:754 <> acc:19
+R768:771 Coq.Init.Datatypes <> andb def
+R798:802 Coq.ZArith.BinInt Z ltb def
+R805:806 CSS.Floats Floats ry proj
+R808:808 CSS.Floats <> r:18 var
+R813:815 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R812:812 CSS.Floats <> y:13 var
+R816:816 CSS.Floats <> h:14 var
+R774:778 Coq.ZArith.BinInt Z ltb def
+R780:780 CSS.Floats <> y:13 var
+R787:789 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R783:784 CSS.Floats Floats ry proj
+R786:786 CSS.Floats <> r:18 var
+R790:791 CSS.Floats Floats rh proj
+R793:793 CSS.Floats <> r:18 var
+R852:854 CSS.Floats <> acc:19 var
+R830:834 Coq.ZArith.BinInt Z min def
+R836:838 CSS.Floats <> acc:19 var
+R841:842 CSS.Floats Floats rx proj
+R844:844 CSS.Floats <> r:18 var
+binder 719:729 <> right_bound:20
+R889:889 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R900:901 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R913:913 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R890:899 CSS.Floats <> left_bound:17 var
+R902:912 CSS.Floats <> right_bound:20 var
+def 928:934 Floats fits_at
+R941:950 CSS.Floats Floats FloatState rec
+binder 937:937 <> s:21
+R958:958 Coq.Numbers.BinNums <> Z ind
+binder 954:954 <> y:22
+R966:966 Coq.Numbers.BinNums <> Z ind
+binder 962:962 <> w:23
+R974:974 Coq.Numbers.BinNums <> Z ind
+binder 970:970 <> h:24
+R979:982 Coq.Init.Datatypes <> bool ind
+R1004:1022 CSS.Floats Floats get_available_range def
+R1024:1024 CSS.Floats <> s:21 var
+R1026:1026 CSS.Floats <> y:22 var
+R1028:1028 CSS.Floats <> h:24 var
+R994:994 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R996:997 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R999:999 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1041:1045 Coq.ZArith.BinInt <> ::Z_scope:x_'<=?'_x not
+R1037:1039 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1040:1040 CSS.Floats <> w:23 var
+def 1120:1125 Floats find_y
+R1132:1141 CSS.Floats Floats FloatState rec
+binder 1128:1128 <> s:25
+R1155:1155 Coq.Numbers.BinNums <> Z ind
+binder 1145:1151 <> y_start:26
+R1163:1163 Coq.Numbers.BinNums <> Z ind
+binder 1159:1159 <> w:27
+R1171:1171 Coq.Numbers.BinNums <> Z ind
+binder 1167:1167 <> h:28
+R1182:1184 Coq.Init.Datatypes <> nat ind
+binder 1175:1178 <> fuel:29
+R1189:1189 Coq.Numbers.BinNums <> Z ind
+R1202:1205 CSS.Floats <> fuel:29 var
+R1216:1216 Coq.Init.Datatypes <> O constr
+R1221:1227 CSS.Floats <> y_start:26 var
+R1233:1233 Coq.Init.Datatypes <> S constr
+R1243:1249 CSS.Floats Floats fits_at def
+R1251:1251 CSS.Floats <> s:25 var
+R1253:1259 CSS.Floats <> y_start:26 var
+R1261:1261 CSS.Floats <> w:27 var
+R1263:1263 CSS.Floats <> h:28 var
+R1295:1300 CSS.Floats <> find_y:30 def
+R1322:1322 CSS.Floats <> h:28 var
+R1320:1320 CSS.Floats <> w:27 var
+R1312:1314 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R1305:1311 CSS.Floats <> y_start:26 var
+R1302:1302 CSS.Floats <> s:25 var
+R1270:1276 CSS.Floats <> y_start:26 var
+ind 1344:1352 Floats FloatSide
+constr 1357:1362 Floats f_left
+constr 1366:1372 Floats f_right
+scheme 1344:1352 Floats FloatSide_rect
+scheme 1344:1352 Floats FloatSide_ind
+scheme 1344:1352 Floats FloatSide_rec
+scheme 1344:1352 Floats FloatSide_sind
+def 1387:1395 Floats add_float
+R1402:1411 CSS.Floats Floats FloatState rec
+binder 1398:1398 <> s:34
+R1422:1430 CSS.Floats Floats FloatSide ind
+binder 1415:1418 <> side:35
+R1440:1440 Coq.Numbers.BinNums <> Z ind
+binder 1434:1434 <> w:36
+binder 1436:1436 <> h:37
+R1445:1454 CSS.Floats Floats FloatState rec
+R1476:1481 CSS.Floats Floats find_y def
+R1483:1483 CSS.Floats <> s:34 var
+R1486:1490 CSS.Floats Floats y_pos proj
+R1492:1492 CSS.Floats <> s:34 var
+R1495:1495 CSS.Floats <> w:36 var
+R1497:1497 CSS.Floats <> h:37 var
+binder 1465:1471 <> y_start:38
+R1528:1546 CSS.Floats Floats get_available_range def
+R1548:1548 CSS.Floats <> s:34 var
+R1550:1556 CSS.Floats <> y_start:38 var
+R1558:1558 CSS.Floats <> h:37 var
+R1518:1518 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1520:1521 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1523:1523 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R1571:1574 CSS.Floats <> side:35 var
+R1585:1590 CSS.Floats Floats f_left constr
+R1615:1620 CSS.Floats Floats mkRect constr
+R1624:1630 CSS.Floats <> y_start:38 var
+R1632:1632 CSS.Floats <> w:36 var
+R1634:1634 CSS.Floats <> h:37 var
+binder 1606:1610 <> new_r:40
+R1645:1656 CSS.Floats Floats mkFloatState constr
+R1659:1663 CSS.Floats Floats y_pos proj
+R1665:1665 CSS.Floats <> s:34 var
+R1669:1673 CSS.Floats Floats max_w proj
+R1675:1675 CSS.Floats <> s:34 var
+R1684:1687 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1679:1683 CSS.Floats <> new_r:40 var
+R1688:1698 CSS.Floats Floats left_floats proj
+R1700:1700 CSS.Floats <> s:34 var
+R1704:1715 CSS.Floats Floats right_floats proj
+R1717:1717 CSS.Floats <> s:34 var
+R1724:1730 CSS.Floats Floats f_right constr
+R1754:1759 CSS.Floats Floats mkRect constr
+R1763:1765 Coq.ZArith.BinInt <> ::Z_scope:x_'-'_x not
+R1766:1766 CSS.Floats <> w:36 var
+R1769:1775 CSS.Floats <> y_start:38 var
+R1777:1777 CSS.Floats <> w:36 var
+R1779:1779 CSS.Floats <> h:37 var
+binder 1745:1749 <> new_r:41
+R1790:1801 CSS.Floats Floats mkFloatState constr
+R1804:1808 CSS.Floats Floats y_pos proj
+R1810:1810 CSS.Floats <> s:34 var
+R1814:1818 CSS.Floats Floats max_w proj
+R1820:1820 CSS.Floats <> s:34 var
+R1824:1834 CSS.Floats Floats left_floats proj
+R1836:1836 CSS.Floats <> s:34 var
+R1845:1848 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1840:1844 CSS.Floats <> new_r:41 var
+R1849:1860 CSS.Floats Floats right_floats proj
+R1862:1862 CSS.Floats <> s:34 var
+def 1954:1968 Floats get_clearance_y
+R1975:1984 CSS.Floats Floats FloatState rec
+binder 1971:1971 <> s:42
+R1995:2003 CSS.Floats Floats FloatSide ind
+binder 1988:1991 <> side:43
+R2008:2008 Coq.Numbers.BinNums <> Z ind
+R2033:2036 CSS.Floats <> side:43 var
+R2043:2048 CSS.Floats Floats f_left constr
+R2053:2063 CSS.Floats Floats left_floats proj
+R2065:2065 CSS.Floats <> s:42 var
+R2069:2075 CSS.Floats Floats f_right constr
+R2080:2091 CSS.Floats Floats right_floats proj
+R2093:2093 CSS.Floats <> s:42 var
+binder 2019:2022 <> list:45
+R2104:2113 Coq.Lists.List <> fold_right def
+R2164:2167 CSS.Floats <> list:45 var
+R2155:2159 CSS.Floats Floats y_pos proj
+R2161:2161 CSS.Floats <> s:42 var
+binder 2120:2120 <> r:46
+binder 2122:2124 <> acc:47
+R2129:2133 Coq.ZArith.BinInt Z max def
+R2135:2137 CSS.Floats <> acc:47 var
+R2144:2146 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R2140:2141 CSS.Floats Floats ry proj
+R2143:2143 CSS.Floats <> r:46 var
+R2147:2148 CSS.Floats Floats rh proj
+R2150:2150 CSS.Floats <> r:46 var
+def 2182:2189 Floats disjoint
+R2200:2203 CSS.Floats Floats Rect rec
+binder 2192:2193 <> r1:48
+binder 2195:2196 <> r2:49
+R2241:2244 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R2232:2235 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R2224:2226 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R2219:2220 CSS.Floats Floats rx proj
+R2222:2223 CSS.Floats <> r1:48 var
+R2227:2228 CSS.Floats Floats rw proj
+R2230:2231 CSS.Floats <> r1:48 var
+R2236:2237 CSS.Floats Floats rx proj
+R2239:2240 CSS.Floats <> r2:49 var
+R2267:2273 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R2258:2261 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R2250:2252 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R2245:2246 CSS.Floats Floats rx proj
+R2248:2249 CSS.Floats <> r2:49 var
+R2253:2254 CSS.Floats Floats rw proj
+R2256:2257 CSS.Floats <> r2:49 var
+R2262:2263 CSS.Floats Floats rx proj
+R2265:2266 CSS.Floats <> r1:48 var
+R2296:2299 Coq.Init.Logic <> ::type_scope:x_'\/'_x not
+R2287:2290 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R2279:2281 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R2274:2275 CSS.Floats Floats ry proj
+R2277:2278 CSS.Floats <> r1:48 var
+R2282:2283 CSS.Floats Floats rh proj
+R2285:2286 CSS.Floats <> r1:48 var
+R2291:2292 CSS.Floats Floats ry proj
+R2294:2295 CSS.Floats <> r2:49 var
+R2313:2316 Coq.ZArith.BinInt <> ::Z_scope:x_'<='_x not
+R2305:2307 Coq.ZArith.BinInt <> ::Z_scope:x_'+'_x not
+R2300:2301 CSS.Floats Floats ry proj
+R2303:2304 CSS.Floats <> r2:49 var
+R2308:2309 CSS.Floats Floats rh proj
+R2311:2312 CSS.Floats <> r2:49 var
+R2317:2318 CSS.Floats Floats ry proj
+R2320:2321 CSS.Floats <> r1:48 var
+prf 2336:2350 Floats floats_disjoint
+binder 2361:2361 <> s:50
+binder 2363:2366 <> side:51
+binder 2368:2368 <> w:52
+binder 2370:2370 <> h:53
+R2375:2375 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2618:2624 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 2383:2384 <> r1:54
+binder 2386:2387 <> r2:55
+R2469:2490 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2390:2391 Coq.Lists.List <> In def
+R2403:2406 CSS.Floats <> side:51 var
+R2413:2418 CSS.Floats Floats f_left constr
+R2423:2433 CSS.Floats Floats left_floats proj
+R2435:2435 CSS.Floats <> s:50 var
+R2439:2445 CSS.Floats Floats f_right constr
+R2450:2461 CSS.Floats Floats right_floats proj
+R2463:2463 CSS.Floats <> s:50 var
+R2393:2394 CSS.Floats <> r1:54 var
+R2570:2591 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2491:2492 Coq.Lists.List <> In def
+R2504:2507 CSS.Floats <> side:51 var
+R2514:2519 CSS.Floats Floats f_left constr
+R2524:2534 CSS.Floats Floats left_floats proj
+R2536:2536 CSS.Floats <> s:50 var
+R2540:2546 CSS.Floats Floats f_right constr
+R2551:2562 CSS.Floats Floats right_floats proj
+R2564:2564 CSS.Floats <> s:50 var
+R2494:2495 CSS.Floats <> r2:55 var
+R2600:2603 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2594:2597 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R2592:2593 CSS.Floats <> r1:54 var
+R2598:2599 CSS.Floats <> r2:55 var
+R2604:2611 CSS.Floats Floats disjoint def
+R2613:2614 CSS.Floats <> r1:54 var
+R2616:2617 CSS.Floats <> r2:55 var
+R2635:2643 CSS.Floats Floats add_float def
+R2645:2645 CSS.Floats <> s:50 var
+R2647:2650 CSS.Floats <> side:51 var
+R2652:2652 CSS.Floats <> w:52 var
+R2654:2654 CSS.Floats <> h:53 var
+binder 2629:2630 <> s':58
+binder 2669:2670 <> r1:59
+binder 2672:2673 <> r2:60
+R2757:2778 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2676:2677 Coq.Lists.List <> In def
+R2689:2692 CSS.Floats <> side:51 var
+R2699:2704 CSS.Floats Floats f_left constr
+R2709:2719 CSS.Floats Floats left_floats proj
+R2721:2722 CSS.Floats <> s':58 var
+R2726:2732 CSS.Floats Floats f_right constr
+R2737:2748 CSS.Floats Floats right_floats proj
+R2750:2751 CSS.Floats <> s':58 var
+R2679:2680 CSS.Floats <> r1:59 var
+R2860:2881 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2779:2780 Coq.Lists.List <> In def
+R2792:2795 CSS.Floats <> side:51 var
+R2802:2807 CSS.Floats Floats f_left constr
+R2812:2822 CSS.Floats Floats left_floats proj
+R2824:2825 CSS.Floats <> s':58 var
+R2829:2835 CSS.Floats Floats f_right constr
+R2840:2851 CSS.Floats Floats right_floats proj
+R2853:2854 CSS.Floats <> s':58 var
+R2782:2783 CSS.Floats <> r2:60 var
+R2890:2893 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2884:2887 Coq.Init.Logic <> ::type_scope:x_'<>'_x not
+R2882:2883 CSS.Floats <> r1:59 var
+R2888:2889 CSS.Floats <> r2:60 var
+R2894:2901 CSS.Floats Floats disjoint def
+R2903:2904 CSS.Floats <> r1:59 var
+R2906:2907 CSS.Floats <> r2:60 var
+R2933:2938 CSS.Floats Floats <> mod

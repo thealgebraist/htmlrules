@@ -1,0 +1,11 @@
+DIGEST 6c0f3920ae6596929c5187cb2a0bfc24
+FCSS.MarginTest
+R15:32 CSS.MarginCollapse <> <> lib
+R50:66 Coq.ZArith.ZArith <> <> lib
+R76:89 CSS.MarginCollapse MarginCollapse <> mod
+def 125:126 <> b1
+R131:135 CSS.MarginCollapse MarginCollapse mkBox constr
+def 157:158 <> b2
+R163:167 CSS.MarginCollapse MarginCollapse mkBox constr
+def 219:220 <> b3
+R225:229 CSS.MarginCollapse MarginCollapse mkBox constr
