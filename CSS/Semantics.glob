@@ -1,0 +1,1979 @@
+DIGEST 748d3eefd3c7a3af6bd09cf311b1dd67
+FCSS.Semantics
+R15:28 Coq.Lists.List <> <> lib
+R46:63 Coq.Strings.String <> <> lib
+R81:97 Coq.Strings.Ascii <> <> lib
+R115:129 Coq.Arith.Arith <> <> lib
+R147:159 Coq.Bool.Bool <> <> lib
+R169:181 Coq.Lists.List ListNotations <> mod
+ind 250:252 <> Tag
+constr 268:270 <> div
+constr 274:277 <> span
+constr 281:283 <> img
+constr 287:290 <> body
+constr 294:298 <> table
+constr 302:303 <> tr
+constr 307:308 <> td
+constr 315:320 <> header
+constr 324:329 <> footer
+constr 333:336 <> main
+constr 340:346 <> section
+constr 350:356 <> article
+constr 360:362 <> nav
+constr 366:370 <> aside
+constr 377:381 <> other
+scheme 250:252 <> Tag_rect
+scheme 250:252 <> Tag_ind
+scheme 250:252 <> Tag_rec
+scheme 250:252 <> Tag_sind
+def 396:401 <> tag_eq
+R412:414 CSS.Semantics <> Tag ind
+binder 404:405 <> t1:3
+binder 407:408 <> t2:4
+R419:422 Coq.Init.Datatypes <> bool ind
+R439:440 CSS.Semantics <> t2:4 var
+R435:436 CSS.Semantics <> t1:3 var
+R451:453 CSS.Semantics <> div constr
+R456:458 CSS.Semantics <> div constr
+R463:466 Coq.Init.Datatypes <> true constr
+R470:473 CSS.Semantics <> span constr
+R476:479 CSS.Semantics <> span constr
+R484:487 Coq.Init.Datatypes <> true constr
+R491:493 CSS.Semantics <> img constr
+R496:498 CSS.Semantics <> img constr
+R503:506 Coq.Init.Datatypes <> true constr
+R513:516 CSS.Semantics <> body constr
+R519:522 CSS.Semantics <> body constr
+R527:530 Coq.Init.Datatypes <> true constr
+R534:538 CSS.Semantics <> table constr
+R541:545 CSS.Semantics <> table constr
+R550:553 Coq.Init.Datatypes <> true constr
+R557:558 CSS.Semantics <> tr constr
+R561:562 CSS.Semantics <> tr constr
+R567:570 Coq.Init.Datatypes <> true constr
+R574:575 CSS.Semantics <> td constr
+R578:579 CSS.Semantics <> td constr
+R584:587 Coq.Init.Datatypes <> true constr
+R593:598 CSS.Semantics <> header constr
+R601:606 CSS.Semantics <> header constr
+R611:614 Coq.Init.Datatypes <> true constr
+R618:623 CSS.Semantics <> footer constr
+R626:631 CSS.Semantics <> footer constr
+R636:639 Coq.Init.Datatypes <> true constr
+R643:646 CSS.Semantics <> main constr
+R649:652 CSS.Semantics <> main constr
+R657:660 Coq.Init.Datatypes <> true constr
+R666:672 CSS.Semantics <> section constr
+R675:681 CSS.Semantics <> section constr
+R686:689 Coq.Init.Datatypes <> true constr
+R693:699 CSS.Semantics <> article constr
+R702:708 CSS.Semantics <> article constr
+R713:716 Coq.Init.Datatypes <> true constr
+R720:722 CSS.Semantics <> nav constr
+R725:727 CSS.Semantics <> nav constr
+R732:735 Coq.Init.Datatypes <> true constr
+R739:743 CSS.Semantics <> aside constr
+R746:750 CSS.Semantics <> aside constr
+R755:758 Coq.Init.Datatypes <> true constr
+R764:768 CSS.Semantics <> other constr
+R771:775 CSS.Semantics <> other constr
+R780:783 Coq.Init.Datatypes <> true constr
+R797:801 Coq.Init.Datatypes <> false constr
+ind 821:831 <> DisplayType
+constr 842:848 <> d_block
+constr 852:859 <> d_inline
+constr 863:868 <> d_none
+constr 872:878 <> d_table
+constr 882:892 <> d_table_row
+constr 896:907 <> d_table_cell
+scheme 821:831 <> DisplayType_rect
+scheme 821:831 <> DisplayType_ind
+scheme 821:831 <> DisplayType_rec
+scheme 821:831 <> DisplayType_sind
+def 922:936 <> default_display
+R943:945 CSS.Semantics <> Tag ind
+binder 939:939 <> t:9
+R950:960 CSS.Semantics <> DisplayType ind
+R973:973 CSS.Semantics <> t:9 var
+R984:987 CSS.Semantics <> span constr
+R991:993 CSS.Semantics <> img constr
+R998:1005 CSS.Semantics <> d_inline constr
+R998:1005 CSS.Semantics <> d_inline constr
+R1011:1012 CSS.Semantics <> tr constr
+R1017:1027 CSS.Semantics <> d_table_row constr
+R1033:1034 CSS.Semantics <> td constr
+R1039:1050 CSS.Semantics <> d_table_cell constr
+R1056:1060 CSS.Semantics <> table constr
+R1065:1071 CSS.Semantics <> d_table constr
+R1077:1081 CSS.Semantics <> other constr
+R1086:1091 CSS.Semantics <> d_none constr
+R1102:1108 CSS.Semantics <> d_block constr
+rec 1125:1128 <> Attr
+proj 1141:1149 <> attr_name
+proj 1161:1170 <> attr_value
+R1153:1158 Coq.Strings.String <> string ind
+R1174:1179 Coq.Strings.String <> string ind
+ind 1195:1198 <> Node
+constr 1213:1216 <> text
+constr 1239:1242 <> elem
+R1226:1229 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1220:1225 Coq.Strings.String <> string ind
+R1230:1233 CSS.Semantics <> Node:14 ind
+R1249:1252 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1246:1248 CSS.Semantics <> Tag ind
+R1262:1265 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1253:1256 Coq.Init.Datatypes <> list ind
+R1258:1261 CSS.Semantics <> Attr rec
+R1275:1278 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1266:1269 Coq.Init.Datatypes <> list ind
+R1271:1274 CSS.Semantics <> Node:14 ind
+R1279:1282 CSS.Semantics <> Node:14 ind
+scheme 1195:1198 <> Node_rect
+scheme 1195:1198 <> Node_ind
+scheme 1195:1198 <> Node_rec
+scheme 1195:1198 <> Node_sind
+ind 1296:1303 <> Property
+constr 1318:1324 <> p_width
+constr 1328:1335 <> p_height
+constr 1339:1346 <> p_margin
+constr 1350:1358 <> p_padding
+constr 1362:1369 <> p_border
+constr 1375:1381 <> p_color
+constr 1385:1393 <> p_display
+constr 1397:1408 <> p_box_sizing
+constr 1414:1423 <> p_position
+constr 1427:1431 <> p_top
+constr 1435:1440 <> p_left
+constr 1444:1452 <> p_z_index
+scheme 1296:1303 <> Property_rect
+scheme 1296:1303 <> Property_ind
+scheme 1296:1303 <> Property_rec
+scheme 1296:1303 <> Property_sind
+ind 1466:1470 <> Value
+constr 1485:1488 <> v_px
+constr 1509:1513 <> v_pct
+constr 1534:1538 <> v_str
+R1495:1498 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1492:1494 Coq.Init.Datatypes <> nat ind
+R1499:1503 CSS.Semantics <> Value:18 ind
+R1520:1523 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1517:1519 Coq.Init.Datatypes <> nat ind
+R1524:1528 CSS.Semantics <> Value:18 ind
+R1548:1551 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1542:1547 Coq.Strings.String <> string ind
+R1552:1556 CSS.Semantics <> Value:18 ind
+scheme 1466:1470 <> Value_rect
+scheme 1466:1470 <> Value_ind
+scheme 1466:1470 <> Value_rec
+scheme 1466:1470 <> Value_sind
+rec 1567:1570 <> Decl
+proj 1586:1594 <> decl_prop
+proj 1611:1618 <> decl_val
+proj 1631:1644 <> decl_important
+R1598:1605 CSS.Semantics <> Property ind
+R1622:1626 CSS.Semantics <> Value ind
+R1648:1651 Coq.Init.Datatypes <> bool ind
+ind 1668:1675 <> Selector
+constr 1690:1697 <> sel_univ
+constr 1715:1721 <> sel_tag
+constr 1747:1755 <> sel_class
+constr 1782:1787 <> sel_id
+constr 1817:1823 <> sel_and
+constr 1866:1873 <> sel_desc
+R1702:1709 CSS.Semantics <> Selector:24 ind
+R1730:1733 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1727:1729 CSS.Semantics <> Tag ind
+R1734:1741 CSS.Semantics <> Selector:24 ind
+R1765:1768 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1759:1764 Coq.Strings.String <> string ind
+R1769:1776 CSS.Semantics <> Selector:24 ind
+R1800:1803 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1794:1799 Coq.Strings.String <> string ind
+R1804:1811 CSS.Semantics <> Selector:24 ind
+R1837:1840 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1829:1836 CSS.Semantics <> Selector:24 ind
+R1849:1852 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1841:1848 CSS.Semantics <> Selector:24 ind
+R1853:1860 CSS.Semantics <> Selector:24 ind
+R1886:1889 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1878:1885 CSS.Semantics <> Selector:24 ind
+R1898:1901 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R1890:1897 CSS.Semantics <> Selector:24 ind
+R1902:1909 CSS.Semantics <> Selector:24 ind
+scheme 1668:1675 <> Selector_rect
+scheme 1668:1675 <> Selector_ind
+scheme 1668:1675 <> Selector_rec
+scheme 1668:1675 <> Selector_sind
+rec 1920:1923 <> Rule
+proj 1936:1943 <> rule_sel
+proj 1957:1966 <> rule_decls
+R1947:1954 CSS.Semantics <> Selector ind
+R1970:1973 Coq.Init.Datatypes <> list ind
+R1975:1978 CSS.Semantics <> Decl rec
+ind 1994:2003 <> MediaQuery
+constr 2018:2026 <> mq_always
+constr 2045:2056 <> mq_min_width
+R2030:2039 CSS.Semantics <> MediaQuery:29 ind
+R2063:2066 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R2060:2062 Coq.Init.Datatypes <> nat ind
+R2067:2076 CSS.Semantics <> MediaQuery:29 ind
+scheme 1994:2003 <> MediaQuery_rect
+scheme 1994:2003 <> MediaQuery_ind
+scheme 1994:2003 <> MediaQuery_rec
+scheme 1994:2003 <> MediaQuery_sind
+rec 2087:2092 <> MQRule
+proj 2107:2113 <> mq_cond
+proj 2131:2138 <> mq_rules
+R2117:2126 CSS.Semantics <> MediaQuery ind
+R2142:2145 Coq.Init.Datatypes <> list ind
+R2147:2150 CSS.Semantics <> Rule rec
+def 2167:2169 <> CSS
+R2174:2177 Coq.Init.Datatypes <> list ind
+R2179:2184 CSS.Semantics <> MQRule rec
+def 2227:2240 <> contains_token
+R2252:2257 Coq.Strings.String <> string ind
+binder 2243:2248 <> target:34
+R2265:2270 Coq.Strings.String <> string ind
+binder 2261:2261 <> s:35
+R2284:2289 Coq.Strings.String <> string ind
+binder 2274:2280 <> current:36
+R2294:2297 Coq.Init.Datatypes <> bool ind
+R2310:2310 CSS.Semantics <> s:35 var
+R2334:2337 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R2328:2333 CSS.Semantics <> target:34 var
+R2338:2344 CSS.Semantics <> current:36 var
+R2358:2363 Coq.Strings.String <> String constr
+R2384:2398 Coq.Strings.Ascii <> ascii_dec def
+R2513:2526 CSS.Semantics <> contains_token:37 def
+R2548:2551 Coq.Strings.String <> ::string_scope:x_'++'_x not
+R2541:2547 CSS.Semantics <> current:36 var
+R2552:2557 Coq.Strings.String <> String constr
+R2528:2533 CSS.Semantics <> target:34 var
+R2429:2432 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R2423:2428 CSS.Semantics <> target:34 var
+R2433:2439 CSS.Semantics <> current:36 var
+R2472:2485 CSS.Semantics <> contains_token:37 def
+R2487:2492 CSS.Semantics <> target:34 var
+R2454:2457 Coq.Init.Datatypes <> true constr
+def 2589:2597 <> find_attr
+R2607:2612 Coq.Strings.String <> string ind
+binder 2600:2603 <> name:39
+R2624:2627 Coq.Init.Datatypes <> list ind
+R2629:2632 CSS.Semantics <> Attr rec
+binder 2616:2620 <> attrs:40
+R2637:2642 Coq.Init.Datatypes <> option ind
+R2644:2649 Coq.Strings.String <> string ind
+R2662:2666 CSS.Semantics <> attrs:40 var
+R2677:2678 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2683:2686 Coq.Init.Datatypes <> None constr
+R2693:2696 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2719:2722 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R2708:2716 CSS.Semantics <> attr_name proj
+R2723:2726 CSS.Semantics <> name:39 var
+R2766:2774 CSS.Semantics <> find_attr:41 def
+R2776:2779 CSS.Semantics <> name:39 var
+R2741:2744 Coq.Init.Datatypes <> Some constr
+R2747:2756 CSS.Semantics <> attr_value proj
+def 2802:2808 <> matches
+R2817:2820 Coq.Init.Datatypes <> list ind
+R2822:2825 CSS.Semantics <> Node ind
+binder 2811:2813 <> anc:43
+R2833:2836 CSS.Semantics <> Node ind
+binder 2829:2829 <> n:44
+R2844:2851 CSS.Semantics <> Selector ind
+binder 2840:2840 <> s:45
+R2856:2859 Coq.Init.Datatypes <> bool ind
+R2872:2872 CSS.Semantics <> s:45 var
+R2883:2890 CSS.Semantics <> sel_univ constr
+R2895:2898 Coq.Init.Datatypes <> true constr
+R2904:2910 CSS.Semantics <> sel_tag constr
+R2924:2924 CSS.Semantics <> n:44 var
+R2931:2934 CSS.Semantics <> elem constr
+R2945:2950 CSS.Semantics <> tag_eq def
+R2964:2968 Coq.Init.Datatypes <> false constr
+R2978:2986 CSS.Semantics <> sel_class constr
+R2999:2999 CSS.Semantics <> n:44 var
+R3006:3009 CSS.Semantics <> elem constr
+R3053:3061 CSS.Semantics <> find_attr def
+R3082:3085 Coq.Init.Datatypes <> Some constr
+R3092:3105 CSS.Semantics <> contains_token def
+R3116:3119 Coq.Init.Datatypes <> None constr
+R3124:3128 Coq.Init.Datatypes <> false constr
+R3163:3167 Coq.Init.Datatypes <> false constr
+R3177:3182 CSS.Semantics <> sel_id constr
+R3195:3195 CSS.Semantics <> n:44 var
+R3202:3205 CSS.Semantics <> elem constr
+R3249:3257 CSS.Semantics <> find_attr def
+R3275:3278 Coq.Init.Datatypes <> Some constr
+R3287:3290 Coq.Strings.String <> ::string_scope:x_'=?'_x not
+R3303:3306 Coq.Init.Datatypes <> None constr
+R3311:3315 Coq.Init.Datatypes <> false constr
+R3350:3354 Coq.Init.Datatypes <> false constr
+R3364:3370 CSS.Semantics <> sel_and constr
+R3397:3400 Coq.Init.Datatypes <> ::bool_scope:x_'&&'_x not
+R3381:3387 CSS.Semantics <> matches:46 def
+R3393:3393 CSS.Semantics <> n:44 var
+R3389:3391 CSS.Semantics <> anc:43 var
+R3401:3407 CSS.Semantics <> matches:46 def
+R3413:3413 CSS.Semantics <> n:44 var
+R3409:3411 CSS.Semantics <> anc:43 var
+R3422:3429 CSS.Semantics <> sel_desc constr
+R3450:3456 CSS.Semantics <> matches:46 def
+R3462:3462 CSS.Semantics <> n:44 var
+R3458:3460 CSS.Semantics <> anc:43 var
+R3516:3520 Coq.Init.Datatypes <> false constr
+R3472:3478 Coq.Lists.List <> existsb def
+R3507:3509 CSS.Semantics <> anc:43 var
+binder 3485:3485 <> a:51
+R3490:3496 CSS.Semantics <> matches:46 def
+R3501:3501 CSS.Semantics <> a:51 var
+R3498:3499 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 3539:3549 <> specificity
+R3556:3563 CSS.Semantics <> Selector ind
+binder 3552:3552 <> s:52
+R3568:3570 Coq.Init.Datatypes <> nat ind
+R3583:3583 CSS.Semantics <> s:52 var
+R3594:3599 CSS.Semantics <> sel_id constr
+R3614:3622 CSS.Semantics <> sel_class constr
+R3636:3642 CSS.Semantics <> sel_tag constr
+R3655:3662 CSS.Semantics <> sel_univ constr
+R3673:3679 CSS.Semantics <> sel_and constr
+R3704:3706 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3690:3700 CSS.Semantics <> specificity:53 def
+R3707:3717 CSS.Semantics <> specificity:53 def
+R3726:3733 CSS.Semantics <> sel_desc constr
+R3758:3760 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3744:3754 CSS.Semantics <> specificity:53 def
+R3761:3771 CSS.Semantics <> specificity:53 def
+def 3795:3801 <> eval_mq
+R3809:3818 CSS.Semantics <> MediaQuery ind
+binder 3804:3805 <> mq:55
+R3831:3833 Coq.Init.Datatypes <> nat ind
+binder 3822:3827 <> availW:56
+R3838:3841 Coq.Init.Datatypes <> bool ind
+R3854:3855 CSS.Semantics <> mq:55 var
+R3866:3874 CSS.Semantics <> mq_always constr
+R3879:3882 Coq.Init.Datatypes <> true constr
+R3888:3899 CSS.Semantics <> mq_min_width constr
+R3906:3908 Coq.Arith.Compare_dec <> leb abbrev
+R3912:3917 CSS.Semantics <> availW:56 var
+def 3938:3944 <> prop_eq
+R3955:3962 CSS.Semantics <> Property ind
+binder 3947:3948 <> p1:58
+binder 3950:3951 <> p2:59
+R3967:3970 Coq.Init.Datatypes <> bool ind
+R3987:3988 CSS.Semantics <> p2:59 var
+R3983:3984 CSS.Semantics <> p1:58 var
+R3999:4005 CSS.Semantics <> p_width constr
+R4008:4014 CSS.Semantics <> p_width constr
+R4019:4022 Coq.Init.Datatypes <> true constr
+R4026:4033 CSS.Semantics <> p_height constr
+R4036:4043 CSS.Semantics <> p_height constr
+R4048:4051 Coq.Init.Datatypes <> true constr
+R4055:4062 CSS.Semantics <> p_margin constr
+R4065:4072 CSS.Semantics <> p_margin constr
+R4077:4080 Coq.Init.Datatypes <> true constr
+R4086:4094 CSS.Semantics <> p_padding constr
+R4097:4105 CSS.Semantics <> p_padding constr
+R4110:4113 Coq.Init.Datatypes <> true constr
+R4117:4124 CSS.Semantics <> p_border constr
+R4127:4134 CSS.Semantics <> p_border constr
+R4139:4142 Coq.Init.Datatypes <> true constr
+R4146:4152 CSS.Semantics <> p_color constr
+R4155:4161 CSS.Semantics <> p_color constr
+R4166:4169 Coq.Init.Datatypes <> true constr
+R4176:4184 CSS.Semantics <> p_display constr
+R4187:4195 CSS.Semantics <> p_display constr
+R4200:4203 Coq.Init.Datatypes <> true constr
+R4207:4218 CSS.Semantics <> p_box_sizing constr
+R4221:4232 CSS.Semantics <> p_box_sizing constr
+R4237:4240 Coq.Init.Datatypes <> true constr
+R4247:4256 CSS.Semantics <> p_position constr
+R4259:4268 CSS.Semantics <> p_position constr
+R4273:4276 Coq.Init.Datatypes <> true constr
+R4280:4284 CSS.Semantics <> p_top constr
+R4287:4291 CSS.Semantics <> p_top constr
+R4296:4299 Coq.Init.Datatypes <> true constr
+R4303:4308 CSS.Semantics <> p_left constr
+R4311:4316 CSS.Semantics <> p_left constr
+R4321:4324 Coq.Init.Datatypes <> true constr
+R4330:4338 CSS.Semantics <> p_z_index constr
+R4341:4349 CSS.Semantics <> p_z_index constr
+R4354:4357 Coq.Init.Datatypes <> true constr
+R4369:4373 Coq.Init.Datatypes <> false constr
+def 4392:4400 <> find_decl
+R4407:4414 CSS.Semantics <> Property ind
+binder 4403:4403 <> p:62
+R4426:4429 Coq.Init.Datatypes <> list ind
+R4431:4434 CSS.Semantics <> Decl rec
+binder 4418:4422 <> decls:63
+R4439:4444 Coq.Init.Datatypes <> option ind
+R4446:4449 CSS.Semantics <> Decl rec
+R4462:4466 CSS.Semantics <> decls:63 var
+R4477:4478 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4483:4486 Coq.Init.Datatypes <> None constr
+R4493:4496 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4506:4512 CSS.Semantics <> prop_eq def
+R4514:4514 CSS.Semantics <> p:62 var
+R4517:4525 CSS.Semantics <> decl_prop proj
+R4547:4555 CSS.Semantics <> find_decl:64 def
+R4557:4557 CSS.Semantics <> p:62 var
+R4535:4538 Coq.Init.Datatypes <> Some constr
+def 4579:4593 <> cascade_resolve
+R4605:4607 Coq.Init.Datatypes <> nat ind
+binder 4596:4601 <> availW:66
+R4617:4620 Coq.Init.Datatypes <> list ind
+R4622:4625 CSS.Semantics <> Node ind
+binder 4611:4613 <> anc:67
+R4633:4640 CSS.Semantics <> Property ind
+binder 4629:4629 <> p:68
+R4648:4651 CSS.Semantics <> Node ind
+binder 4644:4644 <> n:69
+R4661:4663 CSS.Semantics <> CSS def
+binder 4655:4657 <> css:70
+R4705:4707 Coq.Init.Datatypes <> nat ind
+binder 4693:4701 <> best_spec:71
+R4722:4725 Coq.Init.Datatypes <> bool ind
+binder 4711:4718 <> best_imp:72
+R4740:4745 Coq.Init.Datatypes <> option ind
+R4747:4751 CSS.Semantics <> Value ind
+binder 4729:4736 <> best_val:73
+R4756:4761 Coq.Init.Datatypes <> option ind
+R4763:4767 CSS.Semantics <> Value ind
+R4780:4782 CSS.Semantics <> css:70 var
+R4793:4794 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4799:4806 CSS.Semantics <> best_val:73 var
+R4816:4819 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R4838:4844 CSS.Semantics <> eval_mq def
+R4847:4853 CSS.Semantics <> mq_cond proj
+R4861:4866 CSS.Semantics <> availW:66 var
+R5838:5852 CSS.Semantics <> cascade_resolve:74 def
+R5893:5900 CSS.Semantics <> best_val:73 var
+R5884:5891 CSS.Semantics <> best_imp:72 var
+R5874:5882 CSS.Semantics <> best_spec:71 var
+R5867:5867 CSS.Semantics <> n:69 var
+R5865:5865 CSS.Semantics <> p:68 var
+R5861:5863 CSS.Semantics <> anc:67 var
+R5854:5859 CSS.Semantics <> availW:66 var
+binder 4903:4907 <> rules:76
+binder 4909:4912 <> spec:77
+binder 4914:4916 <> imp:78
+binder 4918:4920 <> val:79
+R4941:4945 CSS.Semantics <> rules:76 var
+R4964:4965 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R4970:4970 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4975:4976 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4980:4981 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4985:4985 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R4971:4974 CSS.Semantics <> spec:77 var
+R4977:4979 CSS.Semantics <> imp:78 var
+R4982:4984 CSS.Semantics <> val:79 var
+R5000:5003 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R5028:5034 CSS.Semantics <> matches def
+R5036:5038 CSS.Semantics <> anc:67 var
+R5040:5040 CSS.Semantics <> n:69 var
+R5043:5050 CSS.Semantics <> rule_sel proj
+R5577:5589 CSS.Semantics <> resolve_rules:80 var
+R5603:5605 CSS.Semantics <> val:79 var
+R5599:5601 CSS.Semantics <> imp:78 var
+R5594:5597 CSS.Semantics <> spec:77 var
+R5082:5090 CSS.Semantics <> find_decl def
+R5092:5092 CSS.Semantics <> p:68 var
+R5095:5104 CSS.Semantics <> rule_decls proj
+R5132:5135 Coq.Init.Datatypes <> Some constr
+R5177:5187 CSS.Semantics <> specificity def
+R5190:5197 CSS.Semantics <> rule_sel proj
+binder 5167:5172 <> r_spec:82
+R5238:5251 CSS.Semantics <> decl_important proj
+binder 5229:5233 <> r_imp:83
+R5282:5284 Coq.Init.Datatypes <> orb def
+R5311:5314 Coq.Init.Datatypes <> andb def
+R5333:5335 Coq.Arith.Compare_dec <> leb abbrev
+R5337:5340 CSS.Semantics <> spec:77 var
+R5342:5347 CSS.Semantics <> r_spec:82 var
+R5317:5319 Coq.Bool.Bool <> eqb def
+R5321:5325 CSS.Semantics <> r_imp:83 var
+R5327:5329 CSS.Semantics <> imp:78 var
+R5287:5290 Coq.Init.Datatypes <> andb def
+R5299:5302 Coq.Init.Datatypes <> negb def
+R5304:5306 CSS.Semantics <> imp:78 var
+R5292:5296 CSS.Semantics <> r_imp:83 var
+R5452:5464 CSS.Semantics <> resolve_rules:80 var
+R5478:5480 CSS.Semantics <> val:79 var
+R5474:5476 CSS.Semantics <> imp:78 var
+R5469:5472 CSS.Semantics <> spec:77 var
+R5377:5389 CSS.Semantics <> resolve_rules:80 var
+R5408:5411 Coq.Init.Datatypes <> Some constr
+R5414:5421 CSS.Semantics <> decl_val proj
+R5401:5405 CSS.Semantics <> r_imp:83 var
+R5394:5399 CSS.Semantics <> r_spec:82 var
+R5500:5503 Coq.Init.Datatypes <> None constr
+R5508:5520 CSS.Semantics <> resolve_rules:80 var
+R5534:5536 CSS.Semantics <> val:79 var
+R5530:5532 CSS.Semantics <> imp:78 var
+R5525:5528 CSS.Semantics <> spec:77 var
+binder 4889:4901 <> resolve_rules:84
+R5657:5669 CSS.Semantics <> resolve_rules:84 var
+R5706:5713 CSS.Semantics <> best_val:73 var
+R5697:5704 CSS.Semantics <> best_imp:72 var
+R5687:5695 CSS.Semantics <> best_spec:71 var
+R5672:5679 CSS.Semantics <> mq_rules proj
+binder 5644:5652 <> res_tuple:85
+R5754:5762 CSS.Semantics <> res_tuple:85 var
+R5731:5731 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5737:5738 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5743:5744 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5749:5749 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R5775:5789 CSS.Semantics <> cascade_resolve:74 def
+R5804:5804 CSS.Semantics <> n:69 var
+R5802:5802 CSS.Semantics <> p:68 var
+R5798:5800 CSS.Semantics <> anc:67 var
+R5791:5796 CSS.Semantics <> availW:66 var
+def 5921:5927 <> resolve
+R5939:5941 Coq.Init.Datatypes <> nat ind
+binder 5930:5935 <> availW:87
+R5951:5954 Coq.Init.Datatypes <> list ind
+R5956:5959 CSS.Semantics <> Node ind
+binder 5945:5947 <> anc:88
+R5967:5974 CSS.Semantics <> Property ind
+binder 5963:5963 <> p:89
+R5982:5985 CSS.Semantics <> Node ind
+binder 5978:5978 <> n:90
+R5995:5997 CSS.Semantics <> CSS def
+binder 5989:5991 <> css:91
+R6002:6007 Coq.Init.Datatypes <> option ind
+R6009:6013 CSS.Semantics <> Value ind
+R6020:6034 CSS.Semantics <> cascade_resolve def
+R6036:6041 CSS.Semantics <> availW:87 var
+R6043:6045 CSS.Semantics <> anc:88 var
+R6047:6047 CSS.Semantics <> p:89 var
+R6049:6049 CSS.Semantics <> n:90 var
+R6051:6053 CSS.Semantics <> css:91 var
+R6057:6061 Coq.Init.Datatypes <> false constr
+R6063:6066 Coq.Init.Datatypes <> None constr
+ind 6117:6124 <> Position
+constr 6135:6142 <> s_static
+constr 6146:6155 <> s_relative
+constr 6159:6168 <> s_absolute
+scheme 6117:6124 <> Position_rect
+scheme 6117:6124 <> Position_ind
+scheme 6117:6124 <> Position_rec
+scheme 6117:6124 <> Position_sind
+rec 6180:6184 <> Style
+proj 6199:6204 <> s_disp
+proj 6223:6227 <> s_pos
+proj 6243:6249 <> s_top_v
+proj 6258:6265 <> s_left_v
+proj 6276:6282 <> s_width
+proj 6293:6300 <> s_height
+proj 6313:6319 <> s_color
+R6208:6218 CSS.Semantics <> DisplayType ind
+R6231:6238 CSS.Semantics <> Position ind
+R6253:6255 Coq.Init.Datatypes <> nat ind
+R6269:6271 Coq.Init.Datatypes <> nat ind
+R6286:6290 CSS.Semantics <> Value ind
+R6304:6308 CSS.Semantics <> Value ind
+R6323:6328 Coq.Strings.String <> string ind
+def 6345:6357 <> compute_style
+R6369:6371 Coq.Init.Datatypes <> nat ind
+binder 6360:6365 <> availW:102
+R6381:6384 Coq.Init.Datatypes <> list ind
+R6386:6389 CSS.Semantics <> Node ind
+binder 6375:6377 <> anc:103
+R6397:6400 CSS.Semantics <> Node ind
+binder 6393:6393 <> n:104
+R6410:6412 CSS.Semantics <> CSS def
+binder 6404:6406 <> css:105
+R6417:6421 CSS.Semantics <> Style rec
+binder 6440:6440 <> p:106
+binder 6442:6444 <> def:107
+R6455:6461 CSS.Semantics <> resolve def
+R6463:6468 CSS.Semantics <> availW:102 var
+R6470:6472 CSS.Semantics <> anc:103 var
+R6474:6474 CSS.Semantics <> p:106 var
+R6476:6476 CSS.Semantics <> n:104 var
+R6478:6480 CSS.Semantics <> css:105 var
+R6487:6490 Coq.Init.Datatypes <> Some constr
+R6501:6504 Coq.Init.Datatypes <> None constr
+R6509:6511 CSS.Semantics <> def:107 var
+binder 6432:6438 <> get_val:108
+binder 6533:6533 <> p:109
+binder 6535:6537 <> def:110
+R6548:6554 CSS.Semantics <> get_val:108 var
+R6559:6562 CSS.Semantics <> v_px constr
+R6564:6566 CSS.Semantics <> def:110 var
+R6556:6556 CSS.Semantics <> p:109 var
+R6574:6577 CSS.Semantics <> v_px constr
+R6584:6584 CSS.Semantics <> n:104 var
+R6593:6595 CSS.Semantics <> def:110 var
+binder 6526:6531 <> get_px:111
+R6609:6614 CSS.Semantics <> s_disp proj
+R6609:6614 CSS.Semantics <> s_disp proj
+R6609:6614 CSS.Semantics <> s_disp proj
+R7032:7036 CSS.Semantics <> s_pos proj
+R7032:7036 CSS.Semantics <> s_pos proj
+R7208:7214 CSS.Semantics <> s_top_v proj
+R7208:7214 CSS.Semantics <> s_top_v proj
+R7235:7242 CSS.Semantics <> s_left_v proj
+R7235:7242 CSS.Semantics <> s_left_v proj
+R7269:7275 CSS.Semantics <> s_width proj
+R7269:7275 CSS.Semantics <> s_width proj
+R7306:7313 CSS.Semantics <> s_height proj
+R7306:7313 CSS.Semantics <> s_height proj
+R7350:7356 CSS.Semantics <> s_color proj
+R7350:7356 CSS.Semantics <> s_color proj
+R6625:6631 CSS.Semantics <> resolve def
+R6633:6638 CSS.Semantics <> availW:102 var
+R6640:6642 CSS.Semantics <> anc:103 var
+R6644:6652 CSS.Semantics <> p_display constr
+R6654:6654 CSS.Semantics <> n:104 var
+R6656:6658 CSS.Semantics <> css:105 var
+R6681:6684 Coq.Init.Datatypes <> Some constr
+R6687:6691 CSS.Semantics <> v_str constr
+R6706:6713 CSS.Semantics <> d_inline constr
+R6717:6720 Coq.Init.Datatypes <> Some constr
+R6723:6727 CSS.Semantics <> v_str constr
+R6740:6745 CSS.Semantics <> d_none constr
+R6764:6767 Coq.Init.Datatypes <> Some constr
+R6770:6774 CSS.Semantics <> v_str constr
+R6788:6794 CSS.Semantics <> d_table constr
+R6798:6801 Coq.Init.Datatypes <> Some constr
+R6804:6808 CSS.Semantics <> v_str constr
+R6826:6836 CSS.Semantics <> d_table_row constr
+R6855:6858 Coq.Init.Datatypes <> Some constr
+R6861:6865 CSS.Semantics <> v_str constr
+R6884:6895 CSS.Semantics <> d_table_cell constr
+R6899:6902 Coq.Init.Datatypes <> Some constr
+R6905:6909 CSS.Semantics <> v_str constr
+R6923:6929 CSS.Semantics <> d_block constr
+R6958:6958 CSS.Semantics <> n:104 var
+R6965:6968 CSS.Semantics <> elem constr
+R6979:6993 CSS.Semantics <> default_display def
+R6999:7002 CSS.Semantics <> text constr
+R7009:7016 CSS.Semantics <> d_inline constr
+R7047:7053 CSS.Semantics <> resolve def
+R7055:7060 CSS.Semantics <> availW:102 var
+R7062:7064 CSS.Semantics <> anc:103 var
+R7066:7075 CSS.Semantics <> p_position constr
+R7077:7077 CSS.Semantics <> n:104 var
+R7079:7081 CSS.Semantics <> css:105 var
+R7104:7107 Coq.Init.Datatypes <> Some constr
+R7110:7114 CSS.Semantics <> v_str constr
+R7131:7140 CSS.Semantics <> s_relative constr
+R7144:7147 Coq.Init.Datatypes <> Some constr
+R7150:7154 CSS.Semantics <> v_str constr
+R7171:7180 CSS.Semantics <> s_absolute constr
+R7189:7196 CSS.Semantics <> s_static constr
+R7219:7224 CSS.Semantics <> get_px:111 var
+R7226:7230 CSS.Semantics <> p_top constr
+R7247:7252 CSS.Semantics <> get_px:111 var
+R7254:7259 CSS.Semantics <> p_left constr
+R7280:7286 CSS.Semantics <> get_val:108 var
+R7297:7300 CSS.Semantics <> v_px constr
+R7288:7294 CSS.Semantics <> p_width constr
+R7318:7324 CSS.Semantics <> get_val:108 var
+R7336:7339 CSS.Semantics <> v_px constr
+R7326:7333 CSS.Semantics <> p_height constr
+R7367:7373 CSS.Semantics <> resolve def
+R7375:7380 CSS.Semantics <> availW:102 var
+R7382:7384 CSS.Semantics <> anc:103 var
+R7386:7392 CSS.Semantics <> p_color constr
+R7394:7394 CSS.Semantics <> n:104 var
+R7396:7398 CSS.Semantics <> css:105 var
+R7407:7410 Coq.Init.Datatypes <> Some constr
+R7413:7417 CSS.Semantics <> v_str constr
+rec 7458:7461 <> Rect
+proj 7474:7475 <> rx
+proj 7484:7485 <> ry
+proj 7494:7495 <> rw
+proj 7504:7505 <> rh
+R7479:7481 Coq.Init.Datatypes <> nat ind
+R7489:7491 Coq.Init.Datatypes <> nat ind
+R7499:7501 Coq.Init.Datatypes <> nat ind
+R7509:7511 Coq.Init.Datatypes <> nat ind
+ind 7526:7534 <> LayoutBox
+constr 7545:7550 <> mkLBox
+R7558:7561 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7554:7557 CSS.Semantics <> Rect rec
+R7576:7579 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R7562:7565 Coq.Init.Datatypes <> list ind
+R7567:7575 CSS.Semantics <> LayoutBox:118 ind
+R7580:7588 CSS.Semantics <> LayoutBox:118 ind
+scheme 7526:7534 <> LayoutBox_rect
+scheme 7526:7534 <> LayoutBox_ind
+scheme 7526:7534 <> LayoutBox_rec
+scheme 7526:7534 <> LayoutBox_sind
+def 7603:7613 <> resolve_len
+R7620:7624 CSS.Semantics <> Value ind
+binder 7616:7616 <> v:120
+R7641:7643 Coq.Init.Datatypes <> nat ind
+binder 7628:7637 <> parent_len:121
+R7653:7655 Coq.Init.Datatypes <> nat ind
+binder 7647:7649 <> def:122
+R7660:7662 Coq.Init.Datatypes <> nat ind
+R7675:7675 CSS.Semantics <> v:120 var
+R7682:7685 CSS.Semantics <> v_px constr
+R7696:7700 CSS.Semantics <> v_pct constr
+R7707:7707 Coq.Arith.PeanoNat <> ::nat_scope:x_'/'_x not
+R7722:7725 Coq.Arith.PeanoNat <> ::nat_scope:x_'/'_x not
+R7709:7711 Coq.Init.Peano <> ::nat_scope:x_'*'_x not
+R7712:7721 CSS.Semantics <> parent_len:121 var
+R7737:7739 CSS.Semantics <> def:122 var
+def 7756:7762 <> measure
+R7774:7776 Coq.Init.Datatypes <> nat ind
+binder 7765:7770 <> availW:124
+R7786:7789 Coq.Init.Datatypes <> list ind
+R7791:7794 CSS.Semantics <> Node ind
+binder 7780:7782 <> anc:125
+R7802:7805 CSS.Semantics <> Node ind
+binder 7798:7798 <> n:126
+R7815:7817 CSS.Semantics <> CSS def
+binder 7809:7811 <> css:127
+R7826:7828 Coq.Init.Datatypes <> ::type_scope:x_'*'_x not
+R7823:7825 Coq.Init.Datatypes <> nat ind
+R7829:7831 Coq.Init.Datatypes <> nat ind
+R7848:7860 CSS.Semantics <> compute_style def
+R7862:7867 CSS.Semantics <> availW:124 var
+R7869:7871 CSS.Semantics <> anc:125 var
+R7873:7873 CSS.Semantics <> n:126 var
+R7875:7877 CSS.Semantics <> css:127 var
+binder 7843:7843 <> s:129
+R7890:7890 CSS.Semantics <> n:126 var
+R7901:7904 CSS.Semantics <> text constr
+R7911:7911 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7913:7914 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7917:7917 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R7923:7926 CSS.Semantics <> elem constr
+binder 7971:7971 <> l:131
+binder 7973:7973 <> w:132
+R7992:7992 CSS.Semantics <> l:131 var
+R8009:8010 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R8015:8015 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8017:8018 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8020:8020 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8033:8036 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8073:8079 CSS.Semantics <> measure:128 def
+R8096:8098 CSS.Semantics <> css:127 var
+R8085:8088 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R8084:8084 CSS.Semantics <> n:126 var
+R8089:8091 CSS.Semantics <> anc:125 var
+R8081:8081 CSS.Semantics <> w:132 var
+R8061:8061 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8064:8065 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8068:8068 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8138:8149 CSS.Semantics <> measure_kids:133 var
+R8154:8154 CSS.Semantics <> w:132 var
+R8120:8120 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8126:8127 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8133:8133 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8177:8182 CSS.Semantics <> s_disp proj
+R8184:8184 CSS.Semantics <> s:129 var
+R8205:8215 CSS.Semantics <> d_table_row constr
+R8220:8220 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8231:8232 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8254:8254 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8223:8225 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R8233:8244 Coq.Init.Nat <> max def
+R8285:8285 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8307:8308 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8319:8319 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8286:8297 Coq.Init.Nat <> max def
+R8311:8313 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+binder 7958:7969 <> measure_kids:135
+R8378:8388 CSS.Semantics <> resolve_len def
+R8391:8397 CSS.Semantics <> s_width proj
+R8399:8399 CSS.Semantics <> s:129 var
+R8402:8407 CSS.Semantics <> availW:124 var
+binder 8368:8373 <> cw_val:136
+R8440:8446 Coq.Arith.PeanoNat Nat eqb def
+R8448:8453 CSS.Semantics <> cw_val:136 var
+R8474:8479 CSS.Semantics <> cw_val:136 var
+R8462:8467 CSS.Semantics <> availW:124 var
+binder 8424:8432 <> content_w:137
+R8507:8518 CSS.Semantics <> measure_kids:135 var
+R8525:8533 CSS.Semantics <> content_w:137 var
+R8495:8495 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8498:8499 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8502:8502 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8544:8544 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8633:8641 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8765:8765 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8548:8554 Coq.Arith.PeanoNat Nat eqb def
+R8556:8561 CSS.Semantics <> cw_val:136 var
+R8627:8632 CSS.Semantics <> cw_val:136 var
+R8576:8581 CSS.Semantics <> s_disp proj
+R8583:8583 CSS.Semantics <> s:129 var
+R8590:8596 CSS.Semantics <> d_block constr
+R8601:8606 CSS.Semantics <> availW:124 var
+R8656:8666 CSS.Semantics <> resolve_len def
+R8669:8676 CSS.Semantics <> s_height proj
+R8678:8678 CSS.Semantics <> s:129 var
+binder 8646:8651 <> ch_val:138
+R8698:8704 Coq.Arith.PeanoNat Nat eqb def
+R8706:8711 CSS.Semantics <> ch_val:138 var
+R8759:8764 CSS.Semantics <> ch_val:138 var
+R8724:8730 Coq.Arith.PeanoNat Nat eqb def
+def 8784:8791 <> position
+R8803:8805 Coq.Init.Datatypes <> nat ind
+binder 8794:8799 <> availW:139
+R8815:8817 Coq.Init.Datatypes <> nat ind
+binder 8809:8809 <> x:140
+binder 8811:8811 <> y:141
+R8827:8830 Coq.Init.Datatypes <> list ind
+R8832:8835 CSS.Semantics <> Node ind
+binder 8821:8823 <> anc:142
+R8843:8846 CSS.Semantics <> Node ind
+binder 8839:8839 <> n:143
+R8856:8858 CSS.Semantics <> CSS def
+binder 8850:8852 <> css:144
+R8874:8882 CSS.Semantics <> LayoutBox ind
+R8898:8910 CSS.Semantics <> compute_style def
+R8912:8917 CSS.Semantics <> availW:139 var
+R8919:8921 CSS.Semantics <> anc:142 var
+R8923:8923 CSS.Semantics <> n:143 var
+R8925:8927 CSS.Semantics <> css:144 var
+binder 8893:8893 <> s:146
+R8951:8957 CSS.Semantics <> measure def
+R8959:8964 CSS.Semantics <> availW:139 var
+R8966:8968 CSS.Semantics <> anc:142 var
+R8970:8970 CSS.Semantics <> n:143 var
+R8972:8974 CSS.Semantics <> css:144 var
+R8939:8939 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8942:8943 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8946:8946 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R8987:8987 CSS.Semantics <> n:143 var
+R8998:9001 CSS.Semantics <> text constr
+R9008:9013 CSS.Semantics <> mkLBox constr
+R9018:9019 CSS.Semantics <> rx proj
+R9018:9019 CSS.Semantics <> rx proj
+R9018:9019 CSS.Semantics <> rx proj
+R9040:9041 CSS.Semantics <> ry proj
+R9040:9041 CSS.Semantics <> ry proj
+R9061:9062 CSS.Semantics <> rw proj
+R9061:9062 CSS.Semantics <> rw proj
+R9071:9072 CSS.Semantics <> rh proj
+R9071:9072 CSS.Semantics <> rh proj
+R9025:9027 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9024:9024 CSS.Semantics <> x:140 var
+R9028:9035 CSS.Semantics <> s_left_v proj
+R9037:9037 CSS.Semantics <> s:146 var
+R9047:9049 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9046:9046 CSS.Semantics <> y:141 var
+R9050:9056 CSS.Semantics <> s_top_v proj
+R9058:9058 CSS.Semantics <> s:146 var
+R9083:9084 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R9090:9093 CSS.Semantics <> elem constr
+binder 9130:9130 <> l:148
+R9147:9149 Coq.Init.Datatypes <> nat ind
+binder 9133:9143 <> container_w:149
+binder 9152:9153 <> cx:150
+binder 9155:9156 <> cy:151
+R9175:9175 CSS.Semantics <> l:148 var
+R9192:9193 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R9198:9199 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R9212:9215 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9253:9259 CSS.Semantics <> measure def
+R9261:9271 CSS.Semantics <> container_w:149 var
+R9275:9278 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9274:9274 CSS.Semantics <> n:143 var
+R9279:9281 CSS.Semantics <> anc:142 var
+R9286:9288 CSS.Semantics <> css:144 var
+R9239:9239 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9243:9244 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9248:9248 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R9315:9322 CSS.Semantics <> position:145 def
+R9355:9357 CSS.Semantics <> css:144 var
+R9344:9347 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9343:9343 CSS.Semantics <> n:143 var
+R9348:9350 CSS.Semantics <> anc:142 var
+R9339:9340 CSS.Semantics <> cy:151 var
+R9336:9337 CSS.Semantics <> cx:150 var
+R9324:9334 CSS.Semantics <> container_w:149 var
+binder 9309:9310 <> lb:154
+R9380:9385 CSS.Semantics <> s_disp proj
+R9387:9387 CSS.Semantics <> s:146 var
+R9408:9418 CSS.Semantics <> d_table_row constr
+R9425:9428 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9423:9424 CSS.Semantics <> lb:154 var
+R9429:9436 CSS.Semantics <> pos_kids:152 var
+R9464:9465 CSS.Semantics <> cy:151 var
+R9456:9458 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9454:9455 CSS.Semantics <> cx:150 var
+R9441:9451 CSS.Semantics <> container_w:149 var
+R9498:9501 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R9496:9497 CSS.Semantics <> lb:154 var
+R9502:9509 CSS.Semantics <> pos_kids:152 var
+R9532:9534 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9530:9531 CSS.Semantics <> cy:151 var
+R9526:9527 CSS.Semantics <> cx:150 var
+R9514:9524 CSS.Semantics <> container_w:149 var
+binder 9121:9128 <> pos_kids:155
+R9583:9588 CSS.Semantics <> mkLBox constr
+R9593:9594 CSS.Semantics <> rx proj
+R9593:9594 CSS.Semantics <> rx proj
+R9593:9594 CSS.Semantics <> rx proj
+R9615:9616 CSS.Semantics <> ry proj
+R9615:9616 CSS.Semantics <> ry proj
+R9636:9637 CSS.Semantics <> rw proj
+R9636:9637 CSS.Semantics <> rw proj
+R9646:9647 CSS.Semantics <> rh proj
+R9646:9647 CSS.Semantics <> rh proj
+R9600:9602 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9599:9599 CSS.Semantics <> x:140 var
+R9603:9610 CSS.Semantics <> s_left_v proj
+R9612:9612 CSS.Semantics <> s:146 var
+R9622:9624 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9621:9621 CSS.Semantics <> y:141 var
+R9625:9631 CSS.Semantics <> s_top_v proj
+R9633:9633 CSS.Semantics <> s:146 var
+R9659:9666 CSS.Semantics <> pos_kids:155 var
+R9695:9697 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9694:9694 CSS.Semantics <> y:141 var
+R9698:9704 CSS.Semantics <> s_top_v proj
+R9706:9706 CSS.Semantics <> s:146 var
+R9678:9680 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R9677:9677 CSS.Semantics <> x:140 var
+R9681:9688 CSS.Semantics <> s_left_v proj
+R9690:9690 CSS.Semantics <> s:146 var
+def 9729:9734 <> render
+R9746:9748 Coq.Init.Datatypes <> nat ind
+binder 9737:9742 <> availW:156
+R9756:9759 CSS.Semantics <> Node ind
+binder 9752:9752 <> n:157
+R9769:9771 CSS.Semantics <> CSS def
+binder 9763:9765 <> css:158
+R9776:9784 CSS.Semantics <> LayoutBox ind
+R9791:9798 CSS.Semantics <> position def
+R9800:9805 CSS.Semantics <> availW:156 var
+R9811:9812 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R9814:9814 CSS.Semantics <> n:157 var
+R9816:9818 CSS.Semantics <> css:158 var
+def 9833:9845 <> is_block_flow
+R9852:9856 CSS.Semantics <> Style rec
+binder 9848:9848 <> s:159
+R9889:9892 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R9879:9881 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9871:9876 CSS.Semantics <> s_disp proj
+R9878:9878 CSS.Semantics <> s:159 var
+R9882:9888 CSS.Semantics <> d_block constr
+R9911:9914 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R9900:9902 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9893:9897 CSS.Semantics <> s_pos proj
+R9899:9899 CSS.Semantics <> s:159 var
+R9903:9910 CSS.Semantics <> s_static constr
+R9928:9931 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R9924:9926 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9915:9921 CSS.Semantics <> s_top_v proj
+R9923:9923 CSS.Semantics <> s:159 var
+R9942:9944 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R9932:9939 CSS.Semantics <> s_left_v proj
+R9941:9941 CSS.Semantics <> s:159 var
+def 9987:9991 <> mk_mq
+binder 9993:9993 <> c:160
+binder 9995:9996 <> rs:161
+R10004:10010 CSS.Semantics <> mq_cond proj
+R10004:10010 CSS.Semantics <> mq_cond proj
+R10004:10010 CSS.Semantics <> mq_cond proj
+R10018:10025 CSS.Semantics <> mq_rules proj
+R10018:10025 CSS.Semantics <> mq_rules proj
+R10015:10015 CSS.Semantics <> c:160 var
+R10030:10031 CSS.Semantics <> rs:161 var
+def 10048:10054 <> mk_rule
+binder 10056:10056 <> s:162
+binder 10058:10059 <> ds:163
+R10067:10074 CSS.Semantics <> rule_sel proj
+R10067:10074 CSS.Semantics <> rule_sel proj
+R10067:10074 CSS.Semantics <> rule_sel proj
+R10082:10091 CSS.Semantics <> rule_decls proj
+R10082:10091 CSS.Semantics <> rule_decls proj
+R10079:10079 CSS.Semantics <> s:162 var
+R10096:10097 CSS.Semantics <> ds:163 var
+def 10114:10120 <> mk_decl
+binder 10122:10122 <> p:164
+binder 10124:10124 <> v:165
+binder 10126:10128 <> imp:166
+R10136:10144 CSS.Semantics <> decl_prop proj
+R10136:10144 CSS.Semantics <> decl_prop proj
+R10136:10144 CSS.Semantics <> decl_prop proj
+R10152:10159 CSS.Semantics <> decl_val proj
+R10152:10159 CSS.Semantics <> decl_val proj
+R10167:10180 CSS.Semantics <> decl_important proj
+R10167:10180 CSS.Semantics <> decl_important proj
+R10149:10149 CSS.Semantics <> p:164 var
+R10164:10164 CSS.Semantics <> v:165 var
+R10185:10187 CSS.Semantics <> imp:166 var
+def 10205:10212 <> get_rect
+R10220:10228 CSS.Semantics <> LayoutBox ind
+binder 10215:10216 <> lb:167
+R10233:10236 CSS.Semantics <> Rect rec
+R10247:10248 CSS.Semantics <> lb:167 var
+R10255:10260 CSS.Semantics <> mkLBox constr
+def 10287:10294 <> get_kids
+R10302:10310 CSS.Semantics <> LayoutBox ind
+binder 10297:10298 <> lb:169
+R10315:10318 Coq.Init.Datatypes <> list ind
+R10320:10328 CSS.Semantics <> LayoutBox ind
+R10339:10340 CSS.Semantics <> lb:169 var
+R10347:10352 CSS.Semantics <> mkLBox constr
+def 10377:10378 <> t1
+R10500:10502 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10381:10387 CSS.Semantics <> resolve def
+R10393:10394 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10396:10402 CSS.Semantics <> p_color constr
+R10405:10408 CSS.Semantics <> elem constr
+R10410:10412 CSS.Semantics <> div constr
+R10414:10415 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10417:10418 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10421:10421 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10499:10499 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10422:10426 CSS.Semantics <> mk_mq def
+R10428:10436 CSS.Semantics <> mq_always constr
+R10438:10438 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10498:10498 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10439:10445 CSS.Semantics <> mk_rule def
+R10448:10454 CSS.Semantics <> sel_tag constr
+R10456:10458 CSS.Semantics <> div constr
+R10461:10461 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10497:10497 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R10462:10468 CSS.Semantics <> mk_decl def
+R10470:10476 CSS.Semantics <> p_color constr
+R10479:10483 CSS.Semantics <> v_str constr
+R10492:10496 Coq.Init.Datatypes <> false constr
+R10503:10506 Coq.Init.Datatypes <> Some constr
+R10509:10513 CSS.Semantics <> v_str constr
+def 10556:10557 <> t2
+R10589:10591 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10560:10573 CSS.Semantics <> contains_token def
+R10592:10595 Coq.Init.Datatypes <> true constr
+def 10631:10632 <> t3
+R10686:10688 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10635:10645 CSS.Semantics <> specificity def
+R10648:10654 CSS.Semantics <> sel_and constr
+R10657:10665 CSS.Semantics <> sel_class constr
+R10673:10679 CSS.Semantics <> sel_tag constr
+R10681:10683 CSS.Semantics <> div constr
+def 10726:10727 <> t4
+R10760:10762 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10730:10736 CSS.Semantics <> eval_mq def
+R10739:10750 CSS.Semantics <> mq_min_width constr
+R10763:10766 Coq.Init.Datatypes <> true constr
+def 10802:10803 <> t5
+R10834:10836 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10806:10816 CSS.Semantics <> resolve_len def
+R10819:10823 CSS.Semantics <> v_pct constr
+def 10875:10876 <> t6
+R10885:10890 CSS.Semantics <> render def
+R10897:10900 CSS.Semantics <> elem constr
+R10902:10904 CSS.Semantics <> div constr
+R10906:10907 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10909:10909 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R10924:10925 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R10940:10940 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R10910:10913 CSS.Semantics <> elem constr
+R10915:10917 CSS.Semantics <> div constr
+R10919:10920 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10922:10923 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10926:10929 CSS.Semantics <> elem constr
+R10931:10933 CSS.Semantics <> div constr
+R10935:10936 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10938:10939 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10943:10944 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10951:10956 CSS.Semantics <> mkLBox constr
+R10963:10966 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10969:10972 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R10973:10974 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R10996:10998 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R10980:10981 CSS.Semantics <> ry proj
+R10984:10991 CSS.Semantics <> get_rect def
+R11009:11013 Coq.Init.Logic <> False ind
+def 11053:11054 <> t7
+R11068:11068 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11143:11143 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11069:11073 CSS.Semantics <> mk_mq def
+R11075:11083 CSS.Semantics <> mq_always constr
+R11085:11085 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11142:11142 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11086:11092 CSS.Semantics <> mk_rule def
+R11095:11101 CSS.Semantics <> sel_tag constr
+R11103:11105 CSS.Semantics <> div constr
+R11108:11108 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11141:11141 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11109:11115 CSS.Semantics <> mk_decl def
+R11117:11123 CSS.Semantics <> p_width constr
+R11126:11129 CSS.Semantics <> v_px constr
+R11136:11140 Coq.Init.Datatypes <> false constr
+binder 11061:11063 <> css:171
+R11195:11197 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11148:11149 CSS.Semantics <> rw proj
+R11152:11159 CSS.Semantics <> get_rect def
+R11162:11167 CSS.Semantics <> render def
+R11174:11177 CSS.Semantics <> elem constr
+R11179:11181 CSS.Semantics <> div constr
+R11183:11184 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11186:11187 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11190:11192 CSS.Semantics <> css:171 var
+def 11236:11237 <> t8
+R11320:11322 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11240:11246 CSS.Semantics <> matches def
+R11248:11248 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11263:11263 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11249:11252 CSS.Semantics <> elem constr
+R11254:11256 CSS.Semantics <> div constr
+R11258:11259 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11261:11262 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11266:11269 CSS.Semantics <> elem constr
+R11271:11273 CSS.Semantics <> div constr
+R11275:11276 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11278:11279 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11283:11290 CSS.Semantics <> sel_desc constr
+R11293:11299 CSS.Semantics <> sel_tag constr
+R11301:11303 CSS.Semantics <> div constr
+R11307:11313 CSS.Semantics <> sel_tag constr
+R11315:11317 CSS.Semantics <> div constr
+R11323:11326 Coq.Init.Datatypes <> true constr
+def 11362:11363 <> t9
+R11386:11388 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11366:11376 CSS.Semantics <> specificity def
+R11378:11385 CSS.Semantics <> sel_univ constr
+def 11425:11427 <> t10
+R11441:11441 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11522:11522 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11442:11446 CSS.Semantics <> mk_mq def
+R11448:11456 CSS.Semantics <> mq_always constr
+R11458:11458 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11521:11521 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11459:11465 CSS.Semantics <> mk_rule def
+R11468:11474 CSS.Semantics <> sel_tag constr
+R11476:11478 CSS.Semantics <> div constr
+R11481:11481 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11520:11520 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11482:11488 CSS.Semantics <> mk_decl def
+R11490:11498 CSS.Semantics <> p_display constr
+R11501:11505 CSS.Semantics <> v_str constr
+R11515:11519 Coq.Init.Datatypes <> false constr
+binder 11434:11436 <> css:172
+R11577:11579 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11527:11532 CSS.Semantics <> s_disp proj
+R11535:11547 CSS.Semantics <> compute_style def
+R11553:11554 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11557:11560 CSS.Semantics <> elem constr
+R11562:11564 CSS.Semantics <> div constr
+R11566:11567 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11569:11570 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11573:11575 CSS.Semantics <> css:172 var
+R11580:11585 CSS.Semantics <> d_none constr
+def 11621:11623 <> t11
+R11637:11637 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11722:11722 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11638:11642 CSS.Semantics <> mk_mq def
+R11644:11652 CSS.Semantics <> mq_always constr
+R11654:11654 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11721:11721 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11655:11661 CSS.Semantics <> mk_rule def
+R11664:11670 CSS.Semantics <> sel_tag constr
+R11672:11673 CSS.Semantics <> tr constr
+R11676:11676 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11720:11720 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11677:11683 CSS.Semantics <> mk_decl def
+R11685:11693 CSS.Semantics <> p_display constr
+R11696:11700 CSS.Semantics <> v_str constr
+R11715:11719 Coq.Init.Datatypes <> false constr
+binder 11630:11632 <> css:173
+R11776:11778 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R11727:11732 CSS.Semantics <> s_disp proj
+R11735:11747 CSS.Semantics <> compute_style def
+R11753:11754 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11757:11760 CSS.Semantics <> elem constr
+R11762:11763 CSS.Semantics <> tr constr
+R11765:11766 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11768:11769 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11772:11774 CSS.Semantics <> css:173 var
+R11779:11789 CSS.Semantics <> d_table_row constr
+def 11825:11827 <> t12
+R11836:11841 CSS.Semantics <> render def
+R11848:11851 CSS.Semantics <> elem constr
+R11853:11854 CSS.Semantics <> tr constr
+R11856:11857 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11859:11859 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11873:11874 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11888:11888 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R11860:11863 CSS.Semantics <> elem constr
+R11865:11866 CSS.Semantics <> td constr
+R11868:11869 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11871:11872 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11875:11878 CSS.Semantics <> elem constr
+R11880:11881 CSS.Semantics <> td constr
+R11883:11884 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11886:11887 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R11891:11891 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11976:11976 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11892:11896 CSS.Semantics <> mk_mq def
+R11898:11906 CSS.Semantics <> mq_always constr
+R11908:11908 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11975:11975 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11909:11915 CSS.Semantics <> mk_rule def
+R11918:11924 CSS.Semantics <> sel_tag constr
+R11926:11927 CSS.Semantics <> tr constr
+R11930:11930 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11974:11974 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R11931:11937 CSS.Semantics <> mk_decl def
+R11939:11947 CSS.Semantics <> p_display constr
+R11950:11954 CSS.Semantics <> v_str constr
+R11969:11973 Coq.Init.Datatypes <> false constr
+R11983:11988 CSS.Semantics <> mkLBox constr
+R11995:11998 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12001:12004 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R12005:12006 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12028:12030 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12012:12013 CSS.Semantics <> ry proj
+R12016:12023 CSS.Semantics <> get_rect def
+R12031:12032 CSS.Semantics <> ry proj
+R12035:12042 CSS.Semantics <> get_rect def
+R12055:12059 Coq.Init.Logic <> False ind
+def 12111:12113 <> t13
+R12127:12127 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12265:12265 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12128:12132 CSS.Semantics <> mk_mq def
+R12134:12142 CSS.Semantics <> mq_always constr
+R12144:12144 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R12203:12204 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R12264:12264 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R12145:12151 CSS.Semantics <> mk_rule def
+R12154:12160 CSS.Semantics <> sel_tag constr
+R12162:12164 CSS.Semantics <> div constr
+R12167:12167 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12202:12202 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12168:12174 CSS.Semantics <> mk_decl def
+R12176:12182 CSS.Semantics <> p_color constr
+R12185:12189 CSS.Semantics <> v_str constr
+R12198:12201 Coq.Init.Datatypes <> true constr
+R12205:12211 CSS.Semantics <> mk_rule def
+R12214:12219 CSS.Semantics <> sel_id constr
+R12226:12226 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12263:12263 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12227:12233 CSS.Semantics <> mk_decl def
+R12235:12241 CSS.Semantics <> p_color constr
+R12244:12248 CSS.Semantics <> v_str constr
+R12258:12262 Coq.Init.Datatypes <> false constr
+binder 12120:12122 <> css:174
+R12348:12350 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12270:12276 CSS.Semantics <> resolve def
+R12282:12283 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12285:12291 CSS.Semantics <> p_color constr
+R12294:12297 CSS.Semantics <> elem constr
+R12299:12301 CSS.Semantics <> div constr
+R12303:12305 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12337:12339 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12306:12314 CSS.Semantics <> attr_name proj
+R12306:12314 CSS.Semantics <> attr_name proj
+R12306:12314 CSS.Semantics <> attr_name proj
+R12322:12331 CSS.Semantics <> attr_value proj
+R12322:12331 CSS.Semantics <> attr_value proj
+R12341:12342 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12345:12347 CSS.Semantics <> css:174 var
+R12351:12354 Coq.Init.Datatypes <> Some constr
+R12357:12361 CSS.Semantics <> v_str constr
+def 12404:12406 <> t14
+R12436:12438 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12409:12419 CSS.Semantics <> specificity def
+R12422:12430 CSS.Semantics <> sel_class constr
+def 12476:12478 <> t15
+R12564:12566 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12481:12487 CSS.Semantics <> matches def
+R12489:12490 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12493:12496 CSS.Semantics <> elem constr
+R12498:12500 CSS.Semantics <> div constr
+R12502:12504 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12541:12543 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R12505:12513 CSS.Semantics <> attr_name proj
+R12505:12513 CSS.Semantics <> attr_name proj
+R12505:12513 CSS.Semantics <> attr_name proj
+R12524:12533 CSS.Semantics <> attr_value proj
+R12524:12533 CSS.Semantics <> attr_value proj
+R12545:12546 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12550:12558 CSS.Semantics <> sel_class constr
+R12567:12570 Coq.Init.Datatypes <> true constr
+def 12606:12608 <> t16
+R12634:12636 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12611:12617 CSS.Semantics <> prop_eq def
+R12619:12625 CSS.Semantics <> p_width constr
+R12627:12633 CSS.Semantics <> p_width constr
+R12637:12640 Coq.Init.Datatypes <> true constr
+def 12676:12678 <> t17
+R12695:12697 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12681:12686 CSS.Semantics <> tag_eq def
+R12688:12690 CSS.Semantics <> div constr
+R12692:12694 CSS.Semantics <> div constr
+R12698:12701 Coq.Init.Datatypes <> true constr
+def 12737:12739 <> t18
+R12757:12759 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12742:12747 CSS.Semantics <> tag_eq def
+R12749:12751 CSS.Semantics <> div constr
+R12753:12756 CSS.Semantics <> span constr
+R12760:12764 Coq.Init.Datatypes <> false constr
+def 12800:12802 <> t19
+R12814:12826 CSS.Semantics <> compute_style def
+R12832:12833 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12836:12839 CSS.Semantics <> elem constr
+R12841:12843 CSS.Semantics <> div constr
+R12845:12846 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12848:12849 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R12852:12853 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+binder 12809:12809 <> s:175
+R12867:12869 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12858:12864 CSS.Semantics <> s_color proj
+R12866:12866 CSS.Semantics <> s:175 var
+def 12912:12914 <> t20
+R12944:12946 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R12917:12927 CSS.Semantics <> resolve_len def
+R12930:12933 CSS.Semantics <> v_px constr
+def 12984:12986 <> t21
+R12995:13000 CSS.Semantics <> render def
+R13007:13010 CSS.Semantics <> elem constr
+R13012:13014 CSS.Semantics <> div constr
+R13016:13017 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13019:13020 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13023:13024 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13031:13036 CSS.Semantics <> mkLBox constr
+R13049:13051 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13045:13046 CSS.Semantics <> rw proj
+def 13094:13096 <> t22
+R13105:13110 CSS.Semantics <> render def
+R13117:13120 CSS.Semantics <> elem constr
+R13122:13124 CSS.Semantics <> div constr
+R13126:13127 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13129:13130 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13133:13134 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13141:13146 CSS.Semantics <> mkLBox constr
+R13159:13161 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13155:13156 CSS.Semantics <> rh proj
+def 13203:13205 <> t23
+R13219:13219 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13307:13307 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13220:13224 CSS.Semantics <> mk_mq def
+R13227:13238 CSS.Semantics <> mq_min_width constr
+R13246:13246 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13306:13306 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13247:13253 CSS.Semantics <> mk_rule def
+R13256:13262 CSS.Semantics <> sel_tag constr
+R13264:13266 CSS.Semantics <> div constr
+R13269:13269 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13305:13305 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13270:13276 CSS.Semantics <> mk_decl def
+R13278:13284 CSS.Semantics <> p_color constr
+R13287:13291 CSS.Semantics <> v_str constr
+R13300:13304 Coq.Init.Datatypes <> false constr
+binder 13212:13214 <> css:176
+R13355:13357 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13312:13318 CSS.Semantics <> resolve def
+R13324:13325 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13327:13333 CSS.Semantics <> p_color constr
+R13336:13339 CSS.Semantics <> elem constr
+R13341:13343 CSS.Semantics <> div constr
+R13345:13346 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13348:13349 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13352:13354 CSS.Semantics <> css:176 var
+R13358:13361 Coq.Init.Datatypes <> None constr
+def 13397:13399 <> t24
+R13413:13413 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13500:13500 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13414:13418 CSS.Semantics <> mk_mq def
+R13421:13432 CSS.Semantics <> mq_min_width constr
+R13439:13439 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13499:13499 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13440:13446 CSS.Semantics <> mk_rule def
+R13449:13455 CSS.Semantics <> sel_tag constr
+R13457:13459 CSS.Semantics <> div constr
+R13462:13462 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13498:13498 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R13463:13469 CSS.Semantics <> mk_decl def
+R13471:13477 CSS.Semantics <> p_color constr
+R13480:13484 CSS.Semantics <> v_str constr
+R13493:13497 Coq.Init.Datatypes <> false constr
+binder 13406:13408 <> css:177
+R13548:13550 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13505:13511 CSS.Semantics <> resolve def
+R13517:13518 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13520:13526 CSS.Semantics <> p_color constr
+R13529:13532 CSS.Semantics <> elem constr
+R13534:13536 CSS.Semantics <> div constr
+R13538:13539 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13541:13542 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13545:13547 CSS.Semantics <> css:177 var
+R13551:13554 Coq.Init.Datatypes <> Some constr
+R13557:13561 CSS.Semantics <> v_str constr
+def 13604:13606 <> t25
+R13650:13652 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13609:13615 CSS.Semantics <> matches def
+R13617:13618 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13621:13624 CSS.Semantics <> elem constr
+R13626:13628 CSS.Semantics <> div constr
+R13630:13631 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13633:13634 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13638:13644 CSS.Semantics <> sel_tag constr
+R13646:13648 CSS.Semantics <> div constr
+R13653:13656 Coq.Init.Datatypes <> true constr
+def 13692:13694 <> t26
+R13739:13741 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13697:13703 CSS.Semantics <> matches def
+R13705:13706 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13709:13712 CSS.Semantics <> elem constr
+R13714:13716 CSS.Semantics <> div constr
+R13718:13719 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13721:13722 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R13726:13732 CSS.Semantics <> sel_tag constr
+R13734:13737 CSS.Semantics <> span constr
+R13742:13746 Coq.Init.Datatypes <> false constr
+def 13782:13784 <> t27
+R13813:13815 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13787:13797 CSS.Semantics <> specificity def
+R13800:13806 CSS.Semantics <> sel_tag constr
+R13808:13811 CSS.Semantics <> body constr
+def 13852:13854 <> t28
+R13881:13883 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13857:13867 CSS.Semantics <> specificity def
+R13870:13875 CSS.Semantics <> sel_id constr
+def 13922:13924 <> t29
+R13977:13979 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R13927:13937 CSS.Semantics <> specificity def
+R13940:13947 CSS.Semantics <> sel_desc constr
+R13950:13956 CSS.Semantics <> sel_tag constr
+R13958:13960 CSS.Semantics <> div constr
+R13964:13970 CSS.Semantics <> sel_tag constr
+R13972:13974 CSS.Semantics <> div constr
+def 14016:14018 <> t30
+R14027:14032 CSS.Semantics <> render def
+R14039:14042 CSS.Semantics <> elem constr
+R14044:14045 CSS.Semantics <> tr constr
+R14047:14048 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14050:14050 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14064:14065 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14079:14079 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14051:14054 CSS.Semantics <> elem constr
+R14056:14057 CSS.Semantics <> td constr
+R14059:14060 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14062:14063 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14066:14069 CSS.Semantics <> elem constr
+R14071:14072 CSS.Semantics <> td constr
+R14074:14075 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14077:14078 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14082:14082 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14224:14224 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14083:14087 CSS.Semantics <> mk_mq def
+R14089:14097 CSS.Semantics <> mq_always constr
+R14099:14099 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14166:14167 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14223:14223 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14100:14106 CSS.Semantics <> mk_rule def
+R14109:14115 CSS.Semantics <> sel_tag constr
+R14117:14118 CSS.Semantics <> tr constr
+R14121:14121 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14165:14165 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14122:14128 CSS.Semantics <> mk_decl def
+R14130:14138 CSS.Semantics <> p_display constr
+R14141:14145 CSS.Semantics <> v_str constr
+R14160:14164 Coq.Init.Datatypes <> false constr
+R14168:14174 CSS.Semantics <> mk_rule def
+R14177:14183 CSS.Semantics <> sel_tag constr
+R14185:14186 CSS.Semantics <> td constr
+R14189:14189 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14222:14222 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14190:14196 CSS.Semantics <> mk_decl def
+R14198:14204 CSS.Semantics <> p_width constr
+R14207:14210 CSS.Semantics <> v_px constr
+R14217:14221 Coq.Init.Datatypes <> false constr
+R14231:14236 CSS.Semantics <> mkLBox constr
+R14243:14246 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14249:14252 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R14253:14254 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14276:14278 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14260:14261 CSS.Semantics <> rx proj
+R14264:14271 CSS.Semantics <> get_rect def
+R14290:14294 Coq.Init.Logic <> False ind
+def 14350:14358 <> empty_css
+R14362:14364 CSS.Semantics <> CSS def
+R14369:14370 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 14385:14393 <> t_div_img
+R14397:14400 CSS.Semantics <> Node ind
+R14407:14410 CSS.Semantics <> elem constr
+R14412:14414 CSS.Semantics <> div constr
+R14416:14416 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14441:14441 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14417:14426 CSS.Semantics <> Build_Attr constr
+R14443:14448 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14512:14515 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14449:14452 CSS.Semantics <> elem constr
+R14454:14456 CSS.Semantics <> img constr
+R14458:14458 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14482:14483 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14508:14508 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14459:14468 CSS.Semantics <> Build_Attr constr
+R14484:14493 CSS.Semantics <> Build_Attr constr
+R14510:14511 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 14527:14543 <> unit_test_div_img
+R14584:14586 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14549:14555 CSS.Semantics <> measure def
+R14562:14563 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14565:14573 CSS.Semantics <> t_div_img def
+R14575:14583 CSS.Semantics <> empty_css def
+R14587:14587 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14592:14593 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+R14596:14596 Coq.Init.Datatypes <> ::core_scope:'('_x_','_x_','_'..'_','_x_')' not
+def 14644:14646 <> t31
+R14660:14660 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14800:14800 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14661:14665 CSS.Semantics <> mk_mq def
+R14667:14675 CSS.Semantics <> mq_always constr
+R14677:14677 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14737:14738 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14799:14799 Coq.Lists.List ListNotations ::list_scope:'['_x_';'_x_';'_'..'_';'_x_']' not
+R14678:14684 CSS.Semantics <> mk_rule def
+R14687:14693 CSS.Semantics <> sel_tag constr
+R14695:14697 CSS.Semantics <> div constr
+R14700:14700 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14736:14736 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14701:14707 CSS.Semantics <> mk_decl def
+R14709:14715 CSS.Semantics <> p_color constr
+R14718:14722 CSS.Semantics <> v_str constr
+R14731:14735 Coq.Init.Datatypes <> false constr
+R14739:14745 CSS.Semantics <> mk_rule def
+R14748:14754 CSS.Semantics <> sel_tag constr
+R14756:14758 CSS.Semantics <> div constr
+R14761:14761 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14798:14798 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R14762:14768 CSS.Semantics <> mk_decl def
+R14770:14776 CSS.Semantics <> p_color constr
+R14779:14783 CSS.Semantics <> v_str constr
+R14793:14797 Coq.Init.Datatypes <> false constr
+binder 14653:14655 <> css:178
+R14848:14850 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14805:14811 CSS.Semantics <> resolve def
+R14817:14818 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14820:14826 CSS.Semantics <> p_color constr
+R14829:14832 CSS.Semantics <> elem constr
+R14834:14836 CSS.Semantics <> div constr
+R14838:14839 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14841:14842 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R14845:14847 CSS.Semantics <> css:178 var
+R14851:14854 Coq.Init.Datatypes <> Some constr
+R14857:14861 CSS.Semantics <> v_str constr
+def 14905:14907 <> t32
+R14963:14965 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R14910:14920 CSS.Semantics <> specificity def
+R14923:14929 CSS.Semantics <> sel_and constr
+R14932:14940 CSS.Semantics <> sel_class constr
+R14948:14956 CSS.Semantics <> sel_class constr
+def 15003:15005 <> t33
+R15019:15019 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15096:15096 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15020:15024 CSS.Semantics <> mk_mq def
+R15026:15034 CSS.Semantics <> mq_always constr
+R15036:15036 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15095:15095 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15037:15043 CSS.Semantics <> mk_rule def
+R15046:15052 CSS.Semantics <> sel_tag constr
+R15054:15057 CSS.Semantics <> body constr
+R15060:15060 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15094:15094 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15061:15067 CSS.Semantics <> mk_decl def
+R15069:15075 CSS.Semantics <> p_width constr
+R15078:15081 CSS.Semantics <> v_px constr
+R15089:15093 Coq.Init.Datatypes <> false constr
+binder 15012:15014 <> css:179
+R15149:15151 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15101:15102 CSS.Semantics <> rw proj
+R15105:15112 CSS.Semantics <> get_rect def
+R15115:15120 CSS.Semantics <> render def
+R15127:15130 CSS.Semantics <> elem constr
+R15132:15135 CSS.Semantics <> body constr
+R15137:15138 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15140:15141 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15144:15146 CSS.Semantics <> css:179 var
+def 15191:15193 <> t34
+R15202:15207 CSS.Semantics <> render def
+R15214:15217 CSS.Semantics <> elem constr
+R15219:15221 CSS.Semantics <> div constr
+R15223:15224 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15226:15226 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15241:15241 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15227:15230 CSS.Semantics <> elem constr
+R15232:15234 CSS.Semantics <> div constr
+R15236:15237 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15239:15240 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15244:15245 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15252:15257 CSS.Semantics <> mkLBox constr
+R15264:15267 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R15268:15269 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15291:15293 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15275:15276 CSS.Semantics <> ry proj
+R15279:15286 CSS.Semantics <> get_rect def
+R15303:15307 Coq.Init.Logic <> False ind
+def 15347:15349 <> t35
+R15358:15363 CSS.Semantics <> render def
+R15370:15373 CSS.Semantics <> elem constr
+R15375:15377 CSS.Semantics <> div constr
+R15379:15380 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15382:15382 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15397:15397 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R15383:15386 CSS.Semantics <> elem constr
+R15388:15390 CSS.Semantics <> div constr
+R15392:15393 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15395:15396 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15400:15401 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15408:15413 CSS.Semantics <> mkLBox constr
+R15426:15428 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15422:15423 CSS.Semantics <> rh proj
+def 15470:15472 <> t36
+R15510:15512 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15475:15488 CSS.Semantics <> contains_token def
+R15513:15516 Coq.Init.Datatypes <> true constr
+def 15552:15554 <> t37
+R15594:15596 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15557:15570 CSS.Semantics <> contains_token def
+R15597:15601 Coq.Init.Datatypes <> false constr
+def 15637:15639 <> t38
+R15686:15688 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15642:15655 CSS.Semantics <> contains_token def
+R15689:15692 Coq.Init.Datatypes <> true constr
+def 15728:15730 <> t39
+R15784:15786 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15733:15743 CSS.Semantics <> specificity def
+R15746:15753 CSS.Semantics <> sel_desc constr
+R15756:15761 CSS.Semantics <> sel_id constr
+R15769:15777 CSS.Semantics <> sel_class constr
+def 15825:15827 <> t40
+R15871:15873 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15830:15836 CSS.Semantics <> matches def
+R15838:15839 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15842:15845 CSS.Semantics <> elem constr
+R15847:15849 CSS.Semantics <> div constr
+R15851:15852 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15854:15855 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15859:15865 CSS.Semantics <> sel_tag constr
+R15867:15869 CSS.Semantics <> div constr
+R15874:15877 Coq.Init.Datatypes <> true constr
+def 15913:15915 <> t41
+R15959:15961 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R15918:15924 CSS.Semantics <> matches def
+R15926:15927 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15930:15933 CSS.Semantics <> elem constr
+R15935:15937 CSS.Semantics <> img constr
+R15939:15940 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15942:15943 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R15947:15953 CSS.Semantics <> sel_tag constr
+R15955:15957 CSS.Semantics <> img constr
+R15962:15965 Coq.Init.Datatypes <> true constr
+def 16001:16003 <> t42
+R16025:16027 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16006:16012 CSS.Semantics <> eval_mq def
+R16014:16022 CSS.Semantics <> mq_always constr
+R16028:16031 Coq.Init.Datatypes <> true constr
+def 16067:16069 <> t43
+R16101:16103 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16072:16082 CSS.Semantics <> resolve_len def
+R16085:16089 CSS.Semantics <> v_pct constr
+def 16142:16144 <> t44
+R16158:16158 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16234:16234 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16159:16163 CSS.Semantics <> mk_mq def
+R16165:16173 CSS.Semantics <> mq_always constr
+R16175:16175 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16233:16233 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16176:16182 CSS.Semantics <> mk_rule def
+R16185:16191 CSS.Semantics <> sel_tag constr
+R16193:16195 CSS.Semantics <> div constr
+R16198:16198 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16232:16232 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16199:16205 CSS.Semantics <> mk_decl def
+R16207:16214 CSS.Semantics <> p_height constr
+R16217:16220 CSS.Semantics <> v_px constr
+R16227:16231 Coq.Init.Datatypes <> false constr
+binder 16151:16153 <> css:180
+R16286:16288 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16239:16240 CSS.Semantics <> rh proj
+R16243:16250 CSS.Semantics <> get_rect def
+R16253:16258 CSS.Semantics <> render def
+R16265:16268 CSS.Semantics <> elem constr
+R16270:16272 CSS.Semantics <> div constr
+R16274:16275 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16277:16278 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16281:16283 CSS.Semantics <> css:180 var
+def 16327:16329 <> t45
+R16338:16343 CSS.Semantics <> render def
+R16350:16353 CSS.Semantics <> elem constr
+R16355:16357 CSS.Semantics <> div constr
+R16359:16360 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16362:16362 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16372:16372 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16363:16366 CSS.Semantics <> text constr
+R16375:16376 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16383:16388 CSS.Semantics <> mkLBox constr
+R16401:16403 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16397:16398 CSS.Semantics <> rh proj
+def 16445:16447 <> t46
+R16532:16534 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16450:16456 CSS.Semantics <> matches def
+R16458:16458 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16474:16474 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16459:16462 CSS.Semantics <> elem constr
+R16464:16467 CSS.Semantics <> body constr
+R16469:16470 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16472:16473 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16477:16480 CSS.Semantics <> elem constr
+R16482:16484 CSS.Semantics <> div constr
+R16486:16487 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16489:16490 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16494:16501 CSS.Semantics <> sel_desc constr
+R16504:16510 CSS.Semantics <> sel_tag constr
+R16512:16515 CSS.Semantics <> body constr
+R16519:16525 CSS.Semantics <> sel_tag constr
+R16527:16529 CSS.Semantics <> div constr
+R16535:16538 Coq.Init.Datatypes <> true constr
+def 16574:16576 <> t47
+R16660:16662 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16579:16585 CSS.Semantics <> matches def
+R16587:16587 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16602:16602 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16588:16591 CSS.Semantics <> elem constr
+R16593:16595 CSS.Semantics <> div constr
+R16597:16598 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16600:16601 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16605:16608 CSS.Semantics <> elem constr
+R16610:16612 CSS.Semantics <> div constr
+R16614:16615 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16617:16618 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16622:16629 CSS.Semantics <> sel_desc constr
+R16632:16638 CSS.Semantics <> sel_tag constr
+R16640:16643 CSS.Semantics <> body constr
+R16647:16653 CSS.Semantics <> sel_tag constr
+R16655:16657 CSS.Semantics <> div constr
+R16663:16667 Coq.Init.Datatypes <> false constr
+def 16703:16705 <> t48
+R16719:16719 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16798:16798 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16720:16724 CSS.Semantics <> mk_mq def
+R16726:16734 CSS.Semantics <> mq_always constr
+R16736:16736 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16797:16797 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16737:16743 CSS.Semantics <> mk_rule def
+R16746:16754 CSS.Semantics <> sel_class constr
+R16761:16761 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16796:16796 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16762:16768 CSS.Semantics <> mk_decl def
+R16770:16776 CSS.Semantics <> p_color constr
+R16779:16783 CSS.Semantics <> v_str constr
+R16792:16795 Coq.Init.Datatypes <> true constr
+binder 16712:16714 <> css:181
+R16884:16886 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R16803:16809 CSS.Semantics <> resolve def
+R16815:16816 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16818:16824 CSS.Semantics <> p_color constr
+R16827:16830 CSS.Semantics <> elem constr
+R16832:16834 CSS.Semantics <> div constr
+R16836:16838 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16873:16875 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16839:16847 CSS.Semantics <> attr_name proj
+R16839:16847 CSS.Semantics <> attr_name proj
+R16839:16847 CSS.Semantics <> attr_name proj
+R16858:16867 CSS.Semantics <> attr_value proj
+R16858:16867 CSS.Semantics <> attr_value proj
+R16877:16878 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R16881:16883 CSS.Semantics <> css:181 var
+R16887:16890 Coq.Init.Datatypes <> Some constr
+R16893:16897 CSS.Semantics <> v_str constr
+def 16940:16942 <> t49
+R16956:16956 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R17032:17032 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16957:16961 CSS.Semantics <> mk_mq def
+R16963:16971 CSS.Semantics <> mq_always constr
+R16973:16973 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R17031:17031 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16974:16980 CSS.Semantics <> mk_rule def
+R16983:16990 CSS.Semantics <> sel_univ constr
+R16993:16993 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R17030:17030 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R16994:17000 CSS.Semantics <> mk_decl def
+R17002:17008 CSS.Semantics <> p_color constr
+R17011:17015 CSS.Semantics <> v_str constr
+R17025:17029 Coq.Init.Datatypes <> false constr
+binder 16949:16951 <> css:182
+R17081:17083 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17037:17043 CSS.Semantics <> resolve def
+R17049:17050 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17052:17058 CSS.Semantics <> p_color constr
+R17061:17064 CSS.Semantics <> elem constr
+R17066:17069 CSS.Semantics <> span constr
+R17071:17072 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17074:17075 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17078:17080 CSS.Semantics <> css:182 var
+R17084:17087 Coq.Init.Datatypes <> Some constr
+R17090:17094 CSS.Semantics <> v_str constr
+def 17138:17140 <> t50
+R17159:17161 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17143:17148 CSS.Semantics <> tag_eq def
+R17150:17153 CSS.Semantics <> body constr
+R17155:17158 CSS.Semantics <> body constr
+R17162:17165 Coq.Init.Datatypes <> true constr
+prf 17202:17211 <> uniqueness
+binder 17222:17222 <> w:183
+binder 17224:17224 <> n:184
+binder 17226:17228 <> css:185
+binder 17230:17231 <> b1:186
+binder 17233:17234 <> b2:187
+R17256:17259 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17251:17253 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17237:17242 CSS.Semantics <> render def
+R17244:17244 CSS.Semantics <> w:183 var
+R17246:17246 CSS.Semantics <> n:184 var
+R17248:17250 CSS.Semantics <> css:185 var
+R17254:17255 CSS.Semantics <> b1:186 var
+R17279:17282 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R17274:17276 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17260:17265 CSS.Semantics <> render def
+R17267:17267 CSS.Semantics <> w:183 var
+R17269:17269 CSS.Semantics <> n:184 var
+R17271:17273 CSS.Semantics <> css:185 var
+R17277:17278 CSS.Semantics <> b2:187 var
+R17285:17287 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17283:17284 CSS.Semantics <> b1:186 var
+R17288:17289 CSS.Semantics <> b2:187 var
+def 17393:17400 <> sorted_y
+R17409:17412 Coq.Init.Datatypes <> list ind
+R17414:17422 CSS.Semantics <> LayoutBox ind
+binder 17403:17405 <> lbs:188
+R17443:17445 CSS.Semantics <> lbs:188 var
+R17456:17457 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17462:17465 Coq.Init.Logic <> True ind
+R17473:17476 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R17515:17516 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17521:17524 Coq.Init.Logic <> True ind
+R17536:17539 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R17581:17584 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R17561:17564 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17545:17546 CSS.Semantics <> ry proj
+R17549:17556 CSS.Semantics <> get_rect def
+R17565:17566 CSS.Semantics <> ry proj
+R17569:17576 CSS.Semantics <> get_rect def
+R17585:17592 CSS.Semantics <> sorted_y:189 def
+def 17626:17633 <> sorted_x
+R17642:17645 Coq.Init.Datatypes <> list ind
+R17647:17655 CSS.Semantics <> LayoutBox ind
+binder 17636:17638 <> lbs:192
+R17676:17678 CSS.Semantics <> lbs:192 var
+R17689:17690 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17695:17698 Coq.Init.Logic <> True ind
+R17706:17709 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R17748:17749 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R17754:17757 Coq.Init.Logic <> True ind
+R17769:17772 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R17833:17836 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R17813:17816 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R17794:17796 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R17778:17779 CSS.Semantics <> rx proj
+R17782:17789 CSS.Semantics <> get_rect def
+R17797:17798 CSS.Semantics <> rw proj
+R17801:17808 CSS.Semantics <> get_rect def
+R17817:17818 CSS.Semantics <> rx proj
+R17821:17828 CSS.Semantics <> get_rect def
+R17837:17844 CSS.Semantics <> sorted_x:193 def
+prf 17877:17899 <> structural_preservation
+binder 17910:17910 <> w:196
+binder 17912:17912 <> n:197
+binder 17914:17916 <> css:198
+R17927:17927 CSS.Semantics <> n:197 var
+R17938:17941 CSS.Semantics <> elem constr
+R17994:17996 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R17955:17965 Coq.Lists.List <> length abbrev
+R17968:17975 CSS.Semantics <> get_kids def
+R17978:17983 CSS.Semantics <> render def
+R17985:17985 CSS.Semantics <> w:196 var
+R17987:17987 CSS.Semantics <> n:197 var
+R17989:17991 CSS.Semantics <> css:198 var
+R17997:18007 Coq.Lists.List <> length abbrev
+R18018:18021 CSS.Semantics <> text constr
+R18067:18069 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R18028:18038 Coq.Lists.List <> length abbrev
+R18041:18048 CSS.Semantics <> get_kids def
+R18051:18056 CSS.Semantics <> render def
+R18058:18058 CSS.Semantics <> w:196 var
+R18060:18060 CSS.Semantics <> n:197 var
+R18062:18064 CSS.Semantics <> css:198 var
+prf 18153:18177 <> compute_style_ignore_kids
+binder 18188:18188 <> w:200
+binder 18190:18192 <> anc:201
+binder 18194:18194 <> t:202
+binder 18196:18200 <> attrs:203
+binder 18202:18203 <> k1:204
+binder 18205:18206 <> k2:205
+binder 18208:18210 <> css:206
+R18257:18259 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R18216:18228 CSS.Semantics <> compute_style def
+R18230:18230 CSS.Semantics <> w:200 var
+R18232:18234 CSS.Semantics <> anc:201 var
+R18237:18240 CSS.Semantics <> elem constr
+R18242:18242 CSS.Semantics <> t:202 var
+R18244:18248 CSS.Semantics <> attrs:203 var
+R18250:18251 CSS.Semantics <> k1:204 var
+R18254:18256 CSS.Semantics <> css:206 var
+R18260:18272 CSS.Semantics <> compute_style def
+R18274:18274 CSS.Semantics <> w:200 var
+R18276:18278 CSS.Semantics <> anc:201 var
+R18281:18284 CSS.Semantics <> elem constr
+R18286:18286 CSS.Semantics <> t:202 var
+R18288:18292 CSS.Semantics <> attrs:203 var
+R18294:18295 CSS.Semantics <> k2:205 var
+R18298:18300 CSS.Semantics <> css:206 var
+prf 18329:18345 <> table_rows_sorted
+binder 18356:18356 <> w:207
+binder 18358:18362 <> attrs:208
+binder 18364:18367 <> kids:209
+binder 18369:18371 <> css:210
+R18390:18393 CSS.Semantics <> elem constr
+R18395:18399 CSS.Semantics <> table constr
+R18401:18405 CSS.Semantics <> attrs:208 var
+R18407:18410 CSS.Semantics <> kids:209 var
+binder 18380:18385 <> parent:211
+R18426:18438 CSS.Semantics <> compute_style def
+R18440:18440 CSS.Semantics <> w:207 var
+R18442:18443 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R18445:18450 CSS.Semantics <> parent:211 var
+R18452:18454 CSS.Semantics <> css:210 var
+binder 18421:18421 <> s:212
+R18479:18485 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R18469:18471 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R18461:18466 CSS.Semantics <> s_disp proj
+R18468:18468 CSS.Semantics <> s:212 var
+R18472:18478 CSS.Semantics <> d_table constr
+R18486:18493 CSS.Semantics <> sorted_y def
+R18496:18503 CSS.Semantics <> get_kids def
+R18506:18511 CSS.Semantics <> render def
+R18513:18513 CSS.Semantics <> w:207 var
+R18515:18520 CSS.Semantics <> parent:211 var
+R18522:18524 CSS.Semantics <> css:210 var
+prf 18555:18572 <> table_cells_sorted
+binder 18583:18583 <> w:213
+binder 18585:18589 <> attrs:214
+binder 18591:18594 <> kids:215
+binder 18596:18598 <> css:216
+R18617:18620 CSS.Semantics <> elem constr
+R18622:18623 CSS.Semantics <> tr constr
+R18625:18629 CSS.Semantics <> attrs:214 var
+R18631:18634 CSS.Semantics <> kids:215 var
+binder 18607:18612 <> parent:217
+R18650:18662 CSS.Semantics <> compute_style def
+R18664:18664 CSS.Semantics <> w:213 var
+R18666:18667 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R18669:18674 CSS.Semantics <> parent:217 var
+R18676:18678 CSS.Semantics <> css:216 var
+binder 18645:18645 <> s:218
+R18707:18713 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R18693:18695 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R18685:18690 CSS.Semantics <> s_disp proj
+R18692:18692 CSS.Semantics <> s:218 var
+R18696:18706 CSS.Semantics <> d_table_row constr
+R18714:18721 CSS.Semantics <> sorted_x def
+R18724:18731 CSS.Semantics <> get_kids def
+R18734:18739 CSS.Semantics <> render def
+R18741:18741 CSS.Semantics <> w:213 var
+R18743:18748 CSS.Semantics <> parent:217 var
+R18750:18752 CSS.Semantics <> css:216 var

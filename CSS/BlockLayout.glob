@@ -1,0 +1,312 @@
+DIGEST 7887c8c21e906105a8e42cb43b5463f2
+FCSS.BlockLayout
+R15:28 Coq.Lists.List <> <> lib
+R46:60 Coq.Arith.Arith <> <> lib
+R78:90 Coq.Bool.Bool <> <> lib
+R100:112 Coq.Lists.List ListNotations <> mod
+ind 201:211 <> DisplayType
+constr 216:222 <> d_block
+constr 226:233 <> d_inline
+scheme 201:211 <> DisplayType_rect
+scheme 201:211 <> DisplayType_ind
+scheme 201:211 <> DisplayType_rec
+scheme 201:211 <> DisplayType_sind
+rec 269:271 <> Box
+proj 286:286 <> h
+proj 323:323 <> w
+proj 359:360 <> mt
+proj 392:393 <> mb
+proj 428:431 <> disp
+R290:292 Coq.Init.Datatypes <> nat ind
+R327:329 Coq.Init.Datatypes <> nat ind
+R364:366 Coq.Init.Datatypes <> nat ind
+R397:399 Coq.Init.Datatypes <> nat ind
+R435:445 CSS.BlockLayout <> DisplayType ind
+ind 484:493 <> FSM_Status
+constr 498:507 <> InProgress
+constr 511:514 <> Done
+scheme 484:493 <> FSM_Status_rect
+scheme 484:493 <> FSM_Status_ind
+scheme 484:493 <> FSM_Status_rec
+scheme 484:493 <> FSM_Status_sind
+rec 525:533 <> PlacedBox
+proj 554:559 <> pb_box
+proj 570:575 <> pb_top
+proj 586:592 <> pb_left
+R563:565 CSS.BlockLayout <> Box rec
+R579:581 Coq.Init.Datatypes <> nat ind
+R596:598 Coq.Init.Datatypes <> nat ind
+rec 611:615 <> State
+proj 632:636 <> x_pos
+proj 681:685 <> y_pos
+proj 730:735 <> line_h
+proj 780:793 <> pending_margin
+proj 834:838 <> max_w
+proj 880:885 <> status
+proj 903:909 <> history
+R640:642 Coq.Init.Datatypes <> nat ind
+R689:691 Coq.Init.Datatypes <> nat ind
+R739:741 Coq.Init.Datatypes <> nat ind
+R797:799 Coq.Init.Datatypes <> nat ind
+R842:844 Coq.Init.Datatypes <> nat ind
+R889:898 CSS.BlockLayout <> FSM_Status ind
+R913:916 Coq.Init.Datatypes <> list ind
+R918:926 CSS.BlockLayout <> PlacedBox rec
+def 943:952 <> init_state
+R960:962 Coq.Init.Datatypes <> nat ind
+binder 955:956 <> mw:23
+R968:974 CSS.BlockLayout <> mkState constr
+R984:985 CSS.BlockLayout <> mw:23 var
+R987:996 CSS.BlockLayout <> InProgress constr
+R998:999 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+def 1040:1043 <> step
+R1050:1054 CSS.BlockLayout <> State rec
+binder 1046:1046 <> s:24
+R1062:1064 CSS.BlockLayout <> Box rec
+binder 1058:1058 <> b:25
+R1069:1073 CSS.BlockLayout <> State rec
+R1086:1089 CSS.BlockLayout <> disp proj
+R1091:1091 CSS.BlockLayout <> b:25 var
+R1102:1108 CSS.BlockLayout <> d_block constr
+R1183:1185 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1176:1180 CSS.BlockLayout <> y_pos proj
+R1182:1182 CSS.BlockLayout <> s:24 var
+R1186:1191 CSS.BlockLayout <> line_h proj
+R1193:1193 CSS.BlockLayout <> s:24 var
+binder 1166:1171 <> base_y:26
+R1221:1223 Coq.Init.Peano <> max abbrev
+R1226:1239 CSS.BlockLayout <> pending_margin proj
+R1241:1241 CSS.BlockLayout <> s:24 var
+R1245:1246 CSS.BlockLayout <> mt proj
+R1248:1248 CSS.BlockLayout <> b:25 var
+binder 1208:1216 <> collapsed:27
+R1281:1283 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1275:1280 CSS.BlockLayout <> base_y:26 var
+R1284:1292 CSS.BlockLayout <> collapsed:27 var
+binder 1264:1270 <> box_top:28
+R1328:1331 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1335:1335 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1321:1327 CSS.BlockLayout <> box_top:28 var
+R1332:1332 CSS.BlockLayout <> h proj
+R1334:1334 CSS.BlockLayout <> b:25 var
+binder 1307:1316 <> box_bottom:29
+R1346:1352 CSS.BlockLayout <> mkState constr
+R1356:1365 CSS.BlockLayout <> box_bottom:29 var
+R1370:1371 CSS.BlockLayout <> mb proj
+R1373:1373 CSS.BlockLayout <> b:25 var
+R1377:1381 CSS.BlockLayout <> max_w proj
+R1383:1383 CSS.BlockLayout <> s:24 var
+R1386:1395 CSS.BlockLayout <> InProgress constr
+R1398:1398 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1422:1427 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1437:1437 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1399:1409 CSS.BlockLayout <> mkPlacedBox constr
+R1411:1411 CSS.BlockLayout <> b:25 var
+R1413:1419 CSS.BlockLayout <> box_top:28 var
+R1428:1434 CSS.BlockLayout <> history proj
+R1436:1436 CSS.BlockLayout <> s:24 var
+R1444:1451 CSS.BlockLayout <> d_inline constr
+R1521:1525 Coq.Arith.PeanoNat <> ::nat_scope:x_'<=?'_x not
+R1515:1517 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1508:1512 CSS.BlockLayout <> x_pos proj
+R1514:1514 CSS.BlockLayout <> s:24 var
+R1518:1518 CSS.BlockLayout <> w proj
+R1520:1520 CSS.BlockLayout <> b:25 var
+R1526:1530 CSS.BlockLayout <> max_w proj
+R1532:1532 CSS.BlockLayout <> s:24 var
+R1844:1846 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1837:1841 CSS.BlockLayout <> y_pos proj
+R1843:1843 CSS.BlockLayout <> s:24 var
+R1847:1852 CSS.BlockLayout <> line_h proj
+R1854:1854 CSS.BlockLayout <> s:24 var
+binder 1828:1832 <> new_y:30
+R1867:1873 CSS.BlockLayout <> mkState constr
+R1876:1876 CSS.BlockLayout <> w proj
+R1878:1878 CSS.BlockLayout <> b:25 var
+R1881:1885 CSS.BlockLayout <> new_y:30 var
+R1888:1888 CSS.BlockLayout <> h proj
+R1890:1890 CSS.BlockLayout <> b:25 var
+R1894:1907 CSS.BlockLayout <> pending_margin proj
+R1909:1909 CSS.BlockLayout <> s:24 var
+R1913:1917 CSS.BlockLayout <> max_w proj
+R1919:1919 CSS.BlockLayout <> s:24 var
+R1922:1931 CSS.BlockLayout <> InProgress constr
+R1934:1934 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1956:1961 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1971:1971 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1935:1945 CSS.BlockLayout <> mkPlacedBox constr
+R1947:1947 CSS.BlockLayout <> b:25 var
+R1949:1953 CSS.BlockLayout <> new_y:30 var
+R1962:1968 CSS.BlockLayout <> history proj
+R1970:1970 CSS.BlockLayout <> s:24 var
+R1598:1602 CSS.BlockLayout <> y_pos proj
+R1604:1604 CSS.BlockLayout <> s:24 var
+binder 1587:1593 <> box_top:31
+R1617:1623 CSS.BlockLayout <> mkState constr
+R1633:1635 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R1626:1630 CSS.BlockLayout <> x_pos proj
+R1632:1632 CSS.BlockLayout <> s:24 var
+R1636:1636 CSS.BlockLayout <> w proj
+R1638:1638 CSS.BlockLayout <> b:25 var
+R1642:1646 CSS.BlockLayout <> y_pos proj
+R1648:1648 CSS.BlockLayout <> s:24 var
+R1652:1663 Coq.Init.Nat <> max def
+R1666:1671 CSS.BlockLayout <> line_h proj
+R1673:1673 CSS.BlockLayout <> s:24 var
+R1677:1677 CSS.BlockLayout <> h proj
+R1679:1679 CSS.BlockLayout <> b:25 var
+R1684:1697 CSS.BlockLayout <> pending_margin proj
+R1699:1699 CSS.BlockLayout <> s:24 var
+R1703:1707 CSS.BlockLayout <> max_w proj
+R1709:1709 CSS.BlockLayout <> s:24 var
+R1712:1721 CSS.BlockLayout <> InProgress constr
+R1724:1724 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1756:1761 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1771:1771 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R1725:1735 CSS.BlockLayout <> mkPlacedBox constr
+R1737:1737 CSS.BlockLayout <> b:25 var
+R1739:1745 CSS.BlockLayout <> box_top:31 var
+R1748:1752 CSS.BlockLayout <> x_pos proj
+R1754:1754 CSS.BlockLayout <> s:24 var
+R1762:1768 CSS.BlockLayout <> history proj
+R1770:1770 CSS.BlockLayout <> s:24 var
+def 1991:2009 <> layout_fsm_internal
+R2016:2020 CSS.BlockLayout <> State rec
+binder 2012:2012 <> s:32
+R2032:2035 Coq.Init.Datatypes <> list ind
+R2037:2039 CSS.BlockLayout <> Box rec
+binder 2024:2028 <> boxes:33
+R2044:2048 CSS.BlockLayout <> State rec
+R2061:2065 CSS.BlockLayout <> boxes:33 var
+R2076:2077 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2082:2088 CSS.BlockLayout <> mkState constr
+R2091:2095 CSS.BlockLayout <> x_pos proj
+R2097:2097 CSS.BlockLayout <> s:32 var
+R2108:2110 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R2101:2105 CSS.BlockLayout <> y_pos proj
+R2107:2107 CSS.BlockLayout <> s:32 var
+R2111:2116 CSS.BlockLayout <> line_h proj
+R2118:2118 CSS.BlockLayout <> s:32 var
+R2122:2127 CSS.BlockLayout <> line_h proj
+R2129:2129 CSS.BlockLayout <> s:32 var
+R2133:2146 CSS.BlockLayout <> pending_margin proj
+R2148:2148 CSS.BlockLayout <> s:32 var
+R2152:2156 CSS.BlockLayout <> max_w proj
+R2158:2158 CSS.BlockLayout <> s:32 var
+R2161:2164 CSS.BlockLayout <> Done constr
+R2167:2173 CSS.BlockLayout <> history proj
+R2175:2175 CSS.BlockLayout <> s:32 var
+R2183:2186 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2193:2211 CSS.BlockLayout <> layout_fsm_internal:34 def
+R2214:2217 CSS.BlockLayout <> step def
+R2219:2219 CSS.BlockLayout <> s:32 var
+def 2246:2255 <> layout_fsm
+R2263:2265 Coq.Init.Datatypes <> nat ind
+binder 2258:2259 <> mw:36
+R2277:2280 Coq.Init.Datatypes <> list ind
+R2282:2284 CSS.BlockLayout <> Box rec
+binder 2269:2273 <> boxes:37
+R2289:2293 CSS.BlockLayout <> State rec
+R2300:2318 CSS.BlockLayout <> layout_fsm_internal def
+R2321:2330 CSS.BlockLayout <> init_state def
+R2332:2333 CSS.BlockLayout <> mw:36 var
+R2336:2340 CSS.BlockLayout <> boxes:37 var
+def 2444:2463 <> check_v_monotonicity
+R2475:2478 Coq.Init.Datatypes <> list ind
+R2480:2488 CSS.BlockLayout <> PlacedBox rec
+binder 2466:2471 <> h_list:38
+R2509:2514 CSS.BlockLayout <> h_list:38 var
+R2525:2526 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2531:2534 Coq.Init.Logic <> True ind
+R2540:2540 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2542:2542 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2547:2550 Coq.Init.Logic <> True ind
+R2562:2566 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2586:2586 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2573:2576 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2598:2598 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R2629:2633 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R2612:2615 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R2599:2604 CSS.BlockLayout <> pb_top proj
+R2616:2621 CSS.BlockLayout <> pb_top proj
+R2634:2653 CSS.BlockLayout <> check_v_monotonicity:39 def
+def 2744:2763 <> check_h_monotonicity
+R2775:2778 Coq.Init.Datatypes <> list ind
+R2780:2788 CSS.BlockLayout <> PlacedBox rec
+binder 2766:2771 <> h_list:41
+R2809:2814 CSS.BlockLayout <> h_list:41 var
+R2825:2826 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R2831:2834 Coq.Init.Logic <> True ind
+R2840:2840 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2842:2842 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R2847:2850 Coq.Init.Logic <> True ind
+R2862:2866 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2886:2886 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2873:2876 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R2898:2898 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3004:3015 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R2916:2919 Coq.Arith.PeanoNat <> ::nat_scope:x_'=?'_x not
+R2903:2908 CSS.BlockLayout <> pb_top proj
+R2920:2925 CSS.BlockLayout <> pb_top proj
+R3000:3003 Coq.Init.Logic <> True ind
+R2975:2978 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R2955:2957 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R2941:2947 CSS.BlockLayout <> pb_left proj
+R2958:2958 CSS.BlockLayout <> w proj
+R2961:2966 CSS.BlockLayout <> pb_box proj
+R2979:2985 CSS.BlockLayout <> pb_left proj
+R3016:3035 CSS.BlockLayout <> check_h_monotonicity:42 def
+def 3096:3118 <> check_width_containment
+R3130:3133 Coq.Init.Datatypes <> list ind
+R3135:3143 CSS.BlockLayout <> PlacedBox rec
+binder 3121:3126 <> h_list:44
+R3152:3154 Coq.Init.Datatypes <> nat ind
+binder 3147:3148 <> mw:45
+R3175:3180 CSS.BlockLayout <> h_list:44 var
+R3191:3192 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R3197:3200 Coq.Init.Logic <> True ind
+R3207:3210 Coq.Init.Datatypes <> ::list_scope:x_'::'_x not
+R3219:3219 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3250:3254 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3244:3247 Coq.Init.Peano <> ::nat_scope:x_'<='_x not
+R3229:3231 Coq.Init.Peano <> ::nat_scope:x_'+'_x not
+R3220:3226 CSS.BlockLayout <> pb_left proj
+R3232:3232 CSS.BlockLayout <> w proj
+R3235:3240 CSS.BlockLayout <> pb_box proj
+R3248:3249 CSS.BlockLayout <> mw:45 var
+R3255:3277 CSS.BlockLayout <> check_width_containment:46 def
+R3284:3285 CSS.BlockLayout <> mw:45 var
+def 3306:3318 <> verify_layout
+R3329:3332 Coq.Init.Datatypes <> list ind
+R3334:3336 CSS.BlockLayout <> Box rec
+binder 3321:3325 <> input:48
+R3345:3347 Coq.Init.Datatypes <> nat ind
+binder 3340:3341 <> mw:49
+R3355:3359 CSS.BlockLayout <> State rec
+binder 3351:3351 <> s:50
+R3389:3394 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3382:3384 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R3374:3379 CSS.BlockLayout <> status proj
+R3381:3381 CSS.BlockLayout <> s:50 var
+R3385:3388 CSS.BlockLayout <> Done constr
+R3427:3432 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3395:3414 CSS.BlockLayout <> check_v_monotonicity def
+R3417:3423 CSS.BlockLayout <> history proj
+R3425:3425 CSS.BlockLayout <> s:50 var
+R3465:3470 Coq.Init.Logic <> ::type_scope:x_'/\'_x not
+R3433:3452 CSS.BlockLayout <> check_h_monotonicity def
+R3455:3461 CSS.BlockLayout <> history proj
+R3463:3463 CSS.BlockLayout <> s:50 var
+R3471:3493 CSS.BlockLayout <> check_width_containment def
+R3496:3502 CSS.BlockLayout <> history proj
+R3504:3504 CSS.BlockLayout <> s:50 var
+R3507:3508 CSS.BlockLayout <> mw:49 var
+prf 3520:3533 <> fsm_is_correct
+binder 3544:3545 <> mw:51
+binder 3547:3551 <> boxes:52
+R3554:3566 CSS.BlockLayout <> verify_layout def
+R3568:3572 CSS.BlockLayout <> boxes:52 var
+R3574:3575 CSS.BlockLayout <> mw:51 var
+R3578:3587 CSS.BlockLayout <> layout_fsm def
+R3589:3590 CSS.BlockLayout <> mw:51 var
+R3592:3596 CSS.BlockLayout <> boxes:52 var

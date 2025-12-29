@@ -1,0 +1,51 @@
+DIGEST fc5793320baefcaaae7064e081a3ec47
+FCSS.Preservation
+R15:28 Coq.Lists.List <> <> lib
+R46:63 Coq.Strings.String <> <> lib
+R81:95 Coq.Arith.Arith <> <> lib
+R113:125 CSS.Semantics <> <> lib
+R135:147 Coq.Lists.List ListNotations <> mod
+prf 575:601 <> normal_flow_order_preserved
+binder 612:612 <> w:1
+binder 614:618 <> attrs:2
+binder 620:623 <> kids:3
+binder 625:627 <> css:4
+R646:649 CSS.Semantics <> elem constr
+R651:653 CSS.Semantics <> div constr
+R655:659 CSS.Preservation <> attrs:2 var
+R661:664 CSS.Preservation <> kids:3 var
+binder 636:641 <> parent:5
+R687:699 CSS.Semantics <> compute_style def
+R701:701 CSS.Preservation <> w:1 var
+R703:704 Coq.Lists.List ListNotations ::list_scope:'['_']' not
+R706:711 CSS.Preservation <> parent:5 var
+R713:715 CSS.Preservation <> css:4 var
+binder 675:682 <> s_parent:6
+R787:856 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R777:779 Coq.Init.Logic <> ::type_scope:x_'='_x not
+R762:767 CSS.Semantics <> s_disp proj
+R769:776 CSS.Preservation <> s_parent:6 var
+R780:786 CSS.Semantics <> d_block constr
+R857:857 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R927:993 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+binder 865:865 <> k:7
+R877:880 Coq.Init.Logic <> ::type_scope:x_'->'_x not
+R868:869 Coq.Lists.List <> In def
+R873:876 CSS.Preservation <> kids:3 var
+R871:871 CSS.Preservation <> k:7 var
+R881:893 CSS.Semantics <> is_block_flow def
+R896:908 CSS.Semantics <> compute_style def
+R910:910 CSS.Preservation <> w:1 var
+R912:912 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R919:919 Coq.Lists.List ListNotations ::list_scope:'['_x_']' not
+R913:918 CSS.Preservation <> parent:5 var
+R921:921 CSS.Preservation <> k:7 var
+R923:925 CSS.Preservation <> css:4 var
+R994:1001 CSS.Semantics <> sorted_y def
+R1004:1011 CSS.Semantics <> get_kids def
+R1014:1019 CSS.Semantics <> render def
+R1021:1021 CSS.Preservation <> w:1 var
+R1023:1028 CSS.Preservation <> parent:5 var
+R1030:1032 CSS.Preservation <> css:4 var
+R1133:1138 CSS.Semantics <> render def
+R1141:1148 CSS.Semantics <> position def
